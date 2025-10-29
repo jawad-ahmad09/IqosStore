@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Product, ContactFormData } from '../types';
+import { Product, ContactFormData, CartItem } from '../types';
 
 interface ContactFormProps {
     selectedProducts: Product[];
@@ -13,32 +13,27 @@ const ContactForm = ({ selectedProducts }: ContactFormProps) => {
         email: '',
         phone: '',
         message: '',
-        selectedProducts: selectedProducts,
+        selectedProducts: [],
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        // Create WhatsApp message
-        const productsList = selectedProducts
-            .map(p => `${p.name} - $${p.price}`)
-            .join('\n');
-
-        const message = `New Inquiry:
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Message: ${formData.message}
-
-Selected Products:
-${productsList}`;
-
-        // Create WhatsApp URL (replace with your number)
-        const whatsappNumber = '1234567890'; // Replace with your WhatsApp number
-        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-        // Open WhatsApp
-        window.open(whatsappUrl, '_blank');
+        const cartItems: CartItem[] = selectedProducts.map(p => ({ ...p, quantity: 1 }))
+        const payload: ContactFormData = {
+            ...formData,
+            selectedProducts: cartItems,
+        }
+        const res = await fetch('/api/send-inquiry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        })
+        if (!res.ok) {
+            alert('Failed to send. Please try again.')
+            return
+        }
+        alert('Inquiry sent successfully!')
+        setFormData({ name: '', email: '', phone: '', message: '', selectedProducts: [] })
     };
 
     return (

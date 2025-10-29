@@ -3,8 +3,6 @@
 import type React from "react"
 import { useState } from "react"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
-import Header from "@/app/components/Header"
-import Footer from "@/app/components/Footer"
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -26,17 +24,22 @@ export default function ContactPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-
         try {
-            const whatsappNumber = "923001234567" // Replace with your WhatsApp number
-            const message = `Hello! I have a message for you:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
-            window.open(whatsappUrl, "_blank")
-
+            const payload = {
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                message: `${formData.subject ? `Subject: ${formData.subject}\n\n` : ""}${formData.message}`,
+                selectedProducts: [],
+            }
+            const res = await fetch("/api/send-inquiry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            })
+            if (!res.ok) throw new Error("Failed to send")
             setSubmitStatus("success")
             setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
-
             setTimeout(() => setSubmitStatus("idle"), 3000)
         } catch (error) {
             setSubmitStatus("error")
@@ -48,7 +51,6 @@ export default function ContactPage() {
 
     return (
         <>
-            <Header />
             <div className="min-h-screen bg-background pt-24 pb-20">
                 <div className="container mx-auto px-4">
                     {/* Header */}

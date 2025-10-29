@@ -4,30 +4,30 @@ const Services = () => {
     return (
         <section id="services" className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
+                <h2 className="text-4xl font-bold text-center mb-12">Terea Heats Services</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-semibold mb-4">Door-to-Door Delivery</h3>
                         <p className="text-gray-600">
-                            We ensure safe and timely delivery of your products right to your doorstep.
+                            Safe, quick delivery of Terea Heats sticks straight to your door.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-xl font-semibold mb-4">Product Installation</h3>
+                        <h3 className="text-xl font-semibold mb-4">Flavor Guidance</h3>
                         <p className="text-gray-600">
-                            Professional installation service for eligible products by our expert team.
+                            Get recommendations on Terea flavors that match your preference.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-semibold mb-4">After-Sales Support</h3>
                         <p className="text-gray-600">
-                            Dedicated customer support team to assist you with any queries or concerns.
+                            Order assistance, replacements, and flavor advice whenever you need it.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-xl font-semibold mb-4">Quality Guarantee</h3>
+                        <h3 className="text-xl font-semibold mb-4">Authenticity Guarantee</h3>
                         <p className="text-gray-600">
-                            All our products come with a quality guarantee for your peace of mind.
+                            Guaranteed genuine Terea products for complete peace of mind.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">

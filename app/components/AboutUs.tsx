@@ -7,11 +7,10 @@ const About = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
-                            Why Choose <span className="text-accent">Us</span>
+                            Why Choose <span className="text-accent">Terea Heats</span>
                         </h2>
                         <p className="text-lg text-muted mb-6 leading-relaxed">
-                            We are dedicated to providing the finest quality products with exceptional service. Our commitment to
-                            excellence ensures every customer receives premium items that exceed expectations.
+                            We focus exclusively on authentic Terea Heats sticks and accessories, providing verified quality and fast, reliable delivery.
                         </p>
                         <div className="space-y-4">
                             <div className="flex gap-4">
@@ -19,8 +18,8 @@ const About = () => {
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-accent text-white">✓</div>
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg">Premium Quality</h3>
-                                    <p className="text-muted">Only the finest products make it to our collection</p>
+                                    <h3 className="font-semibold text-lg">Authentic Quality</h3>
+                                    <p className="text-muted">Sourced from trusted suppliers — genuine Terea only</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -29,7 +28,7 @@ const About = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-lg">Fast Delivery</h3>
-                                    <p className="text-muted">Quick and reliable door-to-door service</p>
+                                    <p className="text-muted">Same-day/next-day options available in select areas</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -38,7 +37,7 @@ const About = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-lg">24/7 Support</h3>
-                                    <p className="text-muted">Always here to help with your queries</p>
+                                    <p className="text-muted">Get help with flavor selection and orders anytime</p>
                                 </div>
                             </div>
                         </div>

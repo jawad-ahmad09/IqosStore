@@ -11,33 +11,33 @@ interface FAQItem {
 const faqItems: FAQItem[] = [
     {
         id: 1,
-        question: "What is your delivery time?",
-        answer: "We typically deliver within 5-7 business days. Express delivery options are available for urgent orders.",
+        question: "How fast do you deliver Terea Heats?",
+        answer: "Most orders arrive within 1-3 days. Same-day/next-day delivery may be available in select areas.",
     },
     {
         id: 2,
-        question: "Do you offer international shipping?",
-        answer: "Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location.",
+        question: "Are your Terea products authentic?",
+        answer: "Yes. We only sell genuine Terea Heats, sourced from trusted suppliers.",
     },
     {
         id: 3,
         question: "What is your return policy?",
-        answer: "We offer a 30-day money-back guarantee on all products. Items must be in original condition.",
+        answer: "We offer a 30-day return policy for sealed, unopened packs. Contact support to arrange a return.",
     },
     {
         id: 4,
-        question: "Are your products authentic?",
-        answer: "100% authentic. All our products are sourced directly from manufacturers and come with warranty.",
+        question: "Which Terea flavor should I choose?",
+        answer: "Yellow for smooth balance, Turquoise for menthol, Amber for richer notes, Bronze for intensity.",
     },
     {
         id: 5,
         question: "How can I track my order?",
-        answer: "You'll receive a tracking number via email once your order ships. You can track it in real-time.",
+        answer: "You’ll receive a tracking link by email/SMS once your order ships for real-time updates.",
     },
     {
         id: 6,
-        question: "Do you offer bulk discounts?",
-        answer: "Yes! Contact our sales team for bulk orders and special pricing on large quantities.",
+        question: "Do you offer bulk pricing for Terea?",
+        answer: "Yes. Reach out for wholesale or multi-pack discounts.",
     },
 ]
 

@@ -31,47 +31,19 @@ const InquiryForm = ({ cartItems, onSubmit }: InquiryFormProps) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-
         try {
-            // Create WhatsApp message
-            const productsList = cartItems.map((p) => `${p.name} (Qty: ${p.quantity}) - $${p.price}`).join("\n")
-
-            const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-
-            const message = `*New Product Inquiry*
-
-*Customer Details:*
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-
-*Selected Products:*
-${productsList}
-
-*Total: $${total.toFixed(2)}*
-
-${formData.message ? `*Message:*\n${formData.message}` : ""}`
-
-            // Replace with your WhatsApp number (without + or spaces)
-            const whatsappNumber = "1234567890"
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
-            // Also send email notification (you can integrate with email service)
-            console.log("Form submitted:", formData)
-
-            // Open WhatsApp
-            window.open(whatsappUrl, "_blank")
-
-            // Reset form
-            setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                message: "",
+            const payload = {
+                ...formData,
                 selectedProducts: cartItems,
+            }
+            const res = await fetch("/api/send-inquiry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
             })
-
-            alert("Inquiry sent successfully! Opening WhatsApp...")
+            if (!res.ok) throw new Error("Failed to send")
+            setFormData({ name: "", email: "", phone: "", message: "", selectedProducts: [] })
+            alert("Inquiry sent successfully! We will contact you shortly.")
         } catch (error) {
             console.error("Error submitting form:", error)
             alert("Error submitting inquiry. Please try again.")
