@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation" // ✅ Add this import
+import { usePathname } from "next/navigation"
 import { useCart } from "@/app/context/CartContext"
 import { useUI } from "@/app/context/UIContext"
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const pathname = usePathname() // ✅ Get current path
+    const pathname = usePathname()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,12 +20,22 @@ const Header = () => {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    // ✅ Function to handle navigation based on current page
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = ""
+        }
+        return () => {
+            document.body.style.overflow = ""
+        }
+    }, [isMobileMenuOpen])
+
     const getLinkHref = (section: string) => {
         if (pathname === "/") {
-            return section // Home page par anchor links
+            return section
         } else {
-            return `/${section}` // Other pages par direct links
+            return `/${section}`
         }
     }
 
@@ -46,22 +56,13 @@ const Header = () => {
                         <Link href="/" className="text-foreground hover:text-accent transition-smooth">
                             Home
                         </Link>
-                        <Link
-                            href={getLinkHref("listings")}
-                            className="text-foreground hover:text-accent transition-smooth"
-                        >
+                        <Link href={getLinkHref("listings")} className="text-foreground hover:text-accent transition-smooth">
                             All Listings
                         </Link>
-                        <Link
-                            href={getLinkHref("#about")}
-                            className="text-foreground hover:text-accent transition-smooth"
-                        >
+                        <Link href={getLinkHref("#about")} className="text-foreground hover:text-accent transition-smooth">
                             About
                         </Link>
-                        <Link
-                            href={getLinkHref("#faq")}
-                            className="text-foreground hover:text-accent transition-smooth"
-                        >
+                        <Link href={getLinkHref("#faq")} className="text-foreground hover:text-accent transition-smooth">
                             FAQ
                         </Link>
                         <Link href="/contact" className="text-foreground hover:text-accent transition-smooth">
@@ -72,7 +73,9 @@ const Header = () => {
 
                     {/* Mobile Menu Button */}
                     <div className="flex items-center gap-2">
-                        <span className="md:hidden"><CartButton /></span>
+                        <span className="md:hidden">
+                            <CartButton />
+                        </span>
                         <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 {isMobileMenuOpen ? (
@@ -85,48 +88,119 @@ const Header = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
-                {isMobileMenuOpen && (
-                    <div className="md:hidden pb-4">
-                        <div className="space-y-2">
+                {/* Mobile Overlay */}
+                <div
+                    className={`md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+                        }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+
+                {/* Mobile Sidebar */}
+                <div
+                    className={`md:hidden fixed top-0 right-0 h-full w-[75%] max-w-sm bg-background z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                        }`}
+                >
+                    <div className="flex flex-col h-full">
+                        {/* Sidebar Header */}
+                        <div className="flex items-center justify-between p-6 border-b border-border">
+                            <Link href="/" className="text-xl font-bold text-primary" onClick={() => setIsMobileMenuOpen(false)}>
+                                IQOS<span className="text-accent"> Store</span>
+                            </Link>
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="p-2 text-muted hover:text-foreground hover:bg-gray-100 rounded-full transition-smooth"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        {/* Navigation Links */}
+                        <nav className="flex-1 p-6 space-y-2">
                             <Link
                                 href="/"
-                                className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
+                                className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                    />
+                                </svg>
                                 Home
                             </Link>
                             <Link
                                 href={getLinkHref("listings")}
-                                className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
+                                className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                                    />
+                                </svg>
                                 All Listings
                             </Link>
                             <Link
                                 href={getLinkHref("#about")}
-                                className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
+                                className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
                                 About
                             </Link>
                             <Link
                                 href={getLinkHref("#faq")}
-                                className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
+                                className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
                                 FAQ
                             </Link>
                             <Link
                                 href="/contact"
-                                className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
+                                className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    />
+                                </svg>
                                 Contact Us
                             </Link>
+                        </nav>
+
+                        {/* Footer */}
+                        <div className="p-6 border-t border-border">
+                            <p className="text-sm text-muted text-center">© 2025 IQOS Store</p>
                         </div>
                     </div>
-                )}
+                </div>
             </div>
         </header>
     )
@@ -139,12 +213,23 @@ function CartButton() {
     const { openCart } = useUI()
     const count = items.reduce((sum, i) => sum + i.quantity, 0)
     return (
-        <button onClick={openCart} className="relative p-2 rounded hover:bg-border transition-smooth" aria-label="Open cart">
+        <button
+            onClick={openCart}
+            className="relative p-2 rounded hover:bg-border transition-smooth"
+            aria-label="Open cart"
+        >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2 9m12-9l2 9M9 22a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"
+                />
             </svg>
             {count > 0 && (
-                <span className="absolute -top-1 -right-1 text-xs bg-accent text-white rounded-full px-1.5 py-0.5">{count}</span>
+                <span className="absolute -top-1 -right-1 text-xs bg-accent text-white rounded-full px-1.5 py-0.5">
+                    {count}
+                </span>
             )}
         </button>
     )
