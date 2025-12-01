@@ -6,10 +6,14 @@ export interface Product {
     Origin?: string
     price: number
     image: string
+    images?: string[] // Multiple images support
     flavor?: string
     device?: string
     stickType?: string
     intensity?: string
+    category?: "Terea Heats" | "IQOS Device"
+    deviceType?: "IQOS Standard" | "IQOS Premium" | "IQOS Iluma"
+    specifications?: string[]
 }
 
 export interface CartItem extends Product {

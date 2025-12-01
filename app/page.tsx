@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Hero from "./components/Hero"
 import Products from "./components/Products"
-
+import IqosDevices from "./components/IqosDevices"
 import Cart from "./components/Cart"
 
 import type { CartItem, ContactFormData } from "./types"
@@ -21,10 +21,45 @@ export default function Home() {
     clear()
   }
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: "IQOS Store UAE",
+    description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices",
+    url: "https://iqosstore.ae",
+    telephone: "+971-XX-XXX-XXXX",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "AE",
+      addressRegion: "Dubai",
+      addressLocality: "Dubai"
+    },
+    priceRange: "AED 130 - AED 750",
+    image: "https://iqosstore.ae/og-image.jpg",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "250"
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "AED",
+      lowPrice: "130",
+      highPrice: "750",
+      offerCount: "26"
+    }
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <Products limit={6} showViewAll={true} />
+      <IqosDevices />
       <About />
 
       <FAQ />

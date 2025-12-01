@@ -10,7 +10,7 @@ const Hero = () => {
     }, [])
 
     return (
-        <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-background via-background to-accent-light pt-24 overflow-hidden">
+        <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-background via-background to-accent/10 pt-24 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-20 right-20 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
                 <div
@@ -18,7 +18,7 @@ const Hero = () => {
                     style={{ animationDelay: "1s" }}
                 ></div>
                 <div
-                    className="absolute top-1/2 left-1/3 w-96 h-96 bg-accent-light rounded-full mix-blend-multiply filter blur-3xl animate-float"
+                    className="absolute top-1/2 left-1/3 w-96 h-96 bg-accent/20 rounded-full mix-blend-multiply filter blur-3xl animate-float"
                     style={{ animationDelay: "2s" }}
                 ></div>
             </div>
@@ -55,48 +55,45 @@ const Hero = () => {
                 </p>
 
                 <div
-                    className={`flex flex-col sm:flex-row gap-3 justify-center transition-all duration-700 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                    className={`flex flex-col sm:flex-row gap-3 justify-center mb-8 transition-all duration-700 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
                     <a
                         href="#products"
-                        className="inline-block bg-primary text-background px-6 py-3 rounded-lg font-semibold hover:bg-primary-light transition-smooth transform hover:scale-105 animate-glow"
+                        className="inline-block bg-primary text-background px-8 py-4 rounded-lg font-semibold hover:bg-primary-light transition-smooth transform hover:scale-105 animate-glow shadow-lg hover:shadow-xl"
                     >
-                        Shop Terea Heats
+                        Shop Now →
                     </a>
                     <a
-                        href="/contact"
-                        className="inline-block border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-background transition-smooth transform hover:scale-105"
+                        href="/listings"
+                        className="inline-block border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-background transition-smooth transform hover:scale-105 shadow-md"
                     >
-                        Contact
+                        View All Products
                     </a>
                 </div>
 
+                {/* Trust Badges */}
                 <div
-                    className={`mt-10 grid grid-cols-3 gap-6 max-w-xl mx-auto transition-all duration-700 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                    className={`grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto transition-all duration-700 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
-                    <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">20+</p>
-                        <p className="text-sm text-muted">Flavors</p>
+                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                        <span className="text-2xl">✓</span>
+                        <p className="text-xs md:text-sm font-semibold text-foreground">100% Authentic</p>
+                        <p className="text-xs text-muted">Verified Products</p>
                     </div>
-                    <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">10K+</p>
-                        <p className="text-sm text-muted">Happy Customers</p>
+                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                        <span className="text-2xl">🚚</span>
+                        <p className="text-xs md:text-sm font-semibold text-foreground">Fast Delivery</p>
+                        <p className="text-xs text-muted">Free on 2+ Items</p>
                     </div>
-                    <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">24/7</p>
-                        <p className="text-sm text-muted">Support</p>
+                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                        <span className="text-2xl">💰</span>
+                        <p className="text-xs md:text-sm font-semibold text-foreground">Best Prices</p>
+                        <p className="text-xs text-muted">Guaranteed</p>
                     </div>
-                </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div
-                className={`absolute bottom-6 left-1/2 transform -translate-x-1/2 transition-all duration-700 delay-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
-            >
-                <div className="flex flex-col items-center gap-1.5">
-                    <p className="text-xs text-muted">Scroll to explore</p>
-                    <div className="w-5 h-8 border-2 border-accent rounded-full flex items-start justify-center p-1.5">
-                        <div className="w-1 h-2 bg-accent rounded-full animate-bounce"></div>
+                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                        <span className="text-2xl">🔒</span>
+                        <p className="text-xs md:text-sm font-semibold text-foreground">Secure Payment</p>
+                        <p className="text-xs text-muted">Safe & Easy</p>
                     </div>
                 </div>
             </div>

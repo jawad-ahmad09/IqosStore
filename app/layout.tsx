@@ -8,13 +8,58 @@ import { CartProvider } from "./context/CartContext"
 import { UIProvider } from "./context/UIContext"
 import { ToastProvider } from "./components/Toast"
 import CartModal from "./components/CartModal"
+import WhatsAppButton from "./components/WhatsAppButton"
 
 const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Terea Heats - IQOS Store",
-  description: "Shop authentic Terea Heats sticks. Fast delivery and great prices.",
+  title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices | Fast Delivery Dubai",
+  description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices. Shop IQOS Iluma, Standard & Premium devices. Free delivery across Dubai, Abu Dhabi & UAE. Best prices guaranteed.",
+  keywords: "IQOS UAE, Terea Heats Dubai, IQOS Iluma, IQOS devices, heated tobacco UAE, IQOS store Dubai, Terea sticks, IQOS Premium, buy IQOS online UAE",
+  authors: [{ name: "IQOS Store UAE" }],
+  creator: "IQOS Store UAE",
+  publisher: "IQOS Store UAE",
+  metadataBase: new URL("https://iqosstore.ae"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
+    description: "Shop authentic IQOS products in UAE. Terea Heats sticks and IQOS devices with free delivery across Dubai & UAE.",
+    url: "https://iqosstore.ae",
+    siteName: "IQOS Store UAE",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "IQOS Store UAE - Authentic Products",
+      },
+    ],
+    locale: "en_AE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
+    description: "Shop authentic IQOS products in UAE with free delivery",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 }
 
 export default function RootLayout({
@@ -32,6 +77,7 @@ export default function RootLayout({
               <main className="min-h-screen">{children}</main>
               <Footer />
               <CartModal />
+              <WhatsAppButton />
             </CartProvider>
           </UIProvider>
         </ToastProvider>

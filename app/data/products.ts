@@ -13,6 +13,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Smooth",
+        category: "Terea Heats",
     },
     {
         id: 2,
@@ -26,6 +27,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 3,
@@ -39,6 +41,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 4,
@@ -52,6 +55,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Bold",
+        category: "Terea Heats",
     },
     {
         id: 5,
@@ -65,6 +69,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Smooth",
+        category: "Terea Heats",
     },
     {
         id: 6,
@@ -78,6 +83,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Strong",
+        category: "Terea Heats",
     },
     {
         id: 7,
@@ -91,6 +97,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 8,
@@ -104,6 +111,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Smooth",
+        category: "Terea Heats",
     },
     {
         id: 9,
@@ -117,6 +125,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 10,
@@ -130,6 +139,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Strong",
+        category: "Terea Heats",
     },
     {
         id: 11,
@@ -143,6 +153,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Bold",
+        category: "Terea Heats",
     },
     {
         id: 12,
@@ -156,6 +167,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Premium",
         intensity: "Strong",
+        category: "Terea Heats",
     },
     {
         id: 13,
@@ -169,6 +181,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 14,
@@ -182,6 +195,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Bold",
+        category: "Terea Heats",
     },
     {
         id: 15,
@@ -195,6 +209,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Medium",
+        category: "Terea Heats",
     },
     {
         id: 16,
@@ -208,6 +223,7 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Bold",
+        category: "Terea Heats",
     },
     {
         id: 17,
@@ -221,6 +237,100 @@ export const products: Product[] = [
         device: "IQOS Iluma",
         stickType: "Regular",
         intensity: "Bold",
+        category: "Terea Heats",
+    },
+    // IQOS Standard Devices
+    {
+        id: 18,
+        name: "IQOS 3 DUO Kit - Classic Black",
+        description: "Experience the next generation heat-not-burn technology with IQOS 3 DUO. Features consecutive use without waiting, elegant design, and reliable performance for the discerning user.",
+        price: 450,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+3+DUO",
+        category: "IQOS Device",
+        deviceType: "IQOS Standard",
+        specifications: ["2 consecutive uses", "Quick charge 1.75 min", "20 uses per charge", "Pocket charger included", "Vibration alerts"],
+    },
+    {
+        id: 19,
+        name: "IQOS 3 Multi - Warm White",
+        description: "Compact all-in-one IQOS device perfect for on-the-go lifestyle. No pocket charger needed, up to 10 consecutive uses, sleek and portable design that fits your active routine.",
+        price: 380,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Standard",
+        specifications: ["All-in-one design", "10 consecutive uses", "No pocket charger needed", "75-minute charge time", "LED battery indicator"],
+    },
+    {
+        id: 20,
+        name: "IQOS 2.4 Plus - Brilliant Gold",
+        description: "The reliable classic IQOS experience. Proven heat control technology, durable build quality, and consistent performance. Perfect entry point to the IQOS ecosystem.",
+        price: 350,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Standard",
+        specifications: ["Trusted technology", "4-minute cleaning cycle", "20 uses per charge", "Reset function", "Status lights"],
+    },
+    // IQOS Premium Devices
+    {
+        id: 21,
+        name: "IQOS 3 DUO Limited Edition - Moonlight Silver",
+        description: "Premium limited edition IQOS 3 DUO with exclusive moonlight silver finish. Advanced heat control, elegant design elements, and superior build quality make this a collector's choice.",
+        price: 550,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Premium",
+        specifications: ["Limited edition design", "2 consecutive uses", "Premium finish", "Enhanced battery", "Leather case included"],
+    },
+    {
+        id: 22,
+        name: "IQOS 3 DUO Prestige Collection - Velvet Gray",
+        description: "Elevate your experience with the Prestige Collection. Features premium materials, refined aesthetics, advanced heating technology, and comes with exclusive accessories for the sophisticated user.",
+        price: 620,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Premium",
+        specifications: ["Prestige materials", "Fast charging", "Premium carrying case", "Cleaning kit included", "Extended warranty"],
+    },
+    {
+        id: 23,
+        name: "IQOS 3 Multi Luxury Edition - Rose Gold",
+        description: "Luxury all-in-one device with stunning rose gold finish. Premium craftsmanship meets convenience. Includes exclusive cleaning tools and premium storage case for the ultimate portable experience.",
+        price: 480,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Premium",
+        specifications: ["Luxury finish", "12 consecutive uses", "Premium accessories", "Rapid charge function", "Signature engraving option"],
+    },
+    // IQOS Iluma Devices
+    {
+        id: 24,
+        name: "IQOS Iluma Prime - Azure Blue",
+        description: "The pinnacle of IQOS innovation. Features revolutionary SMARTCORE INDUCTION technology with no blade, no cleaning needed. Seamless experience with Terea sticks, premium aluminum body, and intelligent auto-start.",
+        price: 750,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Iluma",
+        specifications: ["Blade-free technology", "Auto-start function", "No cleaning required", "20 uses per charge", "Premium aluminum body"],
+    },
+    {
+        id: 25,
+        name: "IQOS Iluma One - Pebble Gray",
+        description: "Compact all-in-one Iluma device with blade-free induction heating. Perfect for users who want the latest technology in a portable format. Compatible exclusively with Terea sticks for pure, consistent taste.",
+        price: 550,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Iluma",
+        specifications: ["All-in-one Iluma", "Blade-free heating", "20 uses per charge", "No cleaning needed", "Compact design"],
+    },
+    {
+        id: 26,
+        name: "IQOS Iluma - Sunset Red",
+        description: "Experience the future of heated tobacco with IQOS Iluma. Revolutionary induction heating system eliminates the need for blade cleaning. Vibrant sunset red color, consistent performance, works exclusively with Terea.",
+        price: 650,
+        image: "https://placehold.co/400x400/2c2c2c/d4a574?text=IQOS+Device",
+        category: "IQOS Device",
+        deviceType: "IQOS Iluma",
+        specifications: ["SMARTCORE INDUCTION", "2 consecutive uses", "Status LED", "USB-C charging", "Terea compatible only"],
     },
 ]
 
