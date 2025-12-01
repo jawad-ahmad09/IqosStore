@@ -69,19 +69,19 @@ export default function ContactPage() {
                             {
                                 icon: Mail,
                                 title: "Email",
-                                value: "info@premiumstore.com",
+                                value: "jawadrathore30@gmail.com",
                                 delay: 0,
                             },
                             {
                                 icon: Phone,
                                 title: "Phone",
-                                value: "+92 300 1234567",
+                                value: "+92 349 1791107",
                                 delay: 100,
                             },
                             {
                                 icon: MapPin,
                                 title: "Location",
-                                value: "Karachi, Pakistan",
+                                value: "Dubai, UAE",
                                 delay: 200,
                             },
                         ].map((item, index) => {

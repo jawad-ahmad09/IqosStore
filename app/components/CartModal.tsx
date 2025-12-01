@@ -2,12 +2,20 @@
 
 import { useCart } from "@/app/context/CartContext"
 import { useUI } from "@/app/context/UIContext"
+import { useRouter } from "next/navigation" // ✅ Router import karein
 
 export default function CartModal() {
     const { isCartOpen, closeCart } = useUI()
     const { items, updateQuantity, removeItem, total } = useCart()
+    const router = useRouter() // ✅ Router use karein
 
     if (!isCartOpen) return null
+
+    // ✅ Function to handle order placement
+    const handlePlaceOrder = () => {
+        closeCart() // Cart modal band karein
+        router.push("/#contact") // Inquiry form par navigate karein
+    }
 
     return (
         <div className="fixed inset-0 z-[100] flex items-start justify-end bg-black/40">
@@ -29,11 +37,11 @@ export default function CartModal() {
                                             <div className="flex items-start justify-between gap-2">
                                                 <div>
                                                     <p className="font-semibold leading-tight">{item.name}</p>
-                                                    <p className="text-sm text-muted">${item.price}</p>
+                                                    <p className="text-sm text-muted">AED {item.price}</p>
                                                 </div>
                                                 <button
                                                     onClick={() => removeItem(item.id)}
-                                                    className="text-error text-sm hover:underline"
+                                                    className="text-error text-sm hover:underline text-red-700"
                                                 >
                                                     Remove
                                                 </button>
@@ -52,7 +60,7 @@ export default function CartModal() {
                                                 >
                                                     +
                                                 </button>
-                                                <span className="ml-auto font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+                                                <span className="ml-auto font-semibold">AED {(item.price * item.quantity).toFixed(2)}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -64,16 +72,24 @@ export default function CartModal() {
                 <div className="p-4 border-t border-border">
                     <div className="flex items-center justify-between mb-3">
                         <span className="text-muted">Subtotal</span>
-                        <span className="text-2xl font-bold text-accent">${total.toFixed(2)}</span>
+                        <span className="text-2xl font-bold text-accent">AED {total.toFixed(2)}</span>
                     </div>
-                    <div className="flex gap-2">
-                        <a href="#contact" onClick={closeCart} className="flex-1 text-center bg-primary text-background py-3 rounded-lg font-semibold hover:bg-primary-light transition-smooth">Checkout via WhatsApp</a>
-                        <button onClick={closeCart} className="px-4 py-3 border border-border rounded-lg font-semibold">Continue</button>
+                    <div className="flex flex-col gap-2">
+                        {/* ✅ New Place Order Button */}
+                        {items.length > 0 && (
+                            <button
+                                onClick={handlePlaceOrder}
+                                className="w-full bg-accent text-background py-3 rounded-lg font-semibold hover:bg-accent/90 transition-smooth flex items-center justify-center gap-2"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Place Order
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     )
 }
-
-

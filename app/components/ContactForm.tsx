@@ -104,7 +104,7 @@ const ContactForm = ({ selectedProducts }: ContactFormProps) => {
                                     {selectedProducts.map((product) => (
                                         <li key={product.id} className="flex justify-between">
                                             <span>{product.name}</span>
-                                            <span>${product.price}</span>
+                                            <span>AED {product.price}</span>
                                         </li>
                                     ))}
                                 </ul>

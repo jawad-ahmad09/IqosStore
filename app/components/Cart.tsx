@@ -35,7 +35,7 @@ const Cart = ({ items, onUpdateQuantity, onRemoveItem }: CartProps) => {
                         {items.map((item) => (
                             <tr key={item.id} className="border-t border-border hover:bg-background transition-smooth">
                                 <td className="px-6 py-4 font-medium">{item.name}</td>
-                                <td className="px-6 py-4 text-accent font-semibold">${item.price}</td>
+                                <td className="px-6 py-4 text-accent font-semibold">AED {item.price}</td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-2">
                                         <button
@@ -53,7 +53,7 @@ const Cart = ({ items, onUpdateQuantity, onRemoveItem }: CartProps) => {
                                         </button>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 font-semibold">${(item.price * item.quantity).toFixed(2)}</td>
+                                <td className="px-6 py-4 font-semibold">AED {(item.price * item.quantity).toFixed(2)}</td>
                                 <td className="px-6 py-4">
                                     <button
                                         onClick={() => onRemoveItem(item.id)}
@@ -70,7 +70,7 @@ const Cart = ({ items, onUpdateQuantity, onRemoveItem }: CartProps) => {
             <div className="bg-background border-t border-border p-6 flex justify-end">
                 <div className="text-right">
                     <p className="text-muted mb-2">Subtotal</p>
-                    <p className="text-3xl font-bold text-accent">${total.toFixed(2)}</p>
+                    <p className="text-3xl font-bold text-accent">AED {total.toFixed(2)}</p>
                 </div>
             </div>
         </div>

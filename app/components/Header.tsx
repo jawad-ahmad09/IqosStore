@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation" // ✅ Add this import
 import { useCart } from "@/app/context/CartContext"
 import { useUI } from "@/app/context/UIContext"
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const router = useRouter()
+    const pathname = usePathname() // ✅ Get current path
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +19,15 @@ const Header = () => {
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
+
+    // ✅ Function to handle navigation based on current page
+    const getLinkHref = (section: string) => {
+        if (pathname === "/") {
+            return section // Home page par anchor links
+        } else {
+            return `/${section}` // Other pages par direct links
+        }
+    }
 
     return (
         <header
@@ -37,13 +46,22 @@ const Header = () => {
                         <Link href="/" className="text-foreground hover:text-accent transition-smooth">
                             Home
                         </Link>
-                        <Link href="#products" className="text-foreground hover:text-accent transition-smooth">
-                            Products
+                        <Link
+                            href={getLinkHref("listings")}
+                            className="text-foreground hover:text-accent transition-smooth"
+                        >
+                            All Listings
                         </Link>
-                        <Link href="#about" className="text-foreground hover:text-accent transition-smooth">
+                        <Link
+                            href={getLinkHref("#about")}
+                            className="text-foreground hover:text-accent transition-smooth"
+                        >
                             About
                         </Link>
-                        <Link href="#faq" className="text-foreground hover:text-accent transition-smooth">
+                        <Link
+                            href={getLinkHref("#faq")}
+                            className="text-foreground hover:text-accent transition-smooth"
+                        >
                             FAQ
                         </Link>
                         <Link href="/contact" className="text-foreground hover:text-accent transition-smooth">
@@ -79,21 +97,21 @@ const Header = () => {
                                 Home
                             </Link>
                             <Link
-                                href="#products"
+                                href={getLinkHref("listings")}
                                 className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Products
+                                All Listings
                             </Link>
                             <Link
-                                href="#about"
+                                href={getLinkHref("#about")}
                                 className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 About
                             </Link>
                             <Link
-                                href="#faq"
+                                href={getLinkHref("#faq")}
                                 className="block px-3 py-2 text-foreground hover:text-accent transition-smooth"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >

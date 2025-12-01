@@ -17,31 +17,41 @@ export default function ProductDetailPage() {
     const id = Number(params.id)
     const product = getProductById(id)
 
+    // const specs = useMemo(() => {
+    //     // simple curated specs based on product id/name
+    //     const base = {
+    //         packSize: "1 carton, 200 sticks (10 packs)",
+    //         // origin: "EU Import",
+    //         compatibility: "IQOS Iluma One Device, IQOS Iluma Prime device, Iqos Iluma Standard Device, Iqos Iluma Lambda i8 Device",
+    //     }
+    //     if (!product) return base
+    //     if (product.name.toLowerCase().includes("turquoise")) {
+    //         return { ...base, flavor: "Menthol, crisp finish", intensity: "Medium" }
+    //     }
+    //     if (product.name.toLowerCase().includes("amber")) {
+    //         return { ...base, flavor: "Rich roasted", intensity: "Bold" }
+    //     }
+    //     if (product.name.toLowerCase().includes("bronze")) {
+    //         return { ...base, flavor: "Intense, aromatic", intensity: "Strong" }
+    //     }
+    //     if (product.name.toLowerCase().includes("sienna")) {
+    //         return { ...base, flavor: "Balanced and rounded", intensity: "Medium" }
+    //     }
+    //     if (product.name.toLowerCase().includes("teak")) {
+    //         return { ...base, flavor: "Warm and mellow", intensity: "Smooth" }
+    //     }
+    //     return { ...base, flavor: "Smooth and balanced", intensity: "Smooth" }
+    // }, [product])
+
     const specs = useMemo(() => {
-        // simple curated specs based on product id/name
-        const base = {
-            packSize: "20 sticks",
-            origin: "EU Import",
-            compatibility: "IQOS Iluma devices",
-        }
-        if (!product) return base
-        if (product.name.toLowerCase().includes("turquoise")) {
-            return { ...base, flavor: "Menthol, crisp finish", intensity: "Medium" }
-        }
-        if (product.name.toLowerCase().includes("amber")) {
-            return { ...base, flavor: "Rich roasted", intensity: "Bold" }
-        }
-        if (product.name.toLowerCase().includes("bronze")) {
-            return { ...base, flavor: "Intense, aromatic", intensity: "Strong" }
-        }
-        if (product.name.toLowerCase().includes("sienna")) {
-            return { ...base, flavor: "Balanced and rounded", intensity: "Medium" }
-        }
-        if (product.name.toLowerCase().includes("teak")) {
-            return { ...base, flavor: "Warm and mellow", intensity: "Smooth" }
-        }
-        return { ...base, flavor: "Smooth and balanced", intensity: "Smooth" }
-    }, [product])
+        return {
+            packSize: "1 carton, 200 sticks (10 packs)",
+            compatibility:
+                "IQOS Iluma One Device, IQOS Iluma Prime device, Iqos Iluma Standard Device, Iqos Iluma Lambda i8 Device",
+            flavor: "Smooth & Balanced",
+            intensity: "Smooth",
+        };
+    }, []);
 
     if (!product) {
         return (
@@ -77,6 +87,20 @@ export default function ProductDetailPage() {
                         </div>
                         <h1 className="text-3xl md:text-4xl font-bold mb-2">{product.name}</h1>
                         <p className="text-muted mb-4">{product.description}</p>
+                        {/* <p className="text-muted mb-4">Total Puffs: {product.TotalPuffs}</p> */}
+
+
+                        <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                            <div className="bg-background border border-border rounded p-3">
+                                <p className="text-muted">Total Puffs: </p>
+                                <p className="font-semibold">{product.TotalPuffs}</p>
+                            </div>
+                            <div className="bg-background border border-border rounded p-3">
+                                <p className="text-muted">Origin </p>
+                                <p className="font-semibold">{product.Origin}</p>
+                            </div>
+                        </div>
+
 
                         <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                             <div className="bg-background border border-border rounded p-3">
@@ -98,7 +122,7 @@ export default function ProductDetailPage() {
                         </div>
 
                         <div className="flex items-center gap-4 mb-6">
-                            <span className="text-3xl font-bold text-accent">${product.price}</span>
+                            <span className="text-3xl font-bold text-accent">AED {product.price}</span>
                             <div className="flex items-center gap-2">
                                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-2 py-1 bg-border rounded">−</button>
                                 <span className="w-8 text-center">{quantity}</span>
