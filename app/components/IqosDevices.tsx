@@ -12,9 +12,9 @@ export default function IqosDevices() {
     const [addingId, setAddingId] = useState<number | null>(null)
 
     const iqosDevices = products.filter((p) => p.category === "IQOS Device")
-    const standardDevices = iqosDevices.filter((p) => p.deviceType === "IQOS Standard")
-    const premiumDevices = iqosDevices.filter((p) => p.deviceType === "IQOS Premium")
-    const ilumaDevices = iqosDevices.filter((p) => p.deviceType === "IQOS Iluma")
+    const ilumaPrimeDevices = iqosDevices.filter((p) => p.deviceType === "IQOS ILUMA PRIME KIT")
+    const ilumaOneDevices = iqosDevices.filter((p) => p.deviceType === "IQOS ILUMA ONE")
+    const ilumaStandardDevices = iqosDevices.filter((p) => p.deviceType === "IQOS ILUMA Standard Kit")
 
     const handleAdd = async (product: Product) => {
         setAddingId(product.id)
@@ -89,15 +89,15 @@ export default function IqosDevices() {
                     </p>
                 </div>
 
-                {/* IQOS Iluma Section */}
+                {/* IQOS ILUMA PRIME KIT Section */}
                 <div className="mb-16">
                     <div className="flex items-center justify-between mb-8">
                         <div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">Iluma</span>
+                                IQOS <span className="text-accent">ILUMA PRIME KIT</span>
                             </h3>
                             <p className="text-muted text-sm md:text-base">
-                                Blade-free induction technology - The future of heated tobacco
+                                Premium blade-free technology with auto-start and luxury design
                             </p>
                         </div>
                         <Link
@@ -108,43 +108,43 @@ export default function IqosDevices() {
                         </Link>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-                        {ilumaDevices.map((device) => (
+                        {ilumaPrimeDevices.map((device) => (
                             <DeviceCard key={device.id} product={device} />
                         ))}
                     </div>
                 </div>
 
-                {/* IQOS Premium Section */}
+                {/* IQOS ILUMA ONE Section */}
                 <div className="mb-16">
                     <div className="flex items-center justify-between mb-8">
                         <div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">Premium</span>
+                                IQOS <span className="text-accent">ILUMA ONE</span>
                             </h3>
                             <p className="text-muted text-sm md:text-base">
-                                Exclusive designs and premium materials for the sophisticated user
+                                Compact all-in-one device with blade-free technology
                             </p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-                        {premiumDevices.map((device) => (
+                        {ilumaOneDevices.map((device) => (
                             <DeviceCard key={device.id} product={device} />
                         ))}
                     </div>
                 </div>
 
-                {/* IQOS Standard Section */}
+                {/* IQOS ILUMA Standard Kit Section */}
                 <div>
                     <div className="flex items-center justify-between mb-8">
                         <div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">Standard</span>
+                                IQOS <span className="text-accent">ILUMA Standard Kit</span>
                             </h3>
-                            <p className="text-muted text-sm md:text-base">Reliable and trusted IQOS experience at great value</p>
+                            <p className="text-muted text-sm md:text-base">Blade-free technology at great value with reliable performance</p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-                        {standardDevices.map((device) => (
+                        {ilumaStandardDevices.map((device) => (
                             <DeviceCard key={device.id} product={device} />
                         ))}
                     </div>

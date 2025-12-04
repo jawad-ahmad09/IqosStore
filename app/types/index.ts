@@ -12,7 +12,7 @@ export interface Product {
     stickType?: string
     intensity?: string
     category?: "Terea Heats" | "IQOS Device"
-    deviceType?: "IQOS Standard" | "IQOS Premium" | "IQOS Iluma"
+    deviceType?: "IQOS ILUMA PRIME KIT" | "IQOS ILUMA ONE" | "IQOS ILUMA Standard Kit"
     specifications?: string[]
 }
 
