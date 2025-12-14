@@ -19,7 +19,7 @@ const Footer = () => {
                                 <span className="text-accent text-2xl">🚚</span>
                             </div>
                             <p className="font-semibold text-sm">Fast Delivery</p>
-                            <p className="text-xs text-gray-400 mt-1">Within 2 Hours</p>
+                            <p className="text-xs text-gray-400 mt-1">Before 12PM: Same Day</p>
                         </div>
                         <div className="flex flex-col items-center">
                             <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3">
@@ -48,13 +48,13 @@ const Footer = () => {
                             Your trusted source for authentic Terea Heats and IQOS devices in UAE. Premium quality, fast delivery, best prices.
                         </p>
                         <div className="flex gap-3">
-                            <a href="#" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all">
+                            <a href="tel:+971561928359" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all" title="Call Us">
                                 <span className="text-sm">📱</span>
                             </a>
-                            <a href="#" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all">
+                            <a href="mailto:jawadrathore30@gmail.com" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all" title="Email Us">
                                 <span className="text-sm">📧</span>
                             </a>
-                            <a href="#" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all">
+                            <a href="https://wa.me/971561928359?text=Hello!%20I'm%20interested%20in%20IQOS%20products" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all" title="WhatsApp">
                                 <span className="text-sm">💬</span>
                             </a>
                         </div>
@@ -73,7 +73,7 @@ const Footer = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#devices" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
+                                <Link href="/#iqos-devices" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
                                     <span className="text-accent">→</span> IQOS Devices
                                 </Link>
                             </li>
@@ -88,24 +88,24 @@ const Footer = () => {
                         <h4 className="font-semibold mb-4 text-white">Information</h4>
                         <ul className="space-y-3 text-sm">
                             <li>
-                                <a href="#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
+                                <Link href="/#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
                                     <span className="text-accent">→</span> About Us
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#delivery" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
+                                <Link href="/#faq" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
                                     <span className="text-accent">→</span> Delivery Info
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#guarantee" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
+                                <Link href="/#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
                                     <span className="text-accent">→</span> Authenticity Guarantee
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#faq" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
+                                <Link href="/#faq" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
                                     <span className="text-accent">→</span> FAQ
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -124,8 +124,8 @@ const Footer = () => {
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-accent mt-1">📱</span>
-                                <a href="tel:+971XXXXXXXXX" className="hover:text-accent transition-smooth">
-                                    +971 XX XXX XXXX
+                                <a href="tel:+971561928359" className="hover:text-accent transition-smooth">
+                                    +971 56 192 8359
                                 </a>
                             </div>
                             <div className="flex items-start gap-2">

@@ -9,6 +9,7 @@ import { useUI } from "@/app/context/UIContext"
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [isTereaDropdownOpen, setIsTereaDropdownOpen] = useState(false)
     const pathname = usePathname()
 
     useEffect(() => {
@@ -56,6 +57,26 @@ const Header = () => {
                         <Link href="/" className="text-foreground hover:text-accent transition-smooth">
                             Home
                         </Link>
+                        <div className="relative group">
+                            <button className="text-foreground hover:text-accent transition-smooth flex items-center gap-1">
+                                Terea Categories
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <div className="py-2">
+                                    <Link href="/listings?region=KAZAKHSTAN" className="block px-4 py-3 text-foreground hover:bg-accent/10 hover:text-accent transition-smooth">
+                                        <div className="font-semibold">Terea KAZAKHSTAN</div>
+                                        <div className="text-xs text-muted">Kazakhstan packaging</div>
+                                    </Link>
+                                    <Link href="/listings?region=Indonesia" className="block px-4 py-3 text-foreground hover:bg-accent/10 hover:text-accent transition-smooth">
+                                        <div className="font-semibold">Terea Indonesia</div>
+                                        <div className="text-xs text-muted">Indonesian packaging</div>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                         <Link href={getLinkHref("listings")} className="text-foreground hover:text-accent transition-smooth">
                             All Listings
                         </Link>
@@ -133,6 +154,43 @@ const Header = () => {
                                 </svg>
                                 Home
                             </Link>
+
+                            {/* Terea Categories Dropdown Mobile */}
+                            <div>
+                                <button
+                                    onClick={() => setIsTereaDropdownOpen(!isTereaDropdownOpen)}
+                                    className="flex items-center justify-between w-full px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                        </svg>
+                                        Terea Categories
+                                    </div>
+                                    <svg className={`w-4 h-4 transition-transform ${isTereaDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                {isTereaDropdownOpen && (
+                                    <div className="ml-12 mt-2 space-y-1">
+                                        <Link
+                                            href="/listings?region=KAZAKHSTAN"
+                                            className="block px-4 py-2 text-sm text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Terea KAZAKHSTAN
+                                        </Link>
+                                        <Link
+                                            href="/listings?region=Indonesia"
+                                            className="block px-4 py-2 text-sm text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Terea Indonesia
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+
                             <Link
                                 href={getLinkHref("listings")}
                                 className="flex items-center gap-3 px-4 py-3 text-foreground hover:text-accent hover:bg-accent/5 rounded-lg transition-smooth"

@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import { products, getUniqueValues } from "@/app/data/products"
 import type { Product } from "@/app/types"
 import { useCart } from "@/app/context/CartContext"
@@ -11,6 +12,7 @@ import { Search, X } from "lucide-react"
 export default function AllListingsPage() {
     const { addItem } = useCart()
     const { show } = useToast()
+    const searchParams = useSearchParams()
     const [addingId, setAddingId] = useState<number | null>(null)
     const [searchQuery, setSearchQuery] = useState("")
 
@@ -20,10 +22,22 @@ export default function AllListingsPage() {
         category: [] as string[],
         deviceType: [] as string[],
         flavor: [] as string[],
+        region: [] as string[],
         priceRange: [0, Math.ceil(maxPrice)] as [number, number],
     })
 
     const [showFilters, setShowFilters] = useState(false)
+
+    // Initialize filters from URL params
+    useEffect(() => {
+        const regionParam = searchParams.get("region")
+        if (regionParam) {
+            setFilters(prev => ({
+                ...prev,
+                region: [regionParam]
+            }))
+        }
+    }, [searchParams])
 
     useEffect(() => {
         if (showFilters) {
@@ -40,6 +54,7 @@ export default function AllListingsPage() {
     const categories = useMemo(() => getUniqueValues("category"), [])
     const deviceTypes = useMemo(() => getUniqueValues("deviceType"), [])
     const flavors = useMemo(() => getUniqueValues("flavor"), [])
+    const regions = useMemo(() => getUniqueValues("region"), [])
 
     const filteredProducts = useMemo(() => {
         return products.filter((product) => {
@@ -61,10 +76,13 @@ export default function AllListingsPage() {
             // Flavor filter (for Terea sticks)
             const flavorMatch = filters.flavor.length === 0 || (product.flavor && filters.flavor.includes(product.flavor))
 
+            // Region filter (for Terea regional categories)
+            const regionMatch = filters.region.length === 0 || (product.region && filters.region.includes(product.region))
+
             // Price filter
             const priceMatch = product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]
 
-            return searchMatch && categoryMatch && deviceTypeMatch && flavorMatch && priceMatch
+            return searchMatch && categoryMatch && deviceTypeMatch && flavorMatch && regionMatch && priceMatch
         })
     }, [filters, searchQuery])
 
@@ -98,12 +116,13 @@ export default function AllListingsPage() {
             category: [],
             deviceType: [],
             flavor: [],
+            region: [],
             priceRange: [0, Math.ceil(maxPrice)],
         })
         setSearchQuery("")
     }
 
-    const activeFilterCount = filters.category.length + filters.deviceType.length + filters.flavor.length
+    const activeFilterCount = filters.category.length + filters.deviceType.length + filters.flavor.length + filters.region.length
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-20">
@@ -260,6 +279,26 @@ export default function AllListingsPage() {
                                 </div>
                             </div>
 
+                            {/* Region Filter */}
+                            {regions.length > 0 && (
+                                <div className="pb-6 border-b border-border">
+                                    <h3 className="font-semibold text-foreground mb-3">Region</h3>
+                                    <div className="space-y-2">
+                                        {regions.map((region) => (
+                                            <label key={region} className="flex items-center gap-3 cursor-pointer group">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={filters.region.includes(region)}
+                                                    onChange={() => handleFilterChange("region", region)}
+                                                    className="w-4 h-4 rounded border-border text-accent focus:ring-accent cursor-pointer"
+                                                />
+                                                <span className="text-sm group-hover:text-accent transition-colors">{region}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             {/* Price Range Filter */}
                             <div className="pb-6">
                                 <h3 className="font-semibold text-foreground mb-3">Price Range</h3>
@@ -370,6 +409,26 @@ export default function AllListingsPage() {
                             </div>
                         </div>
 
+                        {/* Region Filter */}
+                        {regions.length > 0 && (
+                            <div className="pb-6 border-b border-border">
+                                <h3 className="font-semibold text-foreground mb-3">Region</h3>
+                                <div className="space-y-2">
+                                    {regions.map((region) => (
+                                        <label key={region} className="flex items-center gap-3 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                checked={filters.region.includes(region)}
+                                                onChange={() => handleFilterChange("region", region)}
+                                                className="w-4 h-4 rounded border-border text-accent focus:ring-accent cursor-pointer"
+                                            />
+                                            <span className="text-sm group-hover:text-accent transition-colors">{region}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {/* Price Range Filter */}
                         <div>
                             <h3 className="font-semibold text-foreground mb-3">Price Range</h3>
@@ -457,7 +516,17 @@ export default function AllListingsPage() {
                                             </p>
 
                                             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-3 mt-auto">
-                                                <span className="text-base md:text-2xl font-bold text-accent">AED {product.price}</span>
+                                                <div className="flex flex-col gap-1">
+                                                    {product.originalPrice && (
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="text-xs md:text-sm text-muted line-through">AED {product.originalPrice}</span>
+                                                            <span className="text-[10px] md:text-xs bg-red-500 text-white px-1.5 md:px-2 py-0.5 rounded font-bold">
+                                                                {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                    <span className="text-base md:text-2xl font-bold text-accent">AED {product.price}</span>
+                                                </div>
                                                 <div className="flex items-center gap-2 md:gap-3">
                                                     <button
                                                         onClick={() => handleAdd(product)}

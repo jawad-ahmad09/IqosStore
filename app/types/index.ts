@@ -5,6 +5,7 @@ export interface Product {
     TotalPuffs?: string
     Origin?: string
     price: number
+    originalPrice?: number // For showing sale/discount
     image: string
     images?: string[] // Multiple images support
     flavor?: string
@@ -12,6 +13,7 @@ export interface Product {
     stickType?: string
     intensity?: string
     category?: "Terea Heats" | "IQOS Device"
+    region?: "KAZAKHSTAN" | "Indonesia" | "UAE" | "Japan"
     deviceType?: "IQOS ILUMA PRIME KIT" | "IQOS ILUMA ONE" | "IQOS ILUMA Standard Kit"
     specifications?: string[]
 }

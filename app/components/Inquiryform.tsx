@@ -380,7 +380,7 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                                     </div>
                                     <div className="flex items-center gap-3 p-3 bg-white rounded-xl">
                                         <span className="text-green-500 text-lg">✓</span>
-                                        <p className="text-sm font-semibold text-foreground">2-hour express delivery</p>
+                                        <p className="text-sm font-semibold text-foreground">Before 12PM: Same Day Delivery</p>
                                     </div>
                                 </div>
                             </>

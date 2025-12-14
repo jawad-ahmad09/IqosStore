@@ -19,7 +19,7 @@ const About = () => {
         {
             icon: "🚀",
             title: "Express Delivery",
-            description: "2-hour delivery - FREE on 2+ items",
+            description: "Before 12PM: Same Day - FREE on 2+ items",
             color: "from-blue-400 to-cyan-500"
         },
         {
@@ -103,7 +103,7 @@ const About = () => {
                         </div>
                         <div className="group cursor-pointer">
                             <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
-                                26
+                                32
                             </div>
                             <p className="text-gray-300">Products Available</p>
                         </div>
@@ -114,10 +114,10 @@ const About = () => {
                             <p className="text-gray-300">Authentic Products</p>
                         </div>
                         <div className="group cursor-pointer">
-                            <div className="text-4xl md:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
-                                2hr
+                            <div className="text-3xl md:text-4xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform">
+                                Same/Next
                             </div>
-                            <p className="text-gray-300">Fast Delivery</p>
+                            <p className="text-gray-300 text-sm">Before 12PM: Same Day</p>
                         </div>
                     </div>
                 </div>

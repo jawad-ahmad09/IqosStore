@@ -12,7 +12,7 @@ const faqItems: FAQItem[] = [
     {
         id: 1,
         question: "🚚 How fast is delivery in UAE?",
-        answer: "We offer express 2-hour delivery across UAE! Order before 8 PM for same-day delivery. Delivery is FREE for 2 or more items. Single item delivery: AED 10 in Dubai, AED 20 outside Dubai.",
+        answer: "Order before 12PM for same-day delivery! Orders after 12PM will be delivered next day across all UAE states. Delivery is FREE for 2 or more items. Single item delivery: AED 10 in Dubai, AED 20 outside Dubai.",
     },
     {
         id: 2,
@@ -118,7 +118,7 @@ export default function FAQ() {
                     <p className="text-gray-200 mb-6">We're here to help 24/7! Contact us via WhatsApp for instant support</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="https://wa.me/923491791107?text=Hello!%20I%20have%20a%20question%20about%20IQOS%20products"
+                            href="https://wa.me/971561928359?text=Hello!%20I%20have%20a%20question%20about%20IQOS%20products"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"

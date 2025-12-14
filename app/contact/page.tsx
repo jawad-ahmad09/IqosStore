@@ -60,9 +60,9 @@ export default function ContactPage() {
         {
             icon: "📱",
             title: "Call Us",
-            value: "+92 349 1791107",
+            value: "+971 56 192 8359",
             description: "Mon-Sat 9am to 8pm",
-            link: "tel:+923491791107",
+            link: "tel:+971561928359",
             color: "from-green-400 to-emerald-500",
         },
         {
@@ -70,7 +70,7 @@ export default function ContactPage() {
             title: "WhatsApp",
             value: "Chat with us 24/7",
             description: "Instant support available",
-            link: "https://wa.me/923491791107?text=Hello!%20I%20have%20a%20question",
+            link: "https://wa.me/971561928359?text=Hello!%20I%20have%20a%20question",
             color: "from-green-500 to-teal-500",
         },
         {
@@ -282,7 +282,7 @@ export default function ContactPage() {
                                 For instant support, reach us on WhatsApp! We're available 24/7 to answer your questions.
                             </p>
                             <a
-                                href="https://wa.me/923491791107?text=Hello!%20I%20need%20help%20with%20IQOS%20products"
+                                href="https://wa.me/971561928359?text=Hello!%20I%20need%20help%20with%20IQOS%20products"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"

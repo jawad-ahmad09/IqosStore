@@ -5,6 +5,8 @@ import Hero from "./components/Hero"
 import Products from "./components/Products"
 import IqosDevices from "./components/IqosDevices"
 import Cart from "./components/Cart"
+import TereaCategories from "./components/TereaCategories"
+import { products } from "./data/products"
 
 import type { CartItem, ContactFormData } from "./types"
 import { useCart } from "./context/CartContext"
@@ -22,13 +24,16 @@ export default function Home() {
   }
 
   // JSON-LD structured data for SEO
+  // Get dynamic product count
+  const totalProducts = products.length
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Store",
     name: "IQOS Store UAE",
     description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices",
     url: "https://iqosstore.ae",
-    telephone: "+971-XX-XXX-XXXX",
+    telephone: "+971 56 192 8359",
     address: {
       "@type": "PostalAddress",
       addressCountry: "AE",
@@ -47,7 +52,7 @@ export default function Home() {
       priceCurrency: "AED",
       lowPrice: "130",
       highPrice: "750",
-      offerCount: "26"
+      offerCount: totalProducts.toString()
     }
   }
 
@@ -58,6 +63,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
+      <TereaCategories />
       <Products limit={6} showViewAll={true} />
       <IqosDevices />
       <About />

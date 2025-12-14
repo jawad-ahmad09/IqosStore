@@ -10,7 +10,7 @@ const Hero = () => {
     }, [])
 
     return (
-        <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-background via-background to-accent/10 pt-24 overflow-hidden">
+        <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-background via-background to-accent/10 pt-24 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-20 right-20 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
                 <div
@@ -35,65 +35,83 @@ const Hero = () => {
                 ></div>
             </div>
 
-            <div className="container mx-auto px-4 text-center relative z-10">
-                <div
-                    className={`inline-block mb-4 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 transition-all duration-700 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
-                >
-                    <p className="text-xs md:text-sm font-medium text-accent">✨ Terea Heats Collection</p>
-                </div>
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    {/* Left Side - Text Content */}
+                    <div className="text-center lg:text-left">
+                        <div
+                            className={`inline-block mb-4 px-3 py-1.5 rounded-full bg-red-500 text-white border border-red-600 transition-all duration-700 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+                        >
+                            <p className="text-xs md:text-sm font-bold">🎉 NEW YEAR SALE - UP TO 41% OFF</p>
+                        </div>
 
-                <h1
-                    className={`text-4xl md:text-5xl font-bold mb-3 text-balance leading-tight transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                >
-                    Premium <span className="text-accent animate-pulse-scale">Terea Heats</span>
-                </h1>
+                        <h1
+                            className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-balance leading-tight transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            Premium <span className="text-accent animate-pulse-scale">Terea Heats</span>
+                        </h1>
 
-                <p
-                    className={`text-base md:text-lg text-muted mb-6 max-w-2xl mx-auto text-balance transition-all duration-700 delay-100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                >
-                    Explore our curated range of authentic Terea Heats sticks. Fast delivery, great pricing, and responsive support.
-                </p>
+                        <p
+                            className={`text-base md:text-xl text-muted mb-8 max-w-xl ${!isLoaded ? 'mx-auto' : 'lg:mx-0'} text-balance transition-all duration-700 delay-100 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            Explore our curated range of authentic Terea Heats sticks. Fast delivery, great pricing, and responsive support.
+                        </p>
 
-                <div
-                    className={`flex flex-col sm:flex-row gap-3 justify-center mb-8 transition-all duration-700 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                >
-                    <a
-                        href="#products"
-                        className="inline-block bg-primary text-background px-8 py-4 rounded-lg font-semibold hover:bg-primary-light transition-smooth transform hover:scale-105 animate-glow shadow-lg hover:shadow-xl"
+                        <div
+                            className={`flex flex-col sm:flex-row gap-4 ${!isLoaded ? 'justify-center' : 'lg:justify-start'} mb-8 transition-all duration-700 delay-200 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            <a
+                                href="#products"
+                                className="inline-block bg-primary text-background px-8 py-4 rounded-lg font-semibold hover:bg-primary-light transition-smooth transform hover:scale-105 animate-glow shadow-lg hover:shadow-xl text-center"
+                            >
+                                Shop Now →
+                            </a>
+                            <a
+                                href="/listings"
+                                className="inline-block border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-background transition-smooth transform hover:scale-105 shadow-md text-center"
+                            >
+                                View All Products
+                            </a>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div
+                            className={`grid grid-cols-2 gap-4 max-w-md ${!isLoaded ? 'mx-auto' : 'lg:mx-0'} transition-all duration-700 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            <div className="flex flex-col items-center lg:items-start gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                                <span className="text-2xl">✓</span>
+                                <p className="text-xs md:text-sm font-semibold text-foreground">100% Authentic</p>
+                            </div>
+                            <div className="flex flex-col items-center lg:items-start gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                                <span className="text-2xl">🚚</span>
+                                <p className="text-xs md:text-sm font-semibold text-foreground">Same/Next Day</p>
+                                <p className="text-[10px] text-muted text-center lg:text-left">Before 12PM: Same Day</p>
+                            </div>
+                            <div className="flex flex-col items-center lg:items-start gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                                <span className="text-2xl">💰</span>
+                                <p className="text-xs md:text-sm font-semibold text-foreground">Best Prices</p>
+                            </div>
+                            <div className="flex flex-col items-center lg:items-start gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
+                                <span className="text-2xl">🔒</span>
+                                <p className="text-xs md:text-sm font-semibold text-foreground">Secure Payment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Side - Hero Image */}
+                    <div
+                        className={`relative transition-all duration-700 delay-400 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
                     >
-                        Shop Now →
-                    </a>
-                    <a
-                        href="/listings"
-                        className="inline-block border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-background transition-smooth transform hover:scale-105 shadow-md"
-                    >
-                        View All Products
-                    </a>
-                </div>
-
-                {/* Trust Badges */}
-                <div
-                    className={`grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto transition-all duration-700 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                >
-                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
-                        <span className="text-2xl">✓</span>
-                        <p className="text-xs md:text-sm font-semibold text-foreground">100% Authentic</p>
-                        <p className="text-xs text-muted">Verified Products</p>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
-                        <span className="text-2xl">🚚</span>
-                        <p className="text-xs md:text-sm font-semibold text-foreground">Fast Delivery</p>
-                        <p className="text-xs text-muted">Free on 2+ Items</p>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
-                        <span className="text-2xl">💰</span>
-                        <p className="text-xs md:text-sm font-semibold text-foreground">Best Prices</p>
-                        <p className="text-xs text-muted">Guaranteed</p>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all">
-                        <span className="text-2xl">🔒</span>
-                        <p className="text-xs md:text-sm font-semibold text-foreground">Secure Payment</p>
-                        <p className="text-xs text-muted">Safe & Easy</p>
+                        <div className="relative">
+                            <img
+                                src="/HeroSection-Image.png"
+                                alt="IQOS Terea Heats Collection"
+                                className="w-full h-auto object-contain drop-shadow-2xl"
+                            />
+                            {/* Decorative elements around the image */}
+                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl animate-pulse"></div>
+                            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+                        </div>
                     </div>
                 </div>
             </div>

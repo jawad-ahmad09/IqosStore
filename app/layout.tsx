@@ -14,8 +14,8 @@ const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices | Fast Delivery Dubai",
-  description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices. Shop IQOS Iluma, Standard & Premium devices. Free delivery across Dubai, Abu Dhabi & UAE. Best prices guaranteed.",
+  title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices | Same Day Delivery Dubai",
+  description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices. Shop IQOS Iluma, Standard & Premium devices. Order before 12PM for same-day delivery across Dubai, Abu Dhabi & UAE. Best prices guaranteed.",
   keywords: "IQOS UAE, Terea Heats Dubai, IQOS Iluma, IQOS devices, heated tobacco UAE, IQOS store Dubai, Terea sticks, IQOS Premium, buy IQOS online UAE",
   authors: [{ name: "IQOS Store UAE" }],
   creator: "IQOS Store UAE",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
-    description: "Shop authentic IQOS products in UAE. Terea Heats sticks and IQOS devices with free delivery across Dubai & UAE.",
+    description: "Shop authentic IQOS products in UAE. Terea Heats sticks and IQOS devices. Order before 12PM for same-day delivery across Dubai & UAE.",
     url: "https://iqosstore.ae",
     siteName: "IQOS Store UAE",
     images: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
-    description: "Shop authentic IQOS products in UAE with free delivery",
+    description: "Shop authentic IQOS products in UAE. Before 12PM: Same Day Delivery",
     images: ["/og-image.jpg"],
   },
   robots: {

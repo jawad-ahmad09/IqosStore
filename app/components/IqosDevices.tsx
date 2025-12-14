@@ -55,7 +55,17 @@ export default function IqosDevices() {
                 )}
 
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-3 mt-auto pt-2 md:pt-4 border-t border-border">
-                    <span className="text-base md:text-2xl font-bold text-accent">AED {product.price}</span>
+                    <div className="flex flex-col gap-1">
+                        {product.originalPrice && (
+                            <div className="flex items-center gap-2">
+                                <span className="text-xs md:text-sm text-muted line-through">AED {product.originalPrice}</span>
+                                <span className="text-[10px] md:text-xs bg-red-500 text-white px-1.5 md:px-2 py-0.5 rounded font-bold">
+                                    SALE {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                                </span>
+                            </div>
+                        )}
+                        <span className="text-base md:text-2xl font-bold text-accent">AED {product.price}</span>
+                    </div>
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => handleAdd(product)}

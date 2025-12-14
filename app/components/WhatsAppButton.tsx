@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
     const [isHovered, setIsHovered] = useState(false)
 
     // WhatsApp number with country code (no + or spaces)
-    const whatsappNumber = "923491791107" // Your actual WhatsApp number
+    const whatsappNumber = "971561928359" // +971 56 192 8359
 
     // Pre-filled message that customer will send
     const defaultMessage = "Hello! I'm interested in your IQOS products. Can you help me?"

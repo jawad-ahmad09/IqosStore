@@ -298,6 +298,14 @@ export default function ProductDetailPage() {
                             <div className="flex items-center justify-between mb-4">
                                 <div>
                                     <p className="text-xs text-muted mb-1">Price</p>
+                                    {product.originalPrice && (
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span className="text-lg text-muted line-through">AED {product.originalPrice}</span>
+                                            <span className="text-xs bg-red-500 text-white px-2 py-1 rounded font-bold">
+                                                SAVE {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                                            </span>
+                                        </div>
+                                    )}
                                     <span className="text-3xl font-bold text-accent">AED {product.price}</span>
                                 </div>
                                 <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1.5">
