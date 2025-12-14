@@ -77,7 +77,7 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
     // Calculate delivery charges based on rules
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
-    const isDubai = formData.city.toLowerCase().includes("dubai")
+    const isDubai = formData?.city?.toLowerCase().includes("dubai")
 
     // Delivery logic:
     // - Dubai: Free for 2+ items, AED 10 for single item
