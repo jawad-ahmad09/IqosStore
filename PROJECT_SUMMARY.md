@@ -200,7 +200,7 @@ IqosStore/
 
 #### Before Going Live:
 1. **Update Domain References**:
-   - [ ] Change `metadataBase` in `/app/layout.tsx` line 5 from "https://iqosstore.ae" to your actual domain
+   - [ ] Change `metadataBase` in `/app/layout.tsx` line 5 from "https://www.iqosstoredubai.com" to your actual domain
    - [ ] Update sitemap base URL in `/app/sitemap.ts` line 5
 
 2. **Email Configuration**:

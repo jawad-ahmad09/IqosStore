@@ -23,44 +23,179 @@ export default function Home() {
     clear()
   }
 
-  // JSON-LD structured data for SEO
-  // Get dynamic product count
+  // JSON-LD structured data for SEO - Enhanced for UAE Local Search
   const totalProducts = products.length
 
-  const jsonLd = {
+  // Local Business Schema for UAE/Dubai Local SEO
+  const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "Store",
-    name: "IQOS Store UAE",
-    description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices",
-    url: "https://iqosstore.ae",
-    telephone: "+971 56 192 8359",
+    "@id": "https://www.iqosstoredubai.com/#store",
+    name: "IQOS Store UAE - Dubai's #1 IQOS Retailer",
+    alternateName: ["IQOS Dubai", "Terea Store Dubai", "IQOS UAE Store"],
+    description: "Best IQOS Store in Dubai, UAE. Buy authentic Terea Heats sticks (Kazakhstan & Indonesia) and IQOS Iluma devices. Same-day delivery across Dubai, Abu Dhabi & UAE. 100% authentic products, best prices guaranteed.",
+    url: "https://www.iqosstoredubai.com",
+    telephone: "+971561928359",
+    email: "iqosstoredubai@gmail.com",
+    logo: "https://www.iqosstoredubai.com/HeroSection-Image.png",
+    image: ["https://www.iqosstoredubai.com/HeroSection-Image.png", "https://www.iqosstoredubai.com/TereaGoldEdition.png"],
+    priceRange: "AED 130 - AED 750",
+    currenciesAccepted: "AED",
+    paymentAccepted: ["Cash", "Credit Card", "Cash on Delivery"],
     address: {
       "@type": "PostalAddress",
       addressCountry: "AE",
       addressRegion: "Dubai",
-      addressLocality: "Dubai"
+      addressLocality: "Dubai",
+      postalCode: "00000"
     },
-    priceRange: "AED 130 - AED 750",
-    image: "https://iqosstore.ae/og-image.jpg",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "25.2048",
+      longitude: "55.2708"
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Dubai",
+        "@id": "https://en.wikipedia.org/wiki/Dubai"
+      },
+      {
+        "@type": "City",
+        name: "Abu Dhabi",
+        "@id": "https://en.wikipedia.org/wiki/Abu_Dhabi"
+      },
+      {
+        "@type": "City",
+        name: "Sharjah"
+      },
+      {
+        "@type": "Country",
+        name: "United Arab Emirates",
+        "@id": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
+      }
+    ],
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "250"
+      ratingValue: "4.9",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "350",
+      reviewCount: "280"
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "23:59"
+      }
+    ],
+    potentialAction: {
+      "@type": "OrderAction",
+      target: "https://www.iqosstoredubai.com/#contact"
     },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "AED",
       lowPrice: "130",
       highPrice: "750",
-      offerCount: totalProducts.toString()
+      offerCount: totalProducts.toString(),
+      availability: "https://schema.org/InStock"
+    },
+    sameAs: [
+      "https://wa.me/971561928359"
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "IQOS Products",
+      itemListElement: [
+        {
+          "@type": "OfferCatalog",
+          name: "Terea Heats Sticks",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Product",
+                name: "Terea Heats Sticks Dubai",
+                description: "Authentic Terea Heats sticks for IQOS devices"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "IQOS Devices",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Product",
+                name: "IQOS Iluma Prime Dubai",
+                description: "Premium IQOS Iluma Prime device"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+
+  // Organization Schema for Brand Recognition
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.iqosstoredubai.com/#organization",
+    name: "IQOS Store UAE",
+    url: "https://www.iqosstoredubai.com",
+    logo: "https://www.iqosstoredubai.com/HeroSection-Image.png",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+971561928359",
+      contactType: "Customer Service",
+      areaServed: "AE",
+      availableLanguage: ["English", "Arabic"]
+    },
+    sameAs: [
+      "https://wa.me/971561928359"
+    ]
+  }
+
+  // Website Schema
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.iqosstoredubai.com/#website",
+    url: "https://www.iqosstoredubai.com",
+    name: "IQOS Store UAE",
+    description: "Best IQOS Store in Dubai, UAE - Buy Terea Heats and IQOS Devices",
+    publisher: {
+      "@id": "https://www.iqosstoredubai.com/#organization"
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.iqosstoredubai.com/listings?search={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
   }
 
   return (
     <>
+      {/* Local Business Schema for UAE Local SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      {/* Website Schema with Search Action */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <Hero />
       <TereaCategories />

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { products } from '@/app/data/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://iqosstore.ae'
+  const baseUrl = 'https://www.iqosstoredubai.com'
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

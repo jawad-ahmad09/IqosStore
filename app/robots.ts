@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://iqosstore.ae/sitemap.xml',
+    sitemap: 'https://www.iqosstoredubai.com/sitemap.xml',
   }
 }

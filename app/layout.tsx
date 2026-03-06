@@ -15,37 +15,58 @@ const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices | Same Day Delivery Dubai",
-  description: "Premium IQOS Store in UAE offering authentic Terea Heats sticks and IQOS devices. Shop IQOS Iluma, Standard & Premium devices. Order before 12PM for same-day delivery across Dubai, Abu Dhabi & UAE. Best prices guaranteed.",
-  keywords: "IQOS UAE, Terea Heats Dubai, IQOS Iluma, IQOS devices, heated tobacco UAE, IQOS store Dubai, Terea sticks, IQOS Premium, buy IQOS online UAE",
-  authors: [{ name: "IQOS Store UAE" }],
+  title: "IQOS Dubai UAE | Buy Terea Heats Sticks & IQOS Devices | #1 Store in UAE",
+  description: "🔥 Best IQOS Store in Dubai, UAE. Buy authentic Terea Heats sticks (Kazakhstan & Indonesia), IQOS Iluma Prime, IQOS Iluma One & Standard devices. ✓ Same-Day Delivery Dubai ✓ Free Shipping 2+ Items ✓ 100% Authentic ✓ Best Prices in UAE. Order Now!",
+  keywords: [
+    // Primary Keywords
+    "IQOS Dubai", "IQOS UAE", "Terea Dubai", "Terea UAE", "IQOS Store Dubai", "IQOS Store UAE",
+    // Product Keywords
+    "Terea Heats Dubai", "Terea Heats UAE", "Terea sticks Dubai", "Terea sticks UAE",
+    "IQOS Iluma Dubai", "IQOS Iluma UAE", "IQOS Iluma Prime Dubai", "IQOS Iluma One UAE",
+    // Location Keywords
+    "IQOS Abu Dhabi", "IQOS Sharjah", "IQOS Ajman", "buy IQOS Dubai", "buy Terea Dubai",
+    // Long-tail Keywords
+    "where to buy IQOS in Dubai", "where to buy Terea in UAE", "IQOS same day delivery Dubai",
+    "authentic IQOS Dubai", "original Terea sticks UAE", "IQOS heated tobacco Dubai",
+    // Regional Products
+    "Terea Kazakhstan Dubai", "Terea Indonesia UAE", "Terea Ruby Fuse Dubai", "Terea Turquoise UAE",
+    // Device Keywords
+    "IQOS devices Dubai", "IQOS Iluma Prime UAE", "IQOS Iluma One Dubai", "IQOS Standard Kit UAE",
+    "buy IQOS device online Dubai", "IQOS Iluma price Dubai", "best IQOS store UAE",
+    // Service Keywords
+    "IQOS free delivery Dubai", "IQOS online shopping UAE", "IQOS fast delivery Dubai"
+  ].join(", "),
+  authors: [{ name: "IQOS Store UAE - Dubai's #1 IQOS Retailer" }],
   creator: "IQOS Store UAE",
   publisher: "IQOS Store UAE",
-  metadataBase: new URL("https://iqosstore.ae"),
+  metadataBase: new URL("https://www.iqosstoredubai.com"),
   alternates: {
     canonical: "/",
   },
+  category: "E-commerce, Heated Tobacco, IQOS Products",
   openGraph: {
-    title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
-    description: "Shop authentic IQOS products in UAE. Terea Heats sticks and IQOS devices. Order before 12PM for same-day delivery across Dubai & UAE.",
-    url: "https://iqosstore.ae",
-    siteName: "IQOS Store UAE",
+    title: "IQOS Dubai UAE | Buy Terea Heats & IQOS Devices | #1 Store",
+    description: "🔥 Best IQOS Store in Dubai, UAE. Authentic Terea Heats (Kazakhstan & Indonesia) + IQOS Iluma devices. ✓ Same-Day Delivery ✓ Best Prices ✓ 100% Original. Order Now!",
+    url: "https://www.iqosstoredubai.com",
+    siteName: "IQOS Store UAE - Dubai's #1 IQOS Retailer",
     images: [
       {
         url: "/HeroSection-Image.png",
         width: 1200,
         height: 630,
-        alt: "IQOS Store UAE - Authentic Products",
+        alt: "IQOS Store UAE Dubai - Authentic Terea Heats Sticks and IQOS Iluma Devices",
       },
     ],
     locale: "en_AE",
     type: "website",
+    countryName: "United Arab Emirates",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
-    description: "Shop authentic IQOS products in UAE. Before 12PM: Same Day Delivery",
+    title: "IQOS Dubai UAE | Buy Terea Heats & IQOS Devices | #1 Store",
+    description: "🔥 Best IQOS Store in Dubai, UAE. ✓ Same-Day Delivery ✓ Authentic Products ✓ Best Prices",
     images: ["/HeroSection-Image.png"],
+    creator: "@IQOSStoreUAE",
   },
   robots: {
     index: true,

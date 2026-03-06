@@ -46,9 +46,9 @@
 ### 1. **Google Search Console**
 ```
 1. Go to: https://search.google.com/search-console
-2. Add property: https://iqosstore.ae
+2. Add property: https://www.iqosstoredubai.com
 3. Verify ownership (HTML tag method - already in layout.tsx)
-4. Submit sitemap: https://iqosstore.ae/sitemap.xml
+4. Submit sitemap: https://www.iqosstoredubai.com/sitemap.xml
 5. Request indexing for main pages
 ```
 
@@ -60,7 +60,7 @@
    - Category: Tobacco Shop / E-commerce
    - Location: Dubai, UAE
    - Phone: +971 XX XXX XXXX
-   - Website: https://iqosstore.ae
+   - Website: https://www.iqosstoredubai.com
 3. Add photos of products
 4. Get customer reviews
 ```
@@ -88,7 +88,7 @@
 ### 4. **Bing Webmaster Tools**
 ```
 1. Go to: https://www.bing.com/webmasters
-2. Add site: https://iqosstore.ae
+2. Add site: https://www.iqosstoredubai.com
 3. Verify ownership
 4. Submit sitemap
 ```
@@ -261,5 +261,5 @@ All technical SEO is done. Now focus on:
 ---
 
 **Last Updated**: December 2025
-**Website**: https://iqosstore.ae
+**Website**: https://www.iqosstoredubai.com
 **Contact**: iqosstoredubai@gmail.com | +92 349 1791107

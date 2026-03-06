@@ -171,17 +171,17 @@ From: IQOS Store <onboarding@resend.dev>
 
 **With Custom Domain**:
 ```
-From: IQOS Store <orders@iqosstore.ae>
+From: IQOS Store <orders@iqosstoredubai.com>
 ```
 
 **Setup**:
 1. Resend dashboard → Domains
-2. Add your domain: `iqosstore.ae`
+2. Add your domain: `iqosstoredubai.com`
 3. Add DNS records (Resend will show you)
 4. Verify domain
 5. Update code:
    ```typescript
-   from: "IQOS Store <orders@iqosstore.ae>"
+   from: "IQOS Store <orders@iqosstoredubai.com>"
    ```
 
 ---
