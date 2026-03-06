@@ -84,7 +84,7 @@ npm run dev
 ```
 
 **User ko dikha**: ✅ Success message
-**Email**: `jawadrathore30@gmail.com` pe aa jayegi
+**Email**: `iqosstoredubai@gmail.com` pe aa jayegi
 
 ---
 
@@ -104,7 +104,7 @@ npm run dev
 ### Aapko Ye Email Milegi:
 
 **From**: IQOS Store <onboarding@resend.dev>
-**To**: jawadrathore30@gmail.com
+**To**: iqosstoredubai@gmail.com
 **Subject**: 🛒 New IQOS Store Order from [Customer Name]
 
 ```
@@ -195,7 +195,7 @@ Update code:
 ```typescript
 const result = await resend.emails.send({
     from: "IQOS Store <onboarding@resend.dev>",
-    to: "jawadrathore30@gmail.com",
+    to: "iqosstoredubai@gmail.com",
     subject: `🛒 New IQOS Store Order from ${data.name}`,
     html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
@@ -382,7 +382,7 @@ curl -X POST https://api.resend.com/emails \
   -H "Content-Type: application/json" \
   -d '{
     "from": "test@resend.dev",
-    "to": "jawadrathore30@gmail.com",
+    "to": "iqosstoredubai@gmail.com",
     "subject": "Test Email",
     "text": "This is a test"
   }'

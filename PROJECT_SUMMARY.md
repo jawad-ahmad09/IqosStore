@@ -87,7 +87,7 @@
 ### 8. Email System Implementation ✅
 - **Service**: Web3Forms API
 - **Access Key**: `d09fea7a-554d-4f5f-94e8-bb4cb091d449`
-- **Recipient**: jawadrathore30@gmail.com
+- **Recipient**: iqosstoredubai@gmail.com
 - **Features**:
   - Professional email format
   - Order details with line items
@@ -205,7 +205,7 @@ IqosStore/
 
 2. **Email Configuration**:
    - [ ] Verify Web3Forms access key is active
-   - [ ] Confirm email address in Web3Forms dashboard is `jawadrathore30@gmail.com`
+   - [ ] Confirm email address in Web3Forms dashboard is `iqosstoredubai@gmail.com`
    - [ ] Test order submission and check email delivery
    - [ ] See `EMAIL_TROUBLESHOOTING.md` for detailed steps
 
@@ -322,7 +322,7 @@ npm run dev
 1. **CRITICAL - Email Verification** ⚠️
    - Follow steps in `EMAIL_TROUBLESHOOTING.md`
    - Test order submission
-   - Verify emails arrive at jawadrathore30@gmail.com
+   - Verify emails arrive at iqosstoredubai@gmail.com
 
 2. **HIGH - Product Images**
    - Add real IQOS device photos

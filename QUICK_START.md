@@ -5,7 +5,7 @@
 ### Get Key:
 1. Go to: **https://web3forms.com**
 2. Click "Create New Form"
-3. Enter email: **jawadrathore30@gmail.com**
+3. Enter email: **iqosstoredubai@gmail.com**
 4. Copy the access key
 
 ### Add to Code:

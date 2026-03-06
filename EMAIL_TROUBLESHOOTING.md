@@ -14,7 +14,7 @@ d09fea7a-554d-4f5f-94e8-bb4cb091d449
 1. Go to: https://web3forms.com/access
 2. Enter your access key: `d09fea7a-554d-4f5f-94e8-bb4cb091d449`
 3. Verify these settings:
-   - **Email Address**: Should be `jawadrathore30@gmail.com`
+   - **Email Address**: Should be `iqosstoredubai@gmail.com`
    - **Status**: Should be "Active"
    - **Form Name**: Can be anything (e.g., "IQOS Store Orders")
 
@@ -58,7 +58,7 @@ After submitting, check your terminal/console for these logs:
 [sendEmail] Sending order to Web3Forms...
 [sendEmail] Customer: Test Customer your-test-email@gmail.com
 [Web3Forms Response] { success: true, message: '...' }
-[Web3Forms] ✅ Email sent successfully to jawadrathore30@gmail.com
+[Web3Forms] ✅ Email sent successfully to iqosstoredubai@gmail.com
 ```
 
 If you see `[Web3Forms Error]` instead, copy the error message.
@@ -83,7 +83,7 @@ If you see `[Web3Forms Error]` instead, copy the error message.
 **Symptom**: Emails going to different address
 **Solution**:
 - Check Web3Forms dashboard settings
-- Verify email is `jawadrathore30@gmail.com`
+- Verify email is `iqosstoredubai@gmail.com`
 - Update if needed and test again
 
 ### Issue 4: Web3Forms Service Down
@@ -120,7 +120,7 @@ async function sendEmail(data: ContactFormData) {
 
     const result = await resend.emails.send({
         from: 'IQOS Store <onboarding@resend.dev>',
-        to: 'jawadrathore30@gmail.com',
+        to: 'iqosstoredubai@gmail.com',
         subject: `🛒 New IQOS Store Order from ${data.name}`,
         text: emailMessage,
     });
@@ -174,7 +174,7 @@ If you're still having issues:
 ## Quick Test Checklist
 
 - [ ] Web3Forms access key is active
-- [ ] Email address in dashboard is `jawadrathore30@gmail.com`
+- [ ] Email address in dashboard is `iqosstoredubai@gmail.com`
 - [ ] Checked spam/junk folder in Gmail
 - [ ] Added Web3Forms to safe senders
 - [ ] Placed test order and checked server logs

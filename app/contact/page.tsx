@@ -52,9 +52,9 @@ export default function ContactPage() {
         {
             icon: "📧",
             title: "Email Us",
-            value: "jawadrathore30@gmail.com",
+            value: "iqosstoredubai@gmail.com",
             description: "Send us an email anytime",
-            link: "mailto:jawadrathore30@gmail.com",
+            link: "mailto:iqosstoredubai@gmail.com",
             color: "from-blue-400 to-cyan-500",
         },
         {
@@ -94,11 +94,26 @@ export default function ContactPage() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-4">
-                        <p className="text-accent font-semibold text-sm">📞 Contact Us</p>
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                                💬 CONTACT US
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold mb-4 text-balance">
-                        Get in <span className="text-accent">Touch</span>
+                        <span className="relative inline-block">
+                            <span className="relative">
+                                Get in{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                    Touch
+                                </span>
+                                <div className="absolute -bottom-2 md:-bottom-3 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                            </span>
+                        </span>
                     </h1>
                     <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
                         Have questions about our products? Need help with your order? We're here to help 24/7!
@@ -133,11 +148,18 @@ export default function ContactPage() {
                     <div className="lg:col-span-3">
                         <div className="bg-white rounded-2xl p-8 md:p-10 shadow-xl border-2 border-gray-100">
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg">
                                     <span className="text-2xl">✉️</span>
                                 </div>
                                 <div>
-                                    <h2 className="text-2xl font-bold">Send us a Message</h2>
+                                    <h2 className="text-2xl font-bold">
+                                        <span className="relative inline-block">
+                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                                                Send us a Message
+                                            </span>
+                                            <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                        </span>
+                                    </h2>
                                     <p className="text-sm text-muted">We'll respond within 24 hours</p>
                                 </div>
                             </div>
@@ -277,7 +299,15 @@ export default function ContactPage() {
                     <div className="lg:col-span-2 space-y-6">
                         {/* Quick Contact */}
                         <div className="bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-8 text-white shadow-xl">
-                            <h3 className="text-2xl font-bold mb-4">Need Quick Help?</h3>
+                            <h3 className="text-2xl font-bold mb-4">
+                                <span className="relative inline-block">
+                                    <span className="relative flex items-center gap-2">
+                                        <span className="text-accent text-xl">⚡</span>
+                                        Need Quick Help?
+                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                                    </span>
+                                </span>
+                            </h3>
                             <p className="text-gray-200 mb-6">
                                 For instant support, reach us on WhatsApp! We're available 24/7 to answer your questions.
                             </p>
@@ -295,10 +325,15 @@ export default function ContactPage() {
                         {/* Business Hours */}
                         <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-md">
                                     <span className="text-xl">🕒</span>
                                 </div>
-                                <h3 className="text-xl font-bold">Business Hours</h3>
+                                <h3 className="text-xl font-bold">
+                                    <span className="relative inline-block">
+                                        Business Hours
+                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                    </span>
+                                </h3>
                             </div>
                             <div className="space-y-3 text-sm">
                                 <div className="flex justify-between">
@@ -321,10 +356,15 @@ export default function ContactPage() {
                         {/* Why Contact Us */}
                         <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
                             <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
                                     <span className="text-xl">💡</span>
                                 </div>
-                                <h3 className="text-xl font-bold">We Can Help With</h3>
+                                <h3 className="text-xl font-bold">
+                                    <span className="relative inline-block">
+                                        We Can Help With
+                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-primary/50 via-accent to-transparent rounded-full"></div>
+                                    </span>
+                                </h3>
                             </div>
                             <ul className="space-y-3">
                                 {[

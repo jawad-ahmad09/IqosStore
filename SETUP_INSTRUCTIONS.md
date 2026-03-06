@@ -24,7 +24,7 @@
 
 1. **Go to Web3Forms**: https://web3forms.com
 2. **Click "Create New Form"**
-3. **Enter your email**: `jawadrathore30@gmail.com` (or your email)
+3. **Enter your email**: `iqosstoredubai@gmail.com` (or your email)
 4. **Get Access Key**: Copy the access key (example: `abc123-def456-ghi789`)
 
 ### Step 2: Add Access Key to Code
@@ -60,7 +60,7 @@ const accessKey = "abc123-def456-ghi789"; // Your actual Web3Forms key
    [Web3Forms] ✅ Email sent successfully!
    ```
 
-5. **Check your email inbox** (jawadrathore30@gmail.com)
+5. **Check your email inbox** (iqosstoredubai@gmail.com)
    - Also check **Spam/Junk folder**
    - Look in **Promotions tab** (if Gmail)
 

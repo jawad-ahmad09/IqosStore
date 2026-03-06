@@ -138,8 +138,24 @@ export default function AllListingsPage() {
                     </nav>
 
                     <div className="text-center mb-8">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                            Terea Heats & IQOS <span className="text-accent">Collection</span>
+                        <div className="inline-flex items-center gap-3 mb-4">
+                            <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-lg opacity-30"></div>
+                                <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                                    PREMIUM COLLECTION
+                                </span>
+                            </div>
+                            <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-balance relative inline-block">
+                            <span className="relative">
+                                Terea Heats & IQOS{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                    Collection
+                                </span>
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                            </span>
                         </h1>
                         <p className="text-lg text-muted max-w-2xl mx-auto">
                             Explore our complete collection of authentic Terea Heats sticks and IQOS devices
@@ -177,14 +193,33 @@ export default function AllListingsPage() {
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowFilters(!showFilters)}
-                                className="lg:hidden px-4 py-2 bg-primary text-background rounded-lg font-semibold hover:bg-primary-light transition-smooth flex items-center gap-2"
+                                className="lg:hidden relative group"
                             >
-                                Filters
-                                {activeFilterCount > 0 && (
-                                    <span className="bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                        {activeFilterCount}
-                                    </span>
-                                )}
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent via-primary to-accent rounded-xl blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+
+                                {/* Button Content */}
+                                <div className="relative px-5 py-2.5 bg-gradient-to-r from-primary via-accent to-primary text-background rounded-xl font-bold hover:shadow-xl transition-all transform group-hover:scale-105 flex items-center gap-2.5">
+                                    {/* Filter Icon */}
+                                    <svg className="w-4 h-4 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
+                                    </svg>
+
+                                    <span>Filters</span>
+
+                                    {/* Active Filter Badge */}
+                                    {activeFilterCount > 0 && (
+                                        <div className="relative">
+                                            <div className="absolute inset-0 bg-white rounded-full blur-sm animate-pulse"></div>
+                                            <span className="relative bg-white text-accent text-xs font-black rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-bounce-in">
+                                                {activeFilterCount}
+                                            </span>
+                                        </div>
+                                    )}
+
+                                    {/* Sparkle Effect */}
+                                    <span className="text-xs opacity-80 group-hover:opacity-100 animate-pulse">✨</span>
+                                </div>
                             </button>
 
                             {(activeFilterCount > 0 || searchQuery) && (

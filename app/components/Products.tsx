@@ -30,7 +30,25 @@ const Products = ({ limit = 6, showViewAll = true }: ProductsProps) => {
         <section id="products" className="py-20 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Terea Heats Collection</h2>
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-primary to-primary rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent px-4 py-1.5 border-2 border-primary/30 rounded-full backdrop-blur-sm">
+                                🔥 BESTSELLERS
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance relative inline-block">
+                        <span className="relative">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                                Terea Heats
+                            </span>{" "}
+                            <span className="text-foreground">Collection</span>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 md:w-40 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
+                        </span>
+                    </h2>
                     <p className="text-lg text-muted max-w-2xl mx-auto">
                         Explore authentic Terea Heats sticks in popular flavors and balanced profiles.
                     </p>

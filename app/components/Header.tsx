@@ -49,10 +49,43 @@ const Header = () => {
             >
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-between h-20">
-                        {/* Logo */}
-                        <Link href="/" className="text-2xl font-bold text-primary group">
-                            <span className="transition-all group-hover:text-accent">IQOS</span>
-                            <span className="text-accent group-hover:scale-110 inline-block transition-transform"> Store</span>
+                        {/* Premium Logo */}
+                        <Link href="/" className="group relative flex items-center gap-2 md:gap-3">
+                            {/* Icon with Glow Effect */}
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-accent to-primary rounded-xl blur-md opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                                <div className="relative p-2 md:p-2.5 bg-gradient-to-br from-accent via-primary to-accent rounded-xl shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all">
+                                    <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {/* Text Logo */}
+                            <div className="flex flex-col">
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary group-hover:from-accent group-hover:via-primary group-hover:to-accent transition-all duration-500">
+                                        IQOS
+                                    </span>
+                                    <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary group-hover:scale-110 transition-transform inline-block">
+                                        Store
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-1 -mt-0.5">
+                                    <div className="h-[2px] w-8 bg-gradient-to-r from-accent to-primary rounded-full group-hover:w-12 transition-all"></div>
+                                    <span className="text-[9px] md:text-[10px] font-bold text-accent tracking-widest uppercase">Premium</span>
+                                </div>
+                            </div>
+
+                            {/* Premium Badge */}
+                            <div className="hidden md:block absolute -top-1 -right-1">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-yellow-400 rounded-full blur-sm animate-pulse"></div>
+                                    <svg className="relative w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </div>
+                            </div>
                         </Link>
 
                         {/* Desktop Navigation */}

@@ -37,7 +37,7 @@ const faqItems: FAQItem[] = [
     {
         id: 6,
         question: "💬 How can I contact support?",
-        answer: "We're available 24/7 on WhatsApp! Click the green WhatsApp button on any page for instant help. You can also email us at jawadrathore30@gmail.com for detailed inquiries.",
+        answer: "We're available 24/7 on WhatsApp! Click the green WhatsApp button on any page for instant help. You can also email us at iqosstoredubai@gmail.com for detailed inquiries.",
     },
     {
         id: 7,
@@ -64,11 +64,26 @@ export default function FAQ() {
 
             <div className="container mx-auto px-4 max-w-4xl relative z-10">
                 <div className="text-center mb-16">
-                    <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-4">
-                        <p className="text-accent font-semibold text-sm">Got Questions?</p>
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-primary to-primary rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent px-4 py-1.5 border-2 border-primary/30 rounded-full backdrop-blur-sm">
+                                ❓ GOT QUESTIONS?
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                        Frequently Asked <span className="text-accent">Questions</span>
+                        <span className="relative inline-block">
+                            <span className="relative">
+                                Frequently Asked{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-pulse-scale">
+                                    Questions
+                                </span>
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
+                            </span>
+                        </span>
                     </h2>
                     <p className="text-lg text-muted max-w-2xl mx-auto">
                         Everything you need to know about IQOS Store UAE, products, and delivery
@@ -127,7 +142,7 @@ export default function FAQ() {
                             WhatsApp Us
                         </a>
                         <a
-                            href="mailto:jawadrathore30@gmail.com"
+                            href="mailto:iqosstoredubai@gmail.com"
                             className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-all border-2 border-white/20 hover:border-white/40"
                         >
                             <span className="text-xl">📧</span>

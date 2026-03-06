@@ -51,8 +51,8 @@ const EMAIL_CONFIG = {
     port: 587,
     secure: false, // Use TLS
     auth: {
-        user: "jawadrathore30@gmail.com",
-        pass: "vlmh scjx uyjk byla",
+        user: "iqosstoredubai@gmail.com",
+        pass: "necl hhwg eicx atms",
     },
     tls: {
         rejectUnauthorized: false // Allow self-signed certificates

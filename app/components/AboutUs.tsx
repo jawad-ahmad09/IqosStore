@@ -59,11 +59,26 @@ const About = () => {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-4">
-                        <p className="text-accent font-semibold text-sm">About IQOS Store UAE</p>
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                                🏆 ABOUT IQOS STORE UAE
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
                     </div>
                     <h2 className={`text-4xl md:text-5xl font-bold mb-6 text-balance transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        Why Choose <span className="text-accent">IQOS Store</span>
+                        <span className="relative inline-block">
+                            <span className="relative">
+                                Why Choose{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                    IQOS Store
+                                </span>
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                            </span>
+                        </span>
                     </h2>
                     <p className={`text-lg text-muted max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         Your trusted destination for authentic Terea Heats and IQOS devices in UAE.

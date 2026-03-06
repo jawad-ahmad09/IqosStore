@@ -47,9 +47,14 @@ const Footer = () => {
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                     <div>
-                        <h3 className="text-2xl font-bold mb-4">
-                            IQOS<span className="text-accent"> Store</span>
-                        </h3>
+                        <div className="relative inline-block mb-4 group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-white rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <h3 className="relative text-2xl font-bold flex items-baseline gap-2">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white">IQOS</span>
+                                <span className="text-accent">Store</span>
+                                <span className="text-accent text-sm animate-pulse">✨</span>
+                            </h3>
+                        </div>
                         <p className="text-gray-300 text-sm leading-relaxed mb-4">
                             Your trusted source for authentic Terea Heats and IQOS devices in UAE. Premium quality, fast delivery, best prices.
                         </p>
@@ -57,7 +62,7 @@ const Footer = () => {
                             <a href="tel:+971561928359" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group" title="Call Us">
                                 <span className="text-base group-hover:animate-wiggle">📱</span>
                             </a>
-                            <a href="mailto:jawadrathore30@gmail.com" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group" title="Email Us">
+                            <a href="mailto:iqosstoredubai@gmail.com" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group" title="Email Us">
                                 <span className="text-base group-hover:animate-bounce">📧</span>
                             </a>
                             <a href="https://wa.me/971561928359?text=Hello!%20I'm%20interested%20in%20IQOS%20products" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group animate-heartbeat" title="WhatsApp">
@@ -66,7 +71,13 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <h4 className="font-semibold mb-4 text-white">Shop</h4>
+                        <div className="relative inline-block mb-4 group">
+                            <h4 className="relative font-bold text-white flex items-center gap-2">
+                                <span className="text-accent">🛍️</span>
+                                Shop
+                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                            </h4>
+                        </div>
                         <ul className="space-y-3 text-sm">
                             <li>
                                 <Link href="/listings" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
@@ -91,7 +102,13 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="font-semibold mb-4 text-white">Information</h4>
+                        <div className="relative inline-block mb-4 group">
+                            <h4 className="relative font-bold text-white flex items-center gap-2">
+                                <span className="text-accent">ℹ️</span>
+                                Information
+                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                            </h4>
+                        </div>
                         <ul className="space-y-3 text-sm">
                             <li>
                                 <Link href="/#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
@@ -116,7 +133,13 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div>
-                        <h4 className="font-semibold mb-4 text-white">Contact Us</h4>
+                        <div className="relative inline-block mb-4 group">
+                            <h4 className="relative font-bold text-white flex items-center gap-2">
+                                <span className="text-accent">📞</span>
+                                Contact Us
+                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                            </h4>
+                        </div>
                         <div className="space-y-3 text-sm text-gray-300">
                             <div className="flex items-start gap-2">
                                 <span className="text-accent mt-1">📍</span>
@@ -124,8 +147,8 @@ const Footer = () => {
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-accent mt-1">📧</span>
-                                <a href="mailto:jawadrathore30@gmail.com" className="hover:text-accent transition-smooth">
-                                    jawadrathore30@gmail.com
+                                <a href="mailto:iqosstoredubai@gmail.com" className="hover:text-accent transition-smooth">
+                                    iqosstoredubai@gmail.com
                                 </a>
                             </div>
                             <div className="flex items-start gap-2">

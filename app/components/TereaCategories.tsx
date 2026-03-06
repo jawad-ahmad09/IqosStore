@@ -31,11 +31,29 @@ const TereaCategories = () => {
         <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-primary to-primary rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent px-4 py-1.5 border-2 border-primary/30 rounded-full backdrop-blur-sm">
+                                🌍 SHOP BY REGION
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+                    </div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                        IQOS Dubai Products <span className="text-accent"> Categories Region</span>
+                        <span className="relative inline-block">
+                            <span className="relative">
+                                Terea Heats{" "}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-pulse-scale">
+                                    by Region
+                                </span>
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
+                            </span>
+                        </span>
                     </h2>
                     <p className="text-lg text-muted max-w-2xl mx-auto">
-                        Browse our collection of Terea Heats organized by regional packaging
+                        Browse our collection of authentic Terea Heats organized by regional packaging
                     </p>
                 </div>
 

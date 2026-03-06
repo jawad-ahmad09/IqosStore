@@ -21,7 +21,7 @@
 #### A. Access Key Hasil Karein:
 1. **Website kholen**: https://web3forms.com
 2. **"Create New Form" pe click karein**
-3. **Apni email daalen**: `jawadrathore30@gmail.com`
+3. **Apni email daalen**: `iqosstoredubai@gmail.com`
 4. **Access Key copy karein** (example: `abc123-def456-ghi789`)
 
 #### B. Code Mein Add Karein:
@@ -94,7 +94,7 @@ npm run dev
    [Web3Forms Response] { success: true }
    [Web3Forms] ✅ Email sent successfully!
    ```
-6. **Apni email check karein** (jawadrathore30@gmail.com)
+6. **Apni email check karein** (iqosstoredubai@gmail.com)
    - Inbox check karein
    - **Spam folder bhi zaroor check karein**
    - Promotions tab bhi dekhein (Gmail mein)
@@ -153,7 +153,7 @@ TOTAL: AED 390.00
 1. **Website**: https://web3forms.com/access
 2. **Access key daalen**
 3. **Verify karein**:
-   - Email address sahi hai? (jawadrathore30@gmail.com)
+   - Email address sahi hai? (iqosstoredubai@gmail.com)
    - Form "Active" hai?
    - Koi error message toh nahi?
 

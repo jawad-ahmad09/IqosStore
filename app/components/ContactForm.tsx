@@ -37,9 +37,30 @@ const ContactForm = ({ selectedProducts }: ContactFormProps) => {
     };
 
     return (
-        <section id="contact" className="py-16">
+        <section id="contact" className="py-16 bg-gradient-to-b from-white to-gray-50">
             <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-center mb-12">Contact Us</h2>
+                <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                                💬 GET IN TOUCH
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold text-balance">
+                        <span className="relative inline-block">
+                            <span className="relative">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                    Contact Us
+                                </span>
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 md:w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                            </span>
+                        </span>
+                    </h2>
+                </div>
                 <div className="max-w-2xl mx-auto">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>

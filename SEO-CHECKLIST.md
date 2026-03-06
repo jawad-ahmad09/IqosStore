@@ -262,4 +262,4 @@ All technical SEO is done. Now focus on:
 
 **Last Updated**: December 2025
 **Website**: https://iqosstore.ae
-**Contact**: jawadrathore30@gmail.com | +92 349 1791107
+**Contact**: iqosstoredubai@gmail.com | +92 349 1791107

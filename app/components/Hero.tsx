@@ -53,7 +53,26 @@ const Hero = () => {
                         <h1
                             className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-balance leading-tight transition-all duration-700 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                         >
-                            Premium <span className="text-accent animate-pulse-scale">Terea Heats</span>
+                            <span className="relative inline-block">
+                                <span className="relative">
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                                        Premium
+                                    </span>{" "}
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                        Terea Heats
+                                    </span>
+                                    {/* Decorative underline with glow */}
+                                    <div className="absolute -bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full opacity-60"></div>
+                                    <div className="absolute -bottom-2 md:-bottom-3 left-1/4 right-1/4 h-1 md:h-1.5 bg-gradient-to-r from-primary via-accent to-primary rounded-full blur-sm"></div>
+                                </span>
+                                {/* Premium badge */}
+                                <div className="absolute -top-3 md:-top-4 -right-3 md:-right-6">
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-accent rounded-full blur-md opacity-50 animate-pulse"></div>
+                                        <span className="relative inline-block text-xl md:text-3xl animate-bounce-in">✨</span>
+                                    </div>
+                                </div>
+                            </span>
                         </h1>
 
                         <p

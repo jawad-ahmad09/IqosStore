@@ -90,8 +90,24 @@ export default function IqosDevices() {
         <section id="iqos-devices" className="py-20 bg-gradient-to-b from-white to-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                        IQOS <span className="text-accent">Devices</span>
+                    <div className="inline-flex items-center gap-3 mb-4">
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                                ⚡ PREMIUM DEVICES
+                            </span>
+                        </div>
+                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance relative inline-block">
+                        <span className="relative">
+                            IQOS{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                Devices
+                            </span>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 md:w-40 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                        </span>
                     </h2>
                     <p className="text-lg text-muted max-w-2xl mx-auto">
                         Discover the perfect IQOS device for your lifestyle. From standard to premium, find your ideal heat-not-burn
@@ -103,8 +119,22 @@ export default function IqosDevices() {
                 <div className="mb-16">
                     <div className="flex items-center justify-between mb-8">
                         <div>
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-md blur-sm opacity-40"></div>
+                                    <span className="relative inline-block text-xs font-bold text-white bg-gradient-to-r from-accent to-primary px-3 py-1 rounded-md">
+                                        👑 PREMIUM
+                                    </span>
+                                </div>
+                            </div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">ILUMA PRIME KIT</span>
+                                <span className="relative inline-block">
+                                    IQOS{" "}
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent">
+                                        ILUMA PRIME KIT
+                                    </span>
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                </span>
                             </h3>
                             <p className="text-muted text-sm md:text-base">
                                 Premium blade-free technology with auto-start and luxury design
@@ -128,8 +158,22 @@ export default function IqosDevices() {
                 <div className="mb-16">
                     <div className="flex items-center justify-between mb-8">
                         <div>
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-md blur-sm opacity-40"></div>
+                                    <span className="relative inline-block text-xs font-bold text-white bg-gradient-to-r from-primary to-accent px-3 py-1 rounded-md">
+                                        ⭐ ALL-IN-ONE
+                                    </span>
+                                </div>
+                            </div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">ILUMA ONE</span>
+                                <span className="relative inline-block">
+                                    IQOS{" "}
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                                        ILUMA ONE
+                                    </span>
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-primary/50 via-accent to-transparent rounded-full"></div>
+                                </span>
                             </h3>
                             <p className="text-muted text-sm md:text-base">
                                 Compact all-in-one device with blade-free technology
@@ -147,8 +191,22 @@ export default function IqosDevices() {
                 <div>
                     <div className="flex items-center justify-between mb-8">
                         <div>
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-md blur-sm opacity-40"></div>
+                                    <span className="relative inline-block text-xs font-bold text-white bg-gradient-to-r from-accent to-primary px-3 py-1 rounded-md">
+                                        💎 BEST VALUE
+                                    </span>
+                                </div>
+                            </div>
                             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                                IQOS <span className="text-accent">ILUMA Standard Kit</span>
+                                <span className="relative inline-block">
+                                    IQOS{" "}
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent">
+                                        ILUMA Standard Kit
+                                    </span>
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                </span>
                             </h3>
                             <p className="text-muted text-sm md:text-base">Blade-free technology at great value with reliable performance</p>
                         </div>

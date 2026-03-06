@@ -94,10 +94,27 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
         <div className="w-full">
             {/* Header Section */}
             <div className="text-center mb-12">
-                <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-4">
-                    <p className="text-accent font-semibold text-sm">📦 Checkout</p>
+                <div className="inline-flex items-center gap-3 mb-4">
+                    <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
+                    <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
+                            📦 CHECKOUT
+                        </span>
+                    </div>
+                    <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Complete Your Order</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+                    <span className="relative inline-block">
+                        <span className="relative">
+                            Complete Your{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                Order
+                            </span>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
+                        </span>
+                    </span>
+                </h2>
                 <p className="text-lg text-muted">Fast delivery across UAE - Safe and Secure</p>
             </div>
 
@@ -107,41 +124,44 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                     {/* Personal Information Card */}
                     <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-gray-100 hover:border-accent/30 transition-all">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-md">
                                 <span className="text-xl">👤</span>
                             </div>
-                            <h3 className="text-xl font-bold">Personal Information</h3>
+                            <h3 className="text-xl font-bold">
+                                <span className="relative inline-block">
+                                    Personal Information
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                </span>
+                            </h3>
                         </div>
 
                         <div className="space-y-5">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
-                                    <label className="block text-sm font-semibold mb-2 text-foreground">
+                                    <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                        <span className="text-accent">👤</span>
                                         Full Name <span className="text-accent">*</span>
                                     </label>
-                                    <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                            👤
-                                        </span>
+                                    <div className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                                         <input
                                             type="text"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                                            placeholder="Your full name"
+                                            className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg"
+                                            placeholder="Enter your full name"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold mb-2 text-foreground">
+                                    <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                        <span className="text-accent">📧</span>
                                         Email Address <span className="text-accent">*</span>
                                     </label>
-                                    <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                            📧
-                                        </span>
+                                    <div className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                                         <input
                                             type="email"
                                             name="email"
@@ -150,7 +170,7 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                                             required
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                             title="Enter a valid email address"
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                            className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
                                             placeholder="your@email.com"
                                         />
                                     </div>
@@ -158,13 +178,12 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold mb-2 text-foreground">
+                                <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                    <span className="text-accent">📱</span>
                                     Phone Number <span className="text-accent">*</span>
                                 </label>
-                                <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                        📱
-                                    </span>
+                                <div className="relative group">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                                     <input
                                         type="tel"
                                         name="phone"
@@ -173,11 +192,14 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                                         required
                                         pattern="^(\+971|00971|0)?[0-9]{9,10}$"
                                         title="Enter a valid UAE phone number (e.g., +971501234567 or 0501234567)"
-                                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                        className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
                                         placeholder="+971 50 XXX XXXX"
                                     />
                                 </div>
-                                <p className="text-xs text-muted mt-1">Format: +971501234567 or 0501234567</p>
+                                <p className="text-xs text-muted mt-1.5 flex items-center gap-1">
+                                    <span className="text-accent">ℹ️</span>
+                                    Format: +971501234567 or 0501234567
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -185,28 +207,32 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                     {/* Delivery Information Card */}
                     <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-gray-100 hover:border-accent/30 transition-all">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
                                 <span className="text-xl">🚚</span>
                             </div>
-                            <h3 className="text-xl font-bold">Delivery Information</h3>
+                            <h3 className="text-xl font-bold">
+                                <span className="relative inline-block">
+                                    Delivery Information
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-primary/50 via-accent to-transparent rounded-full"></div>
+                                </span>
+                            </h3>
                         </div>
 
                         <div className="space-y-5">
                             <div>
-                                <label className="block text-sm font-semibold mb-2 text-foreground">
+                                <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                    <span className="text-accent">📍</span>
                                     Street Address <span className="text-accent">*</span>
                                 </label>
-                                <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                        📍
-                                    </span>
+                                <div className="relative group">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                                     <input
                                         type="text"
                                         name="address"
                                         value={formData.address}
                                         onChange={handleChange}
                                         required
-                                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                        className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg"
                                         placeholder="Street address, building, apartment"
                                     />
                                 </div>
@@ -214,37 +240,34 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
-                                    <label className="block text-sm font-semibold mb-2 text-foreground">
+                                    <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                        <span className="text-accent">🏙️</span>
                                         City
                                     </label>
-                                    <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                            🏙️
-                                        </span>
+                                    <div className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                                         <input
                                             type="text"
                                             name="city"
                                             value={formData.city}
                                             onChange={handleChange}
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                            className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg"
                                             placeholder="Dubai, Abu Dhabi, etc."
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold mb-2 text-foreground">
+                                    <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                        <span className="text-accent">🇦🇪</span>
                                         Country
                                     </label>
                                     <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                                            🇦🇪
-                                        </span>
                                         <input
                                             type="text"
                                             name="country"
                                             value={formData.country}
                                             disabled
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 text-gray-500 cursor-not-allowed"
+                                            className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 text-gray-600 font-semibold cursor-not-allowed shadow-sm"
                                         />
                                     </div>
                                 </div>
@@ -255,50 +278,66 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                     {/* Additional Notes Card */}
                     <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-gray-100 hover:border-accent/30 transition-all">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-md">
                                 <span className="text-xl">💬</span>
                             </div>
-                            <h3 className="text-xl font-bold">Special Instructions</h3>
+                            <h3 className="text-xl font-bold">
+                                <span className="relative inline-block">
+                                    Special Instructions
+                                    <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
+                                </span>
+                            </h3>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold mb-2 text-muted">
+                            <label className="block text-sm font-bold mb-2 text-foreground flex items-center gap-2">
+                                <span className="text-accent">📝</span>
                                 Optional delivery notes or preferences
                             </label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none"
-                                placeholder="Any special requests, preferred delivery time, or instructions..."
-                                rows={4}
-                            />
+                            <div className="relative group">
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    className="relative w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all hover:border-accent/50 shadow-sm focus:shadow-lg resize-none"
+                                    placeholder="Any special requests, preferred delivery time, or instructions..."
+                                    rows={4}
+                                />
+                            </div>
                         </div>
                     </div>
 
                     {/* Submit Button */}
-                    <button
-                        type="submit"
-                        disabled={loading || cartItems.length === 0}
-                        className="w-full px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-background rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 group relative overflow-hidden"
-                    >
-                        {loading && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/70 animate-pulse"></div>
-                        )}
-                        <div className="relative flex items-center gap-3">
-                            {loading ? (
-                                <>
-                                    <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
-                                    <span>Processing Your Order...</span>
-                                </>
-                            ) : (
-                                <>
-                                    <span>Submit Order Inquiry</span>
-                                    <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
-                                </>
+                    <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-accent via-primary to-accent rounded-xl blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                        <button
+                            type="submit"
+                            disabled={loading || cartItems.length === 0}
+                            className="relative w-full px-8 py-5 bg-gradient-to-r from-primary via-accent to-primary text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 group overflow-hidden"
+                        >
+                            {loading && (
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/70 animate-pulse"></div>
                             )}
-                        </div>
-                    </button>
+                            <div className="relative flex items-center gap-3">
+                                {loading ? (
+                                    <>
+                                        <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        <span>Processing Your Order...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                                            <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                        <span>Submit Order Inquiry</span>
+                                        <span className="text-xl group-hover:translate-x-2 transition-transform">→</span>
+                                    </>
+                                )}
+                            </div>
+                        </button>
+                    </div>
 
                     {/* Loading Overlay for Form */}
                     {loading && (
@@ -313,19 +352,19 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
 
                     {/* Trust Badges Below Form */}
                     <div className="grid grid-cols-3 gap-4 pt-4">
-                        <div className="text-center p-4 bg-accent/5 rounded-xl">
-                            <div className="text-2xl mb-2">🔒</div>
-                            <p className="text-xs font-semibold text-foreground">Secure</p>
+                        <div className="text-center p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border border-accent/20 hover:border-accent/40 transition-all hover:shadow-lg group">
+                            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🔒</div>
+                            <p className="text-xs font-bold text-foreground">Secure</p>
                             <p className="text-xs text-muted">Payment</p>
                         </div>
-                        <div className="text-center p-4 bg-accent/5 rounded-xl">
-                            <div className="text-2xl mb-2">✓</div>
-                            <p className="text-xs font-semibold text-foreground">100%</p>
+                        <div className="text-center p-4 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg group">
+                            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">✓</div>
+                            <p className="text-xs font-bold text-foreground">100%</p>
                             <p className="text-xs text-muted">Authentic</p>
                         </div>
-                        <div className="text-center p-4 bg-accent/5 rounded-xl">
-                            <div className="text-2xl mb-2">🚚</div>
-                            <p className="text-xs font-semibold text-foreground">Fast</p>
+                        <div className="text-center p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border border-accent/20 hover:border-accent/40 transition-all hover:shadow-lg group">
+                            <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🚚</div>
+                            <p className="text-xs font-bold text-foreground">Fast</p>
                             <p className="text-xs text-muted">Delivery</p>
                         </div>
                     </div>
@@ -333,84 +372,117 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
 
                 {/* Order Summary */}
                 <div className="lg:col-span-1">
-                    <div className="bg-gradient-to-br from-accent/10 to-accent/5 border-2 border-accent/30 rounded-2xl p-6 shadow-xl sticky top-24">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                                <span className="text-xl">🛒</span>
+                    <div className="bg-gradient-to-br from-white via-accent/5 to-accent/10 border-2 border-accent/30 rounded-2xl p-4 md:p-6 shadow-2xl lg:sticky lg:top-24">
+                        {/* Header */}
+                        <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-accent/20">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg animate-pulse-scale">
+                                    <span className="text-xl md:text-2xl">🛒</span>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg md:text-xl font-bold">
+                                        <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+                                            Order Summary
+                                        </span>
+                                    </h3>
+                                    <p className="text-xs text-muted">{cartItems.length} {cartItems.length === 1 ? 'item' : 'items'}</p>
+                                </div>
                             </div>
-                            <h3 className="text-xl font-bold">Order Summary</h3>
                         </div>
 
                         {cartItems.length > 0 ? (
                             <>
-                                <div className="space-y-4 mb-6 max-h-96 overflow-y-auto custom-scrollbar">
-                                    {cartItems.map((item) => (
-                                        <div key={item.id} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                {/* Products List */}
+                                <div className="space-y-3 mb-6 max-h-[300px] md:max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                                    {cartItems.map((item, index) => (
+                                        <div
+                                            key={item.id}
+                                            className="group bg-white rounded-xl p-3 md:p-4 shadow-md hover:shadow-xl border-2 border-gray-100 hover:border-accent/40 transition-all animate-slide-up"
+                                            style={{ animationDelay: `${index * 0.1}s` }}
+                                        >
                                             <div className="flex justify-between items-start mb-2">
-                                                <span className="font-semibold text-sm text-foreground flex-1 pr-2">
-                                                    {item.name}
-                                                </span>
-                                                <span className="font-bold text-accent whitespace-nowrap">
-                                                    AED {(item.price * item.quantity).toFixed(2)}
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-xs text-muted">
-                                                <span>Qty: {item.quantity}</span>
-                                                <span>•</span>
-                                                <span>AED {item.price.toFixed(2)} each</span>
+                                                <div className="flex-1 pr-2">
+                                                    <span className="font-bold text-xs md:text-sm text-foreground line-clamp-2 group-hover:text-accent transition-colors">
+                                                        {item.name}
+                                                    </span>
+                                                    <div className="flex items-center gap-2 mt-1">
+                                                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-accent/10 rounded-full">
+                                                            <span className="text-accent font-bold text-xs">×{item.quantity}</span>
+                                                        </span>
+                                                        <span className="text-xs text-muted">AED {item.price.toFixed(2)} each</span>
+                                                    </div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="font-black text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary whitespace-nowrap">
+                                                        AED {(item.price * item.quantity).toFixed(2)}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className="border-t-2 border-accent/30 pt-5 mb-5">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <span className="text-muted">Subtotal</span>
-                                        <span className="font-semibold">AED {subtotal.toFixed(2)}</span>
-                                    </div>
-                                    <div className="flex justify-between items-center mb-4">
-                                        <div className="flex flex-col">
-                                            <span className="text-muted">Delivery</span>
-                                            {deliveryCharge > 0 && (
-                                                <span className="text-xs text-muted-foreground mt-0.5">
-                                                    {isDubai ? "Dubai single item" : "Outside Dubai"}
-                                                </span>
-                                            )}
+                                {/* Pricing Section */}
+                                <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 mb-5 border-2 border-gray-200 shadow-inner">
+                                    <div className="space-y-3">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-sm font-semibold text-muted">Subtotal</span>
+                                            <span className="font-bold text-foreground">AED {subtotal.toFixed(2)}</span>
                                         </div>
-                                        <span className={`font-semibold ${deliveryCharge === 0 ? 'text-green-600' : 'text-foreground'}`}>
-                                            {deliveryCharge === 0 ? 'FREE' : `AED ${deliveryCharge.toFixed(2)}`}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center bg-white rounded-xl p-4 shadow-md">
-                                        <span className="text-lg font-bold">Total</span>
-                                        <span className="text-2xl font-bold text-accent">AED {total.toFixed(2)}</span>
+                                        <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                                            <div className="flex flex-col">
+                                                <span className="text-sm font-semibold text-muted">Delivery</span>
+                                                {deliveryCharge > 0 && (
+                                                    <span className="text-xs text-muted mt-0.5">
+                                                        {isDubai ? "Dubai (single)" : "Outside Dubai"}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="text-right">
+                                                {deliveryCharge === 0 ? (
+                                                    <span className="font-bold text-green-600 flex items-center gap-1">
+                                                        <span className="text-lg">✓</span>
+                                                        FREE
+                                                    </span>
+                                                ) : (
+                                                    <span className="font-bold text-foreground">AED {deliveryCharge.toFixed(2)}</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-between items-center pt-2">
+                                            <span className="text-base md:text-lg font-black text-foreground">Total Amount</span>
+                                            <span className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
+                                                AED {total.toFixed(2)}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <div className="flex items-start gap-3 p-3 bg-white rounded-xl">
-                                        <span className="text-green-500 text-lg">✓</span>
+                                {/* Benefits */}
+                                <div className="space-y-2">
+                                    <div className="flex items-start gap-2 p-3 bg-white rounded-xl border border-green-200 hover:shadow-md transition-all group">
+                                        <span className="text-green-500 text-base md:text-lg group-hover:scale-110 transition-transform">✓</span>
                                         <div className="flex-1">
-                                            <p className="text-sm font-semibold text-foreground">Free delivery on 2+ items</p>
-                                            <p className="text-xs text-muted mt-0.5">Dubai: AED 10 for single item | Outside Dubai: AED 20</p>
+                                            <p className="text-xs md:text-sm font-bold text-foreground">Free delivery on 2+ items</p>
+                                            <p className="text-xs text-muted mt-0.5">Single item: AED 10 (Dubai) / AED 20 (Outside)</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 p-3 bg-white rounded-xl">
-                                        <span className="text-green-500 text-lg">✓</span>
-                                        <p className="text-sm font-semibold text-foreground">Authentic products guaranteed</p>
+                                    <div className="flex items-center gap-2 p-3 bg-white rounded-xl border border-blue-200 hover:shadow-md transition-all group">
+                                        <span className="text-blue-500 text-base md:text-lg group-hover:scale-110 transition-transform">✓</span>
+                                        <p className="text-xs md:text-sm font-bold text-foreground">100% Authentic products</p>
                                     </div>
-                                    <div className="flex items-center gap-3 p-3 bg-white rounded-xl">
-                                        <span className="text-green-500 text-lg">✓</span>
-                                        <p className="text-sm font-semibold text-foreground">Before 12PM: Same Day Delivery</p>
+                                    <div className="flex items-center gap-2 p-3 bg-white rounded-xl border border-accent/30 hover:shadow-md transition-all group">
+                                        <span className="text-accent text-base md:text-lg group-hover:scale-110 transition-transform">⚡</span>
+                                        <p className="text-xs md:text-sm font-bold text-foreground">Same Day Delivery (Before 12PM)</p>
                                     </div>
                                 </div>
                             </>
                         ) : (
                             <div className="text-center py-12">
-                                <div className="w-20 h-20 mx-auto mb-4 bg-accent/10 rounded-full flex items-center justify-center">
-                                    <span className="text-4xl">🛒</span>
+                                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full flex items-center justify-center shadow-lg">
+                                    <span className="text-4xl animate-bounce">🛒</span>
                                 </div>
-                                <p className="font-semibold text-foreground mb-2">Your cart is empty</p>
+                                <p className="font-bold text-foreground mb-2 text-lg">Your cart is empty</p>
                                 <p className="text-sm text-muted">Add items to proceed with order</p>
                             </div>
                         )}
@@ -423,14 +495,16 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                     width: 6px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
+                    background: rgba(212, 165, 116, 0.1);
+                    border-radius: 10px;
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: #d4a574;
-                    border-radius: 3px;
+                    background: linear-gradient(180deg, #d4a574 0%, #c89560 100%);
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: #c89560;
+                    background: linear-gradient(180deg, #c89560 0%, #b8854f 100%);
                 }
             `}</style>
         </div>
