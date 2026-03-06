@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react"
+import { createContext, useContext, useMemo, useState, useEffect, type ReactNode } from "react"
 import type { CartItem, Product } from "@/app/types"
 
 interface CartContextValue {
@@ -14,8 +14,36 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | undefined>(undefined)
 
+const CART_STORAGE_KEY = "iqos-cart-items"
+
 export function CartProvider({ children }: { children: ReactNode }) {
     const [items, setItems] = useState<CartItem[]>([])
+    const [isHydrated, setIsHydrated] = useState(false)
+
+    // Load cart from localStorage on mount
+    useEffect(() => {
+        try {
+            const saved = localStorage.getItem(CART_STORAGE_KEY)
+            if (saved) {
+                const parsed = JSON.parse(saved) as CartItem[]
+                setItems(parsed)
+            }
+        } catch (error) {
+            console.error("Failed to load cart from localStorage:", error)
+        }
+        setIsHydrated(true)
+    }, [])
+
+    // Save cart to localStorage whenever items change (but only after hydration)
+    useEffect(() => {
+        if (isHydrated) {
+            try {
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+            } catch (error) {
+                console.error("Failed to save cart to localStorage:", error)
+            }
+        }
+    }, [items, isHydrated])
 
     const addItem = (product: Product, quantity: number = 1) => {
         setItems((prev) => {

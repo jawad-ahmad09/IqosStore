@@ -148,7 +148,9 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                            title="Enter a valid email address"
+                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
                                             placeholder="your@email.com"
                                         />
                                     </div>
@@ -169,10 +171,13 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                                         value={formData.phone}
                                         onChange={handleChange}
                                         required
-                                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                        pattern="^(\+971|00971|0)?[0-9]{9,10}$"
+                                        title="Enter a valid UAE phone number (e.g., +971501234567 or 0501234567)"
+                                        className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
                                         placeholder="+971 50 XXX XXXX"
                                     />
                                 </div>
+                                <p className="text-xs text-muted mt-1">Format: +971501234567 or 0501234567</p>
                             </div>
                         </div>
                     </div>
@@ -275,20 +280,36 @@ export default function InquiryForm({ cartItems, onSubmit }: InquiryFormProps) {
                     <button
                         type="submit"
                         disabled={loading || cartItems.length === 0}
-                        className="w-full px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-background rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 group"
+                        className="w-full px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-background rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 group relative overflow-hidden"
                     >
-                        {loading ? (
-                            <>
-                                <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
-                                Processing Your Order...
-                            </>
-                        ) : (
-                            <>
-                                <span>Submit Order Inquiry</span>
-                                <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
-                            </>
+                        {loading && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/70 animate-pulse"></div>
                         )}
+                        <div className="relative flex items-center gap-3">
+                            {loading ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
+                                    <span>Processing Your Order...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>Submit Order Inquiry</span>
+                                    <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                                </>
+                            )}
+                        </div>
                     </button>
+
+                    {/* Loading Overlay for Form */}
+                    {loading && (
+                        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 flex items-center justify-center">
+                            <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col items-center gap-4 animate-fadeInUp">
+                                <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+                                <p className="font-semibold text-lg">Sending your order...</p>
+                                <p className="text-sm text-muted">Please wait</p>
+                            </div>
+                        </div>
+                    )}
 
                     {/* Trust Badges Below Form */}
                     <div className="grid grid-cols-3 gap-4 pt-4">

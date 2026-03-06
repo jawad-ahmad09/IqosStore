@@ -7,6 +7,7 @@ import Footer from "./components/Footer"
 import { CartProvider } from "./context/CartContext"
 import { UIProvider } from "./context/UIContext"
 import { ToastProvider } from "./components/Toast"
+import { ErrorBoundary } from "./components/ErrorBoundary"
 import CartModal from "./components/CartModal"
 import WhatsAppButton from "./components/WhatsAppButton"
 
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "IQOS Store UAE",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/HeroSection-Image.png",
         width: 1200,
         height: 630,
         alt: "IQOS Store UAE - Authentic Products",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IQOS Store UAE | Authentic Terea Heats & IQOS Devices",
     description: "Shop authentic IQOS products in UAE. Before 12PM: Same Day Delivery",
-    images: ["/og-image.jpg"],
+    images: ["/HeroSection-Image.png"],
   },
   robots: {
     index: true,
@@ -70,17 +71,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.className} bg-background text-foreground`}>
-        <ToastProvider>
-          <UIProvider>
-            <CartProvider>
-              <Header />
-              <main className="min-h-screen">{children}</main>
-              <Footer />
-              <CartModal />
-              <WhatsAppButton />
-            </CartProvider>
-          </UIProvider>
-        </ToastProvider>
+        <ErrorBoundary>
+          <ToastProvider>
+            <UIProvider>
+              <CartProvider>
+                <Header />
+                <main className="min-h-screen">{children}</main>
+                <Footer />
+                <CartModal />
+                <WhatsAppButton />
+              </CartProvider>
+            </UIProvider>
+          </ToastProvider>
+        </ErrorBoundary>
       </body>
     </html>
   )

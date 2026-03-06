@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 const Hero = () => {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -40,9 +41,13 @@ const Hero = () => {
                     {/* Left Side - Text Content */}
                     <div className="text-center lg:text-left">
                         <div
-                            className={`inline-block mb-4 px-3 py-1.5 rounded-full bg-red-500 text-white border border-red-600 transition-all duration-700 ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+                            className={`inline-block mb-4 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white border border-red-400 shadow-lg transition-all duration-700 animate-pulse ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                         >
-                            <p className="text-xs md:text-sm font-bold">🎉 NEW YEAR SALE - UP TO 41% OFF</p>
+                            <p className="text-xs md:text-sm font-bold flex items-center gap-2">
+                                <span className="animate-bounce">🔥</span>
+                                MEGA SALE - UP TO 41% OFF
+                                <span className="animate-bounce">🔥</span>
+                            </p>
                         </div>
 
                         <h1
@@ -103,9 +108,12 @@ const Hero = () => {
                         className={`relative transition-all duration-700 delay-400 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
                     >
                         <div className="relative">
-                            <img
+                            <Image
                                 src="/HeroSection-Image.png"
                                 alt="IQOS Terea Heats Collection"
+                                width={800}
+                                height={600}
+                                priority
                                 className="w-full h-auto object-contain drop-shadow-2xl"
                             />
                             {/* Decorative elements around the image */}
