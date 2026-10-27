@@ -45,6 +45,13 @@ export default function SeoContent() {
                         Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain and Al Ain. Delivery is free on 2 or more items, and you can pay cash
                         on delivery.
                     </p>
+                    <p className="leading-relaxed">
+                        See every price on one page in our{" "}
+                        <Link href="/terea-price-uae" className="font-bold text-ink underline underline-offset-4">TEREA price list</Link>, or compare the
+                        same flavour across origins — like{" "}
+                        <Link href="/flavours/amber" className="font-bold text-ink underline underline-offset-4">TEREA Amber</Link> or{" "}
+                        <Link href="/flavours/sun-pearl" className="font-bold text-ink underline underline-offset-4">Sun Pearl</Link>.
+                    </p>
                     <div className="flex flex-wrap gap-2 pt-2">
                         {COLLECTIONS.map((c) => (
                             <Link key={c.slug} href={`/${c.slug}`} className="chip">

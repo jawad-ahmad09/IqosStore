@@ -157,6 +157,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                             { href: listingHref({ category: "iluma" }), label: "IQOS ILUMA devices" },
                             { href: listingHref({ category: "stig" }), label: "VGOD STIG pods" },
                             { href: "/#finder", label: "Flavour Finder" },
+                            { href: "/terea-price-uae", label: "TEREA price list" },
+                            { href: "/flavours", label: "Flavours compared" },
                             { href: "/guides", label: "Guides" },
                             { href: "/delivery", label: "Delivery areas" },
                             { href: "/ar", label: "العربية (Arabic)" },

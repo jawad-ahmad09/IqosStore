@@ -1,5 +1,6 @@
 import { COLLECTIONS } from "@/app/data/collections"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
+import { FLAVOURS } from "@/app/data/flavours"
 import { GUIDES } from "@/app/data/guides"
 import { getProducts, priceRange } from "@/app/data/products"
 import { ORIGIN_LIST, STORE } from "@/app/data/store"
@@ -22,6 +23,10 @@ export function GET() {
             const { min, max } = priceRange(list)
             return line(`/${c.slug}`, c.h1, `${list.length} products, ${formatAED(min)}${min === max ? "" : `–${max}`}`)
         }),
+        "",
+        "## Prices & flavours",
+        line("/terea-price-uae", "TEREA price list (all products)"),
+        ...FLAVOURS.map((f) => line(`/flavours/${f.slug}`, `TEREA ${f.name} compared`, f.products.map((p) => `${p.region} ${formatAED(p.price)}`).join(", "))),
         "",
         "## Delivery",
         ...EMIRATE_PAGES.map((e) => line(`/delivery/${e.slug}`, `Delivery in ${e.name}`, e.speed)),

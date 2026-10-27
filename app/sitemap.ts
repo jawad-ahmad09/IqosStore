@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next"
 import { COLLECTIONS } from "@/app/data/collections"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
+import { FLAVOURS } from "@/app/data/flavours"
 import { GUIDES } from "@/app/data/guides"
+import { POLICIES } from "@/app/data/policies"
 import { products } from "@/app/data/products"
 import { AR_COLLECTIONS } from "@/app/data/ar"
 import { STORE } from "@/app/data/store"
@@ -53,6 +55,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             alternates: alternates(`/${c.slug}`),
         })),
         { url: url("/ar/delivery"), lastModified: now, changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
+        { url: url("/terea-price-uae"), lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+        { url: url("/flavours"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+        ...FLAVOURS.map((f) => ({ url: url(`/flavours/${f.slug}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.75 })),
+        ...POLICIES.map((p) => ({ url: url(`/policies/${p.slug}`), lastModified: new Date(p.updated), changeFrequency: "yearly" as const, priority: 0.3 })),
         { url: url("/listings"), lastModified: now, changeFrequency: "daily", priority: 0.6 },
         { url: url("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
     ]

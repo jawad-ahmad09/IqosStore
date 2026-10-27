@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
+import { POLICIES } from "@/app/data/policies"
 import { CATEGORIES, REGIONS, STORE, listingHref, whatsappLink } from "@/app/data/store"
 import type { Region } from "@/app/types"
 import { Logo } from "./Header"
@@ -69,6 +70,8 @@ export default function Footer() {
                             <li><Link href={listingHref()} className={linkClass}>All products</Link></li>
                             <li><Link href={listingHref({ category: "iluma" })} className={linkClass}>{CATEGORIES.iluma.label}</Link></li>
                             <li><Link href={listingHref({ category: "stig" })} className={linkClass}>{CATEGORIES.stig.label}</Link></li>
+                            <li><Link href="/terea-price-uae" className={linkClass}>TEREA price list</Link></li>
+                            <li><Link href="/flavours" className={linkClass}>Flavours compared</Link></li>
                             <li><Link href="/checkout" className={linkClass}>Checkout</Link></li>
                         </ul>
                     </div>
@@ -92,6 +95,18 @@ export default function Footer() {
                             <li key={e.slug}>
                                 <Link href={`/delivery/${e.slug}`} className={linkClass}>
                                     IQOS & TEREA {e.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="border-t border-line-dark py-6">
+                    <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                        {POLICIES.map((p) => (
+                            <li key={p.slug}>
+                                <Link href={`/policies/${p.slug}`} className={linkClass}>
+                                    {p.title}
                                 </Link>
                             </li>
                         ))}

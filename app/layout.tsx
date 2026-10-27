@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Manrope } from "next/font/google"
+import { Bricolage_Grotesque, Cairo, Manrope } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -10,10 +10,13 @@ import { ErrorBoundary } from "./components/ErrorBoundary"
 import CartDrawer from "./components/CartDrawer"
 import WhatsAppButton from "./components/WhatsAppButton"
 import AgeGate from "./components/AgeGate"
+import BrandDisclaimer from "./components/BrandDisclaimer"
 import { ORIGIN_LIST } from "./data/store"
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" })
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" })
+// Only downloaded on pages that actually render Arabic text (Arabic section, trademark notice).
+const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-arabic", preload: false })
 
 export const metadata: Metadata = {
   title: {
@@ -84,13 +87,14 @@ export default function RootLayout({
 }) {
   return (
     // Font variables go on <html>: the Tailwind theme resolves --font-sans/--font-display at :root.
-    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable} ${cairo.variable}`}>
       <body>
         <ErrorBoundary>
           <ToastProvider>
             <UIProvider>
               <Header />
               <main className="min-h-screen">{children}</main>
+              <BrandDisclaimer />
               <Footer />
               <CartDrawer />
               <WhatsAppButton />

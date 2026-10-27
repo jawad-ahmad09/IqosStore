@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BadgeCheck, Clock, Truck } from "lucide-react"
 import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
+import BrandDisclaimer from "@/app/components/BrandDisclaimer"
 import ProductRail from "@/app/components/home/ProductRail"
 import { getProductById, getRelatedProducts, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref } from "@/app/data/store"
@@ -11,6 +12,7 @@ import { discountPercent, isLimited } from "@/app/lib/product"
 import { productFaqs } from "@/app/lib/productFaqs"
 import { FaqList } from "@/app/components/collection/CollectionView"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
+import { flavourForProduct } from "@/app/data/flavours"
 import ProductGallery from "./ProductGallery"
 import ProductActions from "./ProductActions"
 
@@ -46,6 +48,7 @@ export default async function ProductPage({ params }: Params) {
     const discount = discountPercent(product)
 
     const faqs = productFaqs(product)
+    const flavour = flavourForProduct(product)
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -160,6 +163,19 @@ export default async function ProductPage({ params }: Params) {
                             ))}
                         </div>
 
+                        {flavour && (
+                            <Link
+                                href={`/flavours/${flavour.slug}`}
+                                className="mt-6 flex items-center justify-between rounded-2xl border border-line bg-paper px-4 py-3 text-sm font-bold transition hover:border-ink"
+                            >
+                                <span>
+                                    Compare TEREA {flavour.name} from {flavour.products.length} origins
+                                    <span className="block text-xs font-semibold text-ink-soft">{flavour.products.map((p) => p.region).join(" · ")}</span>
+                                </span>
+                                <span className="text-ember">→</span>
+                            </Link>
+                        )}
+
                         {product.description && (
                             <div className="mt-8">
                                 <h2 className="text-lg font-extrabold">About this product</h2>
@@ -177,6 +193,7 @@ export default async function ProductPage({ params }: Params) {
                                 </ul>
                             </div>
                         )}
+                        <BrandDisclaimer compact />
                     </div>
                 </div>
 
