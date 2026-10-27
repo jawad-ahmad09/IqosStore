@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import CheckoutClient from "./CheckoutClient"
 
 export const metadata: Metadata = {
-    title: "Checkout | IQOS Store UAE",
+    title: "Checkout",
     robots: { index: false, follow: false },
 }
 

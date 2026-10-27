@@ -1,6 +1,6 @@
 export type Category = "terea" | "iluma" | "stig"
 
-export type Region = "Indonesia" | "Kazakhstan" | "Uzbekistan" | "Japan"
+export type Region = "Indonesia" | "Kazakhstan" | "Uzbekistan" | "Switzerland" | "Japan"
 
 export interface Product {
     id: string // URL slug

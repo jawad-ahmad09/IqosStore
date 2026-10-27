@@ -1,15 +1,23 @@
+import type { Metadata } from "next"
 import Hero from "./components/home/Hero"
+import { languageAlternates } from "./lib/seo"
 import Collections from "./components/home/Collections"
 import TereaShowcase from "./components/home/TereaShowcase"
 import CategoryBand from "./components/home/CategoryBand"
 import Delivery from "./components/home/Delivery"
 import FlavourFinder from "./components/home/FlavourFinder"
 import OriginCompare from "./components/home/OriginCompare"
+import SeoContent from "./components/home/SeoContent"
 import FAQ from "./components/FAQ"
 import Reveal from "./components/Reveal"
 import { faqItems } from "./data/faq"
 import { priceRange, products } from "./data/products"
-import { STORE } from "./data/store"
+import { ORIGIN_LIST, STORE } from "./data/store"
+import { EMIRATE_PAGES } from "./data/emirates"
+
+export const metadata: Metadata = {
+    alternates: { canonical: "/", languages: languageAlternates("/") },
+}
 
 export default function Home() {
     const { min, max } = priceRange(products)
@@ -17,34 +25,41 @@ export default function Home() {
     // Structured data for local SEO. Only facts shown on the site — no ratings, since we don't collect reviews yet.
     const schemas = [
         {
+            // Online-only store that delivers UAE-wide — no physical shop, so no street address or map pin.
             "@context": "https://schema.org",
-            "@type": "Store",
+            "@type": "OnlineStore",
             "@id": `${STORE.url}/#store`,
             name: STORE.name,
-            alternateName: ["IQOS Dubai", "Terea Store Dubai", "IQOS UAE Store"],
+            alternateName: ["IQOS Store Dubai", "IQOS UAE", "TEREA Dubai"],
             description:
-                "IQOS store in Dubai, UAE. Authentic TEREA sticks from Indonesia, Kazakhstan, Uzbekistan and Japan, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai.",
+                `Online IQOS store delivering across the UAE. Authentic TEREA sticks from ${ORIGIN_LIST}, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai.`,
             url: STORE.url,
-            telephone: "+971561928359",
+            logo: `${STORE.url}/icon`,
+            image: `${STORE.url}/opengraph-image`,
             email: STORE.email,
-            image: `${STORE.url}/HeroSection-Image.png`,
+            telephone: "+971561928359",
             priceRange: `AED ${min} - AED ${max}`,
             currenciesAccepted: "AED",
             paymentAccepted: ["Cash", "Bank Transfer", "Cash on Delivery"],
-            address: {
-                "@type": "PostalAddress",
-                addressCountry: "AE",
-                addressRegion: "Dubai",
-                addressLocality: "Dubai",
-            },
-            geo: { "@type": "GeoCoordinates", latitude: "25.2048", longitude: "55.2708" },
-            areaServed: { "@type": "Country", name: "United Arab Emirates" },
-            openingHoursSpecification: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                opens: "00:00",
-                closes: "23:59",
-            },
+            areaServed: [
+                { "@type": "Country", name: "United Arab Emirates" },
+                ...EMIRATE_PAGES.map((e) => ({ "@type": "City", name: e.name })),
+            ],
+            contactPoint: [
+                {
+                    "@type": "ContactPoint",
+                    contactType: "customer service",
+                    telephone: `+${STORE.whatsapp}`,
+                    areaServed: "AE",
+                    availableLanguage: ["English", "Arabic"],
+                    hoursAvailable: {
+                        "@type": "OpeningHoursSpecification",
+                        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                        opens: "00:00",
+                        closes: "23:59",
+                    },
+                },
+            ],
             sameAs: [`https://wa.me/${STORE.whatsapp}`],
         },
         {
@@ -98,6 +113,7 @@ export default function Home() {
             <Reveal>
                 <FAQ />
             </Reveal>
+            <SeoContent />
         </>
     )
 }

@@ -52,15 +52,18 @@ export default function Collections() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-3">
-                    {tiles.map((tile) => {
+                <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-6">
+                    {tiles.map((tile, i) => {
+                        // 6-column grid: 3 tiles on the first row, then pairs, so any tile count stays balanced.
+                        const span = i < 3 ? "lg:col-span-2" : "lg:col-span-3"
+                        const lastAlone = tiles.length % 2 === 1 && i === tiles.length - 1
                         const showcase = tile.list.filter((p) => p.inStock).slice(0, 3)
                         const from = priceRange(tile.list).min
                         return (
                             <Link
                                 key={tile.title}
                                 href={tile.href}
-                                className="group relative flex flex-col overflow-hidden rounded-[1.5rem] bg-paper p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-24px_rgb(23_19_15/0.4)] md:p-6"
+                                className={`group relative flex flex-col overflow-hidden rounded-[1.5rem] bg-paper p-4 ${span} ${lastAlone ? "col-span-2" : ""} transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-24px_rgb(23_19_15/0.4)] md:p-6`}
                             >
                                 <span
                                     className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-15 blur-2xl transition-opacity group-hover:opacity-30"

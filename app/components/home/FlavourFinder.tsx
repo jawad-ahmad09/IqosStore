@@ -42,7 +42,7 @@ const QUESTIONS: { key: "style" | "taste" | "budget"; title: string; options: Op
         key: "budget",
         title: "Everyday value or Japanese premium?",
         options: [
-            { value: "value", label: "Best value", hint: "Indonesia, Kazakhstan, Uzbekistan", emoji: "💸" },
+            { value: "value", label: "Best value", hint: "Indonesia, Kazakhstan, Uzbekistan, Swiss", emoji: "💸" },
             { value: "premium", label: "Japanese premium", hint: "Japan-market blends", emoji: "🇯🇵" },
             { value: "any", label: "Either is fine", hint: "Show the best match", emoji: "👌" },
         ],

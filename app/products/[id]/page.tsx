@@ -1,12 +1,16 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BadgeCheck, ChevronRight, Clock, Truck } from "lucide-react"
+import { BadgeCheck, Clock, Truck } from "lucide-react"
+import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
 import ProductRail from "@/app/components/home/ProductRail"
 import { getProductById, getRelatedProducts, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref } from "@/app/data/store"
 import { DELIVERY, formatAED } from "@/app/lib/pricing"
 import { discountPercent, isLimited } from "@/app/lib/product"
+import { productFaqs } from "@/app/lib/productFaqs"
+import { FaqList } from "@/app/components/collection/CollectionView"
+import { EMIRATE_PAGES } from "@/app/data/emirates"
 import ProductGallery from "./ProductGallery"
 import ProductActions from "./ProductActions"
 
@@ -19,15 +23,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const product = getProductById((await params).id)
     if (!product) return {}
-    const where = product.region ? ` (${product.region})` : ""
-    const title = `${product.name}${where} — ${formatAED(product.price)} | ${STORE.name}`
-    const description = `${product.description || product.notes} Buy ${product.name}${where} in Dubai & UAE for ${formatAED(product.price)}. Same-day delivery in Dubai.`.trim()
+    const where = product.region ? ` ${product.region}` : ""
+    const title = `${product.name}${where} Dubai — ${formatAED(product.price)} | ${STORE.name}`
+    const description = `Buy ${product.name}${where} in Dubai & UAE for ${formatAED(product.price)}. ${product.description || product.notes} Same-day delivery in Dubai, free on ${DELIVERY.freeFromItems}+ items.`
     return {
-        title,
-        description,
+        title: { absolute: title },
+        description: description.length > 300 ? `${description.slice(0, 297)}…` : description,
         alternates: { canonical: `/products/${product.id}` },
-        openGraph: { title, description, images: product.images.map((url) => ({ url })), type: "website" },
-        twitter: { card: "summary_large_image", title, description, images: [product.images[0]] },
+        openGraph: { title, description, type: "website", url: `/products/${product.id}` },
+        twitter: { card: "summary_large_image", title, description },
     }
 }
 
@@ -40,6 +44,13 @@ export default async function ProductPage({ params }: Params) {
         ? { label: `TEREA ${product.region}`, href: listingHref({ category: "terea", region: product.region }), color: REGIONS[product.region].color }
         : { label: CATEGORIES[product.category].short, href: listingHref({ category: product.category }), color: CATEGORIES[product.category].color }
     const discount = discountPercent(product)
+
+    const faqs = productFaqs(product)
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+    }
 
     const structuredData = {
         "@context": "https://schema.org/",
@@ -55,25 +66,45 @@ export default async function ProductPage({ params }: Params) {
             priceCurrency: "AED",
             price: product.price,
             availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            seller: { "@type": "Organization", name: STORE.name },
+            itemCondition: "https://schema.org/NewCondition",
+            seller: { "@id": `${STORE.url}/#store` },
+            shippingDetails: {
+                "@type": "OfferShippingDetails",
+                shippingRate: { "@type": "MonetaryAmount", value: DELIVERY.dubai, currency: "AED" },
+                shippingDestination: { "@type": "DefinedRegion", addressCountry: "AE" },
+                deliveryTime: {
+                    "@type": "ShippingDeliveryTime",
+                    handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" },
+                    transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 1, unitCode: "DAY" },
+                },
+            },
+            hasMerchantReturnPolicy: {
+                "@type": "MerchantReturnPolicy",
+                applicableCountry: "AE",
+                returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+                merchantReturnDays: 7,
+            },
         },
     }
 
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
             <div className="container-x py-6 md:py-10">
-                <nav aria-label="Breadcrumb" className="no-scrollbar mb-6 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-sm text-ink-soft">
-                    <Link href="/" className="hover:text-ink">Home</Link>
-                    <ChevronRight size={14} />
-                    <Link href={group.href} className="hover:text-ink">{group.label}</Link>
-                    <ChevronRight size={14} />
-                    <span className="font-semibold text-ink">{product.name}</span>
-                </nav>
+                <div className="mb-6">
+                    <Breadcrumbs
+                        items={[
+                            ...(product.region ? [{ name: "TEREA", href: listingHref({ category: "terea" }) }] : []),
+                            { name: product.region ?? CATEGORIES[product.category].short, href: group.href },
+                            { name: product.name, href: `/products/${product.id}` },
+                        ]}
+                    />
+                </div>
 
                 <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-                    <ProductGallery key={product.id} images={product.images} name={product.name} soldOut={!product.inStock} tint={group.color} />
+                    <ProductGallery key={product.id} images={product.images} name={`${product.name}${product.region ? ` ${product.region}` : ""}`} soldOut={!product.inStock} tint={group.color} />
 
                     <div className="lg:py-4">
                         <Link
@@ -147,6 +178,26 @@ export default async function ProductPage({ params }: Params) {
                             </div>
                         )}
                     </div>
+                </div>
+
+                <div className="mt-16 grid gap-10 md:mt-20 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+                    <section>
+                        <h2 className="mb-4 text-2xl font-extrabold md:text-3xl">Questions about {product.name}</h2>
+                        <FaqList faqs={faqs} />
+                    </section>
+                    <section>
+                        <h2 className="text-2xl font-extrabold md:text-3xl">Delivery across the UAE</h2>
+                        <p className="mt-3 text-ink-soft">
+                            {product.name} ships to every emirate — same day in Dubai before 12PM, next day elsewhere.
+                        </p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {EMIRATE_PAGES.map((e) => (
+                                <Link key={e.slug} href={`/delivery/${e.slug}`} className="chip !py-1.5 !text-xs">
+                                    {e.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
                 </div>
 
                 {related.length > 0 && (

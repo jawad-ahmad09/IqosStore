@@ -10,13 +10,17 @@ import { ErrorBoundary } from "./components/ErrorBoundary"
 import CartDrawer from "./components/CartDrawer"
 import WhatsAppButton from "./components/WhatsAppButton"
 import AgeGate from "./components/AgeGate"
+import { ORIGIN_LIST } from "./data/store"
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" })
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" })
 
 export const metadata: Metadata = {
-  title: "IQOS Dubai UAE | Buy Terea Heats Sticks & IQOS Devices | #1 Store in UAE",
-  description: "🔥 Best IQOS Store in Dubai, UAE. Buy authentic Terea Heats sticks (Kazakhstan & Indonesia), IQOS Iluma Prime, IQOS Iluma One & Standard devices. ✓ Same-Day Delivery Dubai ✓ Free Shipping 2+ Items ✓ 100% Authentic ✓ Best Prices in UAE. Order Now!",
+  title: {
+    default: "IQOS Dubai & UAE — Buy TEREA, IQOS ILUMA & STIG Online | Same-Day Delivery",
+    template: "%s | IQOS Store UAE",
+  },
+  description: `Buy authentic TEREA sticks (${ORIGIN_LIST}), IQOS ILUMA devices and VGOD STIG pods online in Dubai & UAE. Same-day delivery in Dubai, free delivery on 2+ items, cash on delivery.`,
   keywords: [
     // Primary Keywords
     "IQOS Dubai", "IQOS UAE", "Terea Dubai", "Terea UAE", "IQOS Store Dubai", "IQOS Store UAE",
@@ -36,36 +40,24 @@ export const metadata: Metadata = {
     // Service Keywords
     "IQOS free delivery Dubai", "IQOS online shopping UAE", "IQOS fast delivery Dubai"
   ].join(", "),
-  authors: [{ name: "IQOS Store UAE - Dubai's #1 IQOS Retailer" }],
+  authors: [{ name: "IQOS Store UAE" }],
   creator: "IQOS Store UAE",
   publisher: "IQOS Store UAE",
   metadataBase: new URL("https://www.iqosstoredubai.com"),
-  alternates: {
-    canonical: "/",
-  },
   category: "E-commerce, Heated Tobacco, IQOS Products",
   openGraph: {
-    title: "IQOS Dubai UAE | Buy Terea Heats & IQOS Devices | #1 Store",
-    description: "🔥 Best IQOS Store in Dubai, UAE. Authentic Terea Heats (Kazakhstan & Indonesia) + IQOS Iluma devices. ✓ Same-Day Delivery ✓ Best Prices ✓ 100% Original. Order Now!",
+    title: "IQOS Dubai & UAE — TEREA, IQOS ILUMA & STIG | Same-Day Delivery",
+    description: `Authentic TEREA from ${ORIGIN_LIST}, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai, free on 2+ items.`,
     url: "https://www.iqosstoredubai.com",
-    siteName: "IQOS Store UAE - Dubai's #1 IQOS Retailer",
-    images: [
-      {
-        url: "/HeroSection-Image.png",
-        width: 1200,
-        height: 630,
-        alt: "IQOS Store UAE Dubai - Authentic Terea Heats Sticks and IQOS Iluma Devices",
-      },
-    ],
+    siteName: "IQOS Store UAE",
     locale: "en_AE",
     type: "website",
     countryName: "United Arab Emirates",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IQOS Dubai UAE | Buy Terea Heats & IQOS Devices | #1 Store",
-    description: "🔥 Best IQOS Store in Dubai, UAE. ✓ Same-Day Delivery ✓ Authentic Products ✓ Best Prices",
-    images: ["/HeroSection-Image.png"],
+    title: "IQOS Dubai & UAE — TEREA, IQOS ILUMA & STIG | Same-Day Delivery",
+    description: "Authentic TEREA, IQOS ILUMA and VGOD STIG. Same-day delivery in Dubai, free on 2+ items.",
     creator: "@IQOSStoreUAE",
   },
   robots: {
@@ -91,8 +83,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${manrope.variable} ${bricolage.variable}`}>
+    // Font variables go on <html>: the Tailwind theme resolves --font-sans/--font-display at :root.
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
+      <body>
         <ErrorBoundary>
           <ToastProvider>
             <UIProvider>

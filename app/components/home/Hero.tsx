@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Clock, ShieldCheck, Truck } from "lucide-react"
 import { getProductById, getProducts, priceRange, products } from "@/app/data/products"
-import { REGIONS, listingHref, whatsappLink } from "@/app/data/store"
+import { ORIGIN_LIST, REGIONS, listingHref, whatsappLink } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
 import type { Product } from "@/app/types"
 import { WhatsAppIcon } from "../WhatsAppButton"
@@ -46,7 +46,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-                        {products.length}+ products — TEREA from Indonesia, Kazakhstan, Uzbekistan & Japan, plus IQOS ILUMA devices and VGOD STIG
+                        {products.length}+ products — TEREA from {ORIGIN_LIST}, plus IQOS ILUMA devices and VGOD STIG
                         pods. Same-day delivery in Dubai, free on 2+ items.
                     </p>
 

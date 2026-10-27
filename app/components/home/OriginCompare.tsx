@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { getProducts, priceRange } from "@/app/data/products"
-import { REGIONS, listingHref } from "@/app/data/store"
+import { ORIGIN_COUNT, REGIONS, listingHref } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
 import type { Region } from "@/app/types"
 import Reveal from "../Reveal"
@@ -11,6 +11,7 @@ const PROFILE: Record<Region, { packaging: string; bestFor: string }> = {
     Indonesia: { packaging: "Indonesian-market packs", bestFor: "Variety seekers — editions, pearls & waves" },
     Kazakhstan: { packaging: "Kazakh-market packs", bestFor: "Classic favourites and capsule sticks" },
     Uzbekistan: { packaging: "Uzbek-market packs", bestFor: "Smooth everyday smokes at a fair price" },
+    Switzerland: { packaging: "Swiss-made packs", bestFor: "Classic European tobacco, from light to bold" },
     Japan: { packaging: "Japanese-market packs", bestFor: "Premium blends you won't find elsewhere" },
 }
 
@@ -33,13 +34,13 @@ export default function OriginCompare() {
             <div className="container-x">
                 <Reveal className="mb-8 max-w-2xl">
                     <span className="eyebrow">Compare origins</span>
-                    <h2 className="mt-3 text-3xl font-extrabold md:text-5xl">Same TEREA, four personalities</h2>
+                    <h2 className="mt-3 text-3xl font-extrabold md:text-5xl">Same TEREA, {ORIGIN_COUNT} personalities</h2>
                     <p className="mt-3 text-ink-soft">
                         Every origin works with every IQOS ILUMA. What changes is the flavour line-up, the packaging — and the price.
                     </p>
                 </Reveal>
 
-                <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-4">
+                <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3 xl:grid-cols-5">
                     {rows.map(({ region, list, from, families, hero }, i) => (
                         <Reveal key={region} delay={i * 90} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto">
                             <div

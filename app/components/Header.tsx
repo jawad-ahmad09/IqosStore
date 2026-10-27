@@ -157,6 +157,9 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                             { href: listingHref({ category: "iluma" }), label: "IQOS ILUMA devices" },
                             { href: listingHref({ category: "stig" }), label: "VGOD STIG pods" },
                             { href: "/#finder", label: "Flavour Finder" },
+                            { href: "/guides", label: "Guides" },
+                            { href: "/delivery", label: "Delivery areas" },
+                            { href: "/ar", label: "العربية (Arabic)" },
                             { href: "/#faq", label: "FAQ" },
                             { href: "/contact", label: "Contact" },
                         ].map((link) => (
@@ -266,11 +269,19 @@ export default function Header() {
                         {navLink(listingHref({ category: "iluma" }), CATEGORIES.iluma.short, false)}
                         {navLink(listingHref({ category: "stig" }), CATEGORIES.stig.short, false)}
                         {navLink("/#finder", "Flavour Finder", false)}
-                        {navLink("/#faq", "FAQ", false)}
+                        {navLink("/guides", "Guides", pathname.startsWith("/guides"))}
                         {navLink("/contact", "Contact", pathname === "/contact")}
                     </nav>
 
                     <div className="flex items-center gap-1.5">
+                        <Link
+                            href={pathname.startsWith("/ar") ? "/" : "/ar"}
+                            lang={pathname.startsWith("/ar") ? "en" : "ar"}
+                            className="hidden rounded-full px-3 py-2 text-sm font-bold transition hover:bg-sand-2 md:block"
+                            style={pathname.startsWith("/ar") ? undefined : { fontFamily: "Tahoma, Arial, sans-serif" }}
+                        >
+                            {pathname.startsWith("/ar") ? "English" : "العربية"}
+                        </Link>
                         <button
                             onClick={() => setSearchOpen(true)}
                             aria-label="Search products"

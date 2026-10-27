@@ -38,7 +38,7 @@ export default function ProductCard({ product, priority = false }: { product: Pr
                 <Image
                     ref={imageRef}
                     src={product.images[0]}
-                    alt={product.name}
+                    alt={`${product.name}${product.region ? ` ${product.region}` : ""}`}
                     fill
                     priority={priority}
                     sizes="(min-width: 1280px) 280px, (min-width: 768px) 30vw, 50vw"

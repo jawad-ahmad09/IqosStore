@@ -7,7 +7,7 @@ import { Minus, Plus, ShoppingBag, Trash2, X, Truck } from "lucide-react"
 import { useCart } from "@/app/context/CartContext"
 import { useUI } from "@/app/context/UIContext"
 import { getRelatedProducts } from "@/app/data/products"
-import { listingHref } from "@/app/data/store"
+import { ORIGIN_COUNT, listingHref } from "@/app/data/store"
 import { DELIVERY, formatAED } from "@/app/lib/pricing"
 import { productTag } from "@/app/lib/product"
 
@@ -123,7 +123,7 @@ export default function CartDrawer() {
                             <ShoppingBag size={32} className="text-ink-faint" />
                         </span>
                         <p className="font-display text-xl font-bold">Your cart is empty</p>
-                        <p className="text-sm text-ink-soft">Browse TEREA from four origins, ILUMA devices and STIG pods.</p>
+                        <p className="text-sm text-ink-soft">Browse TEREA from {ORIGIN_COUNT} origins, ILUMA devices and STIG pods.</p>
                         <Link href={listingHref()} onClick={closeCart} className="btn btn-ink mt-2">
                             Start shopping
                         </Link>

@@ -33,6 +33,12 @@ export const REGIONS: Record<Region, { label: string; code: string; color: strin
         color: "var(--color-uzb)",
         blurb: "Smooth favourites at everyday prices.",
     },
+    Switzerland: {
+        label: "Switzerland",
+        code: "CH",
+        color: "var(--color-ch)",
+        blurb: "Classic European blends, made in Switzerland.",
+    },
     Japan: {
         label: "Japan",
         code: "JP",
@@ -62,13 +68,27 @@ export const CATEGORIES: Record<Category, { label: string; short: string; color:
     },
 }
 
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+const REGION_NAMES = Object.keys(REGIONS) as Region[]
+
+// "Indonesia, Kazakhstan, Uzbekistan, Switzerland and Japan" — kept in sync with REGIONS.
+export const ORIGIN_LIST = `${REGION_NAMES.slice(0, -1).join(", ")} and ${REGION_NAMES[REGION_NAMES.length - 1]}`
+export const ORIGIN_COUNT = NUMBER_WORDS[REGION_NAMES.length] ?? String(REGION_NAMES.length)
+
+const CATEGORY_PATHS: Record<Category, string> = { terea: "/terea", iluma: "/iqos-iluma", stig: "/vgod-stig" }
+
+// Category/origin links go to their indexable collection pages; searches use /listings.
 export function listingHref(params: { category?: Category; region?: Region; q?: string } = {}) {
+    if (!params.q) {
+        if (params.region) return `/terea/${params.region.toLowerCase()}`
+        if (params.category) return CATEGORY_PATHS[params.category]
+        return "/listings"
+    }
     const search = new URLSearchParams()
     if (params.category) search.set("category", params.category)
     if (params.region) search.set("region", params.region)
-    if (params.q) search.set("q", params.q)
-    const qs = search.toString()
-    return qs ? `/listings?${qs}` : "/listings"
+    search.set("q", params.q)
+    return `/listings?${search}`
 }
 
 export const EMIRATES = [

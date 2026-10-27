@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Mail, MapPin, Phone } from "lucide-react"
+import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { CATEGORIES, REGIONS, STORE, listingHref, whatsappLink } from "@/app/data/store"
 import type { Region } from "@/app/types"
 import { Logo } from "./Header"
@@ -75,11 +76,26 @@ export default function Footer() {
                     <div>
                         <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">Help</h3>
                         <ul className="space-y-2.5">
-                            <li><Link href="/#delivery" className={linkClass}>Delivery & charges</Link></li>
+                            <li><Link href="/delivery" className={linkClass}>Delivery areas</Link></li>
+                            <li><Link href="/guides" className={linkClass}>Guides</Link></li>
+                            <li><Link href="/ar" lang="ar" className={linkClass} style={{ fontFamily: "Tahoma, Arial, sans-serif" }}>العربية</Link></li>
                             <li><Link href="/#faq" className={linkClass}>FAQ</Link></li>
                             <li><Link href="/contact" className={linkClass}>Contact us</Link></li>
                         </ul>
                     </div>
+                </div>
+
+                <div className="border-t border-line-dark py-6">
+                    <h3 className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">We deliver to</h3>
+                    <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                        {EMIRATE_PAGES.map((e) => (
+                            <li key={e.slug}>
+                                <Link href={`/delivery/${e.slug}`} className={linkClass}>
+                                    IQOS & TEREA {e.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
                 <div className="flex flex-col gap-2 border-t border-line-dark py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
