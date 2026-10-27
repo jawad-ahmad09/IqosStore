@@ -1,18 +1,18 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Bricolage_Grotesque, Manrope } from "next/font/google"
 import "./globals.css"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { CartProvider } from "./context/CartContext"
 import { UIProvider } from "./context/UIContext"
 import { ToastProvider } from "./components/Toast"
 import { ErrorBoundary } from "./components/ErrorBoundary"
-import CartModal from "./components/CartModal"
+import CartDrawer from "./components/CartDrawer"
 import WhatsAppButton from "./components/WhatsAppButton"
+import AgeGate from "./components/AgeGate"
 
-const geistSans = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" })
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" })
 
 export const metadata: Metadata = {
   title: "IQOS Dubai UAE | Buy Terea Heats Sticks & IQOS Devices | #1 Store in UAE",
@@ -79,9 +79,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#13100d",
 }
 
 export default function RootLayout({
@@ -91,17 +92,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className} bg-background text-foreground`}>
+      <body className={`${manrope.variable} ${bricolage.variable}`}>
         <ErrorBoundary>
           <ToastProvider>
             <UIProvider>
-              <CartProvider>
-                <Header />
-                <main className="min-h-screen">{children}</main>
-                <Footer />
-                <CartModal />
-                <WhatsAppButton />
-              </CartProvider>
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+              <CartDrawer />
+              <WhatsAppButton />
+              <AgeGate />
             </UIProvider>
           </ToastProvider>
         </ErrorBoundary>

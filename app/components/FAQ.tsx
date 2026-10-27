@@ -1,154 +1,58 @@
 "use client"
 
 import { useState } from "react"
-
-interface FAQItem {
-    id: number
-    question: string
-    answer: string
-}
-
-const faqItems: FAQItem[] = [
-    {
-        id: 1,
-        question: "🚚 How fast is delivery in UAE?",
-        answer: "Order before 12PM for same-day delivery! Orders after 12PM will be delivered next day across all UAE states. Delivery is FREE for 2 or more items. Single item delivery: AED 10 in Dubai, AED 20 outside Dubai.",
-    },
-    {
-        id: 2,
-        question: "✅ Are your products 100% authentic?",
-        answer: "Absolutely! All our Terea Heats and IQOS devices are sourced directly from verified authorized distributors. Every product comes with authenticity guarantee. We never sell counterfeits.",
-    },
-    {
-        id: 3,
-        question: "💰 What payment methods do you accept?",
-        answer: "We accept Cash on Delivery (COD), bank transfers, and online payments. Payment is flexible and secure. No credit card? No problem - pay when you receive!",
-    },
-    {
-        id: 4,
-        question: "🎨 Which Terea flavor should I try first?",
-        answer: "Popular choices: Purple Wave for fruity smooth taste, Yugen for mysterious blend, Turquoise for refreshing menthol, and Amber for rich classic flavor. Can't decide? Contact us for personalized recommendations!",
-    },
-    {
-        id: 5,
-        question: "📦 Is delivery free?",
-        answer: "Delivery is FREE for orders with 2 or more items across all UAE! For single item orders: AED 10 in Dubai, AED 20 outside Dubai. Fast, safe shipping guaranteed!",
-    },
-    {
-        id: 6,
-        question: "💬 How can I contact support?",
-        answer: "We're available 24/7 on WhatsApp! Click the green WhatsApp button on any page for instant help. You can also email us at iqosstoredubai@gmail.com for detailed inquiries.",
-    },
-    {
-        id: 7,
-        question: "🔄 What's your return/exchange policy?",
-        answer: "We offer hassle-free returns within 7 days for sealed, unopened products. If you receive a damaged item, we'll replace it immediately for free. Customer satisfaction is our priority!",
-    },
-    {
-        id: 8,
-        question: "🏆 Do you offer bulk/wholesale pricing?",
-        answer: "Yes! We provide special discounts for bulk orders and regular customers. Contact us via WhatsApp or email for wholesale pricing and exclusive deals.",
-    },
-]
+import { Plus } from "lucide-react"
+import { STORE, whatsappLink } from "@/app/data/store"
+import { faqItems } from "@/app/data/faq"
+import { WhatsAppIcon } from "./WhatsAppButton"
 
 export default function FAQ() {
-    const [openId, setOpenId] = useState<number | null>(null)
+    const [open, setOpen] = useState<number | null>(0)
 
     return (
-        <section id="faq" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-20 right-10 w-64 h-64 bg-accent rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 left-10 w-64 h-64 bg-primary rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="container mx-auto px-4 max-w-4xl relative z-10">
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-3 mb-4">
-                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-primary to-primary rounded-full"></div>
-                        <div className="relative group">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent px-4 py-1.5 border-2 border-primary/30 rounded-full backdrop-blur-sm">
-                                ❓ GOT QUESTIONS?
-                            </span>
-                        </div>
-                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-primary to-transparent rounded-full"></div>
+        <section id="faq" className="py-14 md:py-20">
+            <div className="container-x grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+                <div>
+                    <span className="eyebrow">FAQ</span>
+                    <h2 className="mt-3 text-3xl font-extrabold md:text-5xl">Questions, answered</h2>
+                    <p className="mt-4 max-w-sm text-ink-soft">Can&apos;t find what you need? We&apos;re on WhatsApp around the clock.</p>
+                    <div className="mt-6 flex flex-wrap gap-3">
+                        <a href={whatsappLink("Hello! I have a question about your products.")} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+                            <WhatsAppIcon size={18} /> Ask on WhatsApp
+                        </a>
+                        <a href={`mailto:${STORE.email}`} className="btn btn-ghost">
+                            Email us
+                        </a>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                        <span className="relative inline-block">
-                            <span className="relative">
-                                Frequently Asked{" "}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-pulse-scale">
-                                    Questions
-                                </span>
-                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
-                            </span>
-                        </span>
-                    </h2>
-                    <p className="text-lg text-muted max-w-2xl mx-auto">
-                        Everything you need to know about IQOS Store UAE, products, and delivery
-                    </p>
                 </div>
 
-                <div className="space-y-4">
-                    {faqItems.map((item, index) => (
-                        <div
-                            key={item.id}
-                            className="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-xl"
-                            style={{ animationDelay: `${index * 50}ms` }}
-                        >
-                            <button
-                                onClick={() => setOpenId(openId === item.id ? null : item.id)}
-                                className="w-full px-6 py-5 flex items-center justify-between hover:bg-accent/5 transition-colors group"
-                            >
-                                <span className="text-left font-semibold text-foreground text-lg group-hover:text-accent transition-colors">
-                                    {item.question}
-                                </span>
-                                <div className={`w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center transition-all duration-300 ${openId === item.id ? "rotate-180 bg-accent" : "group-hover:bg-accent/20"}`}>
-                                    <svg
-                                        className={`w-5 h-5 transition-colors ${openId === item.id ? "text-white" : "text-accent"}`}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
+                <div className="divide-y divide-line overflow-hidden rounded-[1.5rem] border border-line bg-paper">
+                    {faqItems.map((item, i) => {
+                        const isOpen = open === i
+                        return (
+                            <div key={item.question}>
+                                <button
+                                    onClick={() => setOpen(isOpen ? null : i)}
+                                    aria-expanded={isOpen}
+                                    className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
+                                >
+                                    <span className="font-display text-base font-bold md:text-lg">{item.question}</span>
+                                    <span
+                                        className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-all duration-300 ${
+                                            isOpen ? "rotate-45 bg-ember text-white" : "bg-sand"
+                                        }`}
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </div>
-                            </button>
-
-                            {openId === item.id && (
-                                <div className="px-6 pb-5 bg-accent/5 border-t border-gray-100 animate-slide-down">
-                                    <div className="pt-4">
-                                        <p className="text-muted leading-relaxed text-base">{item.answer}</p>
+                                        <Plus size={16} />
+                                    </span>
+                                </button>
+                                <div className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                                    <div className="overflow-hidden">
+                                        <p className="px-5 pb-5 leading-relaxed text-ink-soft md:px-6">{item.answer}</p>
                                     </div>
                                 </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-
-                {/* Still have questions CTA */}
-                <div className="mt-12 text-center bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 text-white">
-                    <h3 className="text-2xl font-bold mb-3">Still Have Questions?</h3>
-                    <p className="text-gray-200 mb-6">We're here to help 24/7! Contact us via WhatsApp for instant support</p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://wa.me/971561928359?text=Hello!%20I%20have%20a%20question%20about%20IQOS%20products"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                            <span className="text-xl">💬</span>
-                            WhatsApp Us
-                        </a>
-                        <a
-                            href="mailto:iqosstoredubai@gmail.com"
-                            className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-all border-2 border-white/20 hover:border-white/40"
-                        >
-                            <span className="text-xl">📧</span>
-                            Email Us
-                        </a>
-                    </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </section>

@@ -2,18 +2,15 @@
 
 import type React from "react"
 import { useState } from "react"
+import { CheckCircle2, Loader2, Mail, MapPin, Phone } from "lucide-react"
+import { WhatsAppIcon } from "@/app/components/WhatsAppButton"
+import { STORE, whatsappLink } from "@/app/data/store"
+
+const EMPTY_FORM = { name: "", email: "", phone: "", subject: "", message: "", website: "" }
 
 export default function ContactPage() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-    })
-
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+    const [formData, setFormData] = useState(EMPTY_FORM)
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
@@ -22,367 +19,129 @@ export default function ContactPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        setIsSubmitting(true)
+        setSubmitStatus("sending")
         try {
-            const payload = {
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                message: `${formData.subject ? `Subject: ${formData.subject}\n\n` : ""}${formData.message}`,
-                selectedProducts: [],
-            }
             const res = await fetch("/api/send-inquiry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: `${formData.subject ? `Subject: ${formData.subject}\n\n` : ""}${formData.message}`,
+                    website: formData.website,
+                }),
             })
             if (!res.ok) throw new Error("Failed to send")
             setSubmitStatus("success")
-            setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
-            setTimeout(() => setSubmitStatus("idle"), 5000)
-        } catch (error) {
+            setFormData(EMPTY_FORM)
+        } catch {
             setSubmitStatus("error")
-            setTimeout(() => setSubmitStatus("idle"), 5000)
-        } finally {
-            setIsSubmitting(false)
         }
     }
 
-    const contactInfo = [
-        {
-            icon: "📧",
-            title: "Email Us",
-            value: "iqosstoredubai@gmail.com",
-            description: "Send us an email anytime",
-            link: "mailto:iqosstoredubai@gmail.com",
-            color: "from-blue-400 to-cyan-500",
-        },
-        {
-            icon: "📱",
-            title: "Call Us",
-            value: "+971 56 192 8359",
-            description: "Mon-Sat 9am to 8pm",
-            link: "tel:+971561928359",
-            color: "from-green-400 to-emerald-500",
-        },
-        {
-            icon: "💬",
-            title: "WhatsApp",
-            value: "Chat with us 24/7",
-            description: "Instant support available",
-            link: "https://wa.me/971561928359?text=Hello!%20I%20have%20a%20question",
-            color: "from-green-500 to-teal-500",
-        },
-        {
-            icon: "📍",
-            title: "Location",
-            value: "Dubai, UAE",
-            description: "We deliver across UAE",
-            link: "#",
-            color: "from-purple-400 to-pink-500",
-        },
+    const channels = [
+        { icon: WhatsAppIcon, title: "WhatsApp · 24/7", value: STORE.whatsappDisplay, href: whatsappLink("Hello! I have a question."), accent: "#25D366" },
+        { icon: Phone, title: "Call us", value: STORE.phone, href: STORE.phoneHref, accent: "var(--color-ember)" },
+        { icon: Mail, title: "Email", value: STORE.email, href: `mailto:${STORE.email}`, accent: "var(--color-iluma)" },
+        { icon: MapPin, title: "Location", value: "Dubai — delivering UAE-wide", href: undefined, accent: "var(--color-gold)" },
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-24 pb-20 relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="container mx-auto px-4 relative z-10">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-3 mb-4">
-                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-transparent via-accent to-accent rounded-full"></div>
-                        <div className="relative group">
-                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                            <span className="relative text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary px-4 py-1.5 border-2 border-accent/30 rounded-full backdrop-blur-sm">
-                                💬 CONTACT US
-                            </span>
-                        </div>
-                        <div className="h-[2px] w-8 md:w-12 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4 text-balance">
-                        <span className="relative inline-block">
-                            <span className="relative">
-                                Get in{" "}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-accent animate-pulse-scale">
-                                    Touch
-                                </span>
-                                <div className="absolute -bottom-2 md:-bottom-3 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"></div>
-                            </span>
-                        </span>
-                    </h1>
-                    <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
-                        Have questions about our products? Need help with your order? We're here to help 24/7!
+        <div className="pb-16">
+            <section className="grain relative overflow-hidden bg-night text-white">
+                <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-ember/40 blur-[100px]" />
+                <div className="container-x relative py-12 md:py-16">
+                    <span className="eyebrow">Contact</span>
+                    <h1 className="mt-3 text-4xl font-extrabold md:text-6xl">We&apos;re here to help</h1>
+                    <p className="mt-3 max-w-xl text-white/65">
+                        Questions about a flavour, an order or bulk pricing? WhatsApp is the fastest way to reach us.
                     </p>
                 </div>
+            </section>
 
-                {/* Contact Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    {contactInfo.map((item, index) => (
-                        <a
-                            key={index}
-                            href={item.link}
-                            target={item.link.startsWith("http") ? "_blank" : undefined}
-                            rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent/30 transform hover:-translate-y-1"
-                        >
-                            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                                <span className="text-3xl">{item.icon}</span>
+            <div className="container-x -mt-6 grid gap-6 md:-mt-8 lg:grid-cols-[1fr_1.3fr] lg:gap-10">
+                <div className="grid content-start gap-3">
+                    {channels.map(({ icon: Icon, title, value, href, accent }) => {
+                        const body = (
+                            <>
+                                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white" style={{ background: accent }}>
+                                    <Icon size={22} />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="block text-xs font-extrabold uppercase tracking-wider text-ink-faint">{title}</span>
+                                    <span className="block truncate font-display text-lg font-bold">{value}</span>
+                                </span>
+                            </>
+                        )
+                        const className = "relative flex items-center gap-4 rounded-[1.5rem] border border-line bg-paper p-4 transition"
+                        return href ? (
+                            <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className={`${className} hover:-translate-y-0.5 hover:shadow-lg`}>
+                                {body}
+                            </a>
+                        ) : (
+                            <div key={title} className={className}>
+                                {body}
                             </div>
-                            <h3 className="text-lg font-bold mb-1 group-hover:text-accent transition-colors">
-                                {item.title}
-                            </h3>
-                            <p className="text-sm font-semibold text-foreground mb-1">{item.value}</p>
-                            <p className="text-xs text-muted">{item.description}</p>
-                        </a>
-                    ))}
+                        )
+                    })}
                 </div>
 
-                {/* Contact Form & Info Section */}
-                <div className="grid lg:grid-cols-5 gap-8">
-                    {/* Contact Form */}
-                    <div className="lg:col-span-3">
-                        <div className="bg-white rounded-2xl p-8 md:p-10 shadow-xl border-2 border-gray-100">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg">
-                                    <span className="text-2xl">✉️</span>
-                                </div>
-                                <div>
-                                    <h2 className="text-2xl font-bold">
-                                        <span className="relative inline-block">
-                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
-                                                Send us a Message
-                                            </span>
-                                            <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
-                                        </span>
-                                    </h2>
-                                    <p className="text-sm text-muted">We'll respond within 24 hours</p>
-                                </div>
-                            </div>
-
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-5">
-                                    <div>
-                                        <label className="block text-sm font-semibold mb-2 text-foreground">
-                                            Full Name <span className="text-accent">*</span>
-                                        </label>
-                                        <div className="relative">
-                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">👤</span>
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                value={formData.name}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                                                placeholder="Your name"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-semibold mb-2 text-foreground">
-                                            Email Address <span className="text-accent">*</span>
-                                        </label>
-                                        <div className="relative">
-                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">📧</span>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                                                placeholder="your@email.com"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-5">
-                                    <div>
-                                        <label className="block text-sm font-semibold mb-2 text-foreground">
-                                            Phone Number <span className="text-accent">*</span>
-                                        </label>
-                                        <div className="relative">
-                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">📱</span>
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                                                placeholder="+971 50 XXX XXXX"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-semibold mb-2 text-foreground">
-                                            Subject <span className="text-accent">*</span>
-                                        </label>
-                                        <div className="relative">
-                                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">📝</span>
-                                            <input
-                                                type="text"
-                                                name="subject"
-                                                value={formData.subject}
-                                                onChange={handleChange}
-                                                required
-                                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                                                placeholder="What is this about?"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-semibold mb-2 text-foreground">
-                                        Your Message <span className="text-accent">*</span>
-                                    </label>
-                                    <textarea
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        rows={5}
-                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none"
-                                        placeholder="Tell us how we can help you..."
-                                    />
-                                </div>
-
-                                {submitStatus === "success" && (
-                                    <div className="flex items-center gap-3 p-4 bg-green-50 border-2 border-green-200 rounded-xl animate-fade-in">
-                                        <span className="text-2xl">✅</span>
-                                        <div>
-                                            <p className="font-semibold text-green-700">Message sent successfully!</p>
-                                            <p className="text-sm text-green-600">We'll get back to you within 24 hours.</p>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {submitStatus === "error" && (
-                                    <div className="flex items-center gap-3 p-4 bg-red-50 border-2 border-red-200 rounded-xl animate-fade-in">
-                                        <span className="text-2xl">❌</span>
-                                        <div>
-                                            <p className="font-semibold text-red-700">Failed to send message</p>
-                                            <p className="text-sm text-red-600">Please try again or contact us via WhatsApp.</p>
-                                        </div>
-                                    </div>
-                                )}
-
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="w-full px-8 py-4 bg-gradient-to-r from-primary to-primary/90 text-background rounded-xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-3 group"
-                                >
-                                    {isSubmitting ? (
-                                        <>
-                                            <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
-                                            Sending Message...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span>Send Message</span>
-                                            <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
-                                        </>
-                                    )}
-                                </button>
-                            </form>
+                <div className="relative rounded-[1.75rem] border border-line bg-paper p-5 md:p-8">
+                    {submitStatus === "success" ? (
+                        <div className="py-12 text-center">
+                            <CheckCircle2 size={56} className="mx-auto text-success" />
+                            <h2 className="mt-4 text-2xl font-extrabold">Message sent</h2>
+                            <p className="mt-2 text-ink-soft">Thanks! We&apos;ll get back to you shortly.</p>
+                            <button onClick={() => setSubmitStatus("idle")} className="btn btn-ink mt-6">
+                                Send another message
+                            </button>
                         </div>
-                    </div>
-
-                    {/* Info Sidebar */}
-                    <div className="lg:col-span-2 space-y-6">
-                        {/* Quick Contact */}
-                        <div className="bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-8 text-white shadow-xl">
-                            <h3 className="text-2xl font-bold mb-4">
-                                <span className="relative inline-block">
-                                    <span className="relative flex items-center gap-2">
-                                        <span className="text-accent text-xl">⚡</span>
-                                        Need Quick Help?
-                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
-                                    </span>
-                                </span>
-                            </h3>
-                            <p className="text-gray-200 mb-6">
-                                For instant support, reach us on WhatsApp! We're available 24/7 to answer your questions.
-                            </p>
-                            <a
-                                href="https://wa.me/971561928359?text=Hello!%20I%20need%20help%20with%20IQOS%20products"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-                            >
-                                <span className="text-2xl">💬</span>
-                                Chat on WhatsApp
-                            </a>
-                        </div>
-
-                        {/* Business Hours */}
-                        <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-md">
-                                    <span className="text-xl">🕒</span>
-                                </div>
-                                <h3 className="text-xl font-bold">
-                                    <span className="relative inline-block">
-                                        Business Hours
-                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent/50 via-primary to-transparent rounded-full"></div>
-                                    </span>
-                                </h3>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="relative space-y-4">
+                        <input
+                            name="website"
+                            value={formData.website}
+                            onChange={handleChange}
+                            tabIndex={-1}
+                            autoComplete="off"
+                            aria-hidden="true"
+                            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                        />
+                            <h2 className="text-2xl font-extrabold">Send us a message</h2>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <label className="block">
+                                    <span className="mb-1.5 block text-sm font-bold">Name *</span>
+                                    <input name="name" required value={formData.name} onChange={handleChange} className="field" autoComplete="name" />
+                                </label>
+                                <label className="block">
+                                    <span className="mb-1.5 block text-sm font-bold">Phone *</span>
+                                    <input name="phone" type="tel" required value={formData.phone} onChange={handleChange} className="field" autoComplete="tel" placeholder="+971 5X XXX XXXX" />
+                                </label>
                             </div>
-                            <div className="space-y-3 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-muted">Monday - Saturday</span>
-                                    <span className="font-semibold">9:00 AM - 8:00 PM</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-muted">Sunday</span>
-                                    <span className="font-semibold">10:00 AM - 6:00 PM</span>
-                                </div>
-                                <div className="pt-3 border-t border-gray-200">
-                                    <div className="flex items-center gap-2 text-green-600">
-                                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                                        <span className="font-semibold">WhatsApp: 24/7 Available</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Why Contact Us */}
-                        <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-md">
-                                    <span className="text-xl">💡</span>
-                                </div>
-                                <h3 className="text-xl font-bold">
-                                    <span className="relative inline-block">
-                                        We Can Help With
-                                        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-primary/50 via-accent to-transparent rounded-full"></div>
-                                    </span>
-                                </h3>
-                            </div>
-                            <ul className="space-y-3">
-                                {[
-                                    "Product recommendations",
-                                    "Order tracking & support",
-                                    "Delivery inquiries",
-                                    "Bulk order pricing",
-                                    "Product authenticity",
-                                    "Payment assistance",
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-center gap-3">
-                                        <span className="text-accent text-lg">✓</span>
-                                        <span className="text-sm text-muted">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                            <label className="block">
+                                <span className="mb-1.5 block text-sm font-bold">Email</span>
+                                <input name="email" type="email" value={formData.email} onChange={handleChange} className="field" autoComplete="email" />
+                            </label>
+                            <label className="block">
+                                <span className="mb-1.5 block text-sm font-bold">Subject</span>
+                                <input name="subject" value={formData.subject} onChange={handleChange} className="field" />
+                            </label>
+                            <label className="block">
+                                <span className="mb-1.5 block text-sm font-bold">Message *</span>
+                                <textarea name="message" required rows={5} value={formData.message} onChange={handleChange} className="field resize-none" />
+                            </label>
+                            {submitStatus === "error" && (
+                                <p className="rounded-2xl bg-danger/10 p-4 text-sm font-semibold text-danger">
+                                    Something went wrong. Please try again or message us on WhatsApp.
+                                </p>
+                            )}
+                            <button type="submit" disabled={submitStatus === "sending"} className="btn btn-ember w-full py-4 text-base disabled:opacity-70">
+                                {submitStatus === "sending" && <Loader2 size={18} className="animate-spin" />}
+                                {submitStatus === "sending" ? "Sending…" : "Send message"}
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>

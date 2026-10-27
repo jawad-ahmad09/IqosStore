@@ -1,224 +1,103 @@
-"use client"
-
-import { useState } from "react"
-import Hero from "./components/Hero"
-import Products from "./components/Products"
-import IqosDevices from "./components/IqosDevices"
-import Cart from "./components/Cart"
-import TereaCategories from "./components/TereaCategories"
-import { products } from "./data/products"
-
-import type { CartItem, ContactFormData } from "./types"
-import { useCart } from "./context/CartContext"
-import InquiryForm from "./components/Inquiryform"
-import About from "./components/AboutUs"
+import Hero from "./components/home/Hero"
+import Collections from "./components/home/Collections"
+import TereaShowcase from "./components/home/TereaShowcase"
+import CategoryBand from "./components/home/CategoryBand"
+import Delivery from "./components/home/Delivery"
+import FlavourFinder from "./components/home/FlavourFinder"
+import OriginCompare from "./components/home/OriginCompare"
 import FAQ from "./components/FAQ"
+import Reveal from "./components/Reveal"
+import { faqItems } from "./data/faq"
+import { priceRange, products } from "./data/products"
+import { STORE } from "./data/store"
 
 export default function Home() {
-  const { items: cartItems, addItem, updateQuantity, removeItem, clear } = useCart()
+    const { min, max } = priceRange(products)
 
-  const handleFormSubmit = (data: ContactFormData) => {
-    console.log("Form submitted:", data)
-    // Cart will be cleared after successful submission
-    clear()
-  }
-
-  // JSON-LD structured data for SEO - Enhanced for UAE Local Search
-  const totalProducts = products.length
-
-  // Local Business Schema for UAE/Dubai Local SEO
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "@id": "https://www.iqosstoredubai.com/#store",
-    name: "IQOS Store UAE - Dubai's #1 IQOS Retailer",
-    alternateName: ["IQOS Dubai", "Terea Store Dubai", "IQOS UAE Store"],
-    description: "Best IQOS Store in Dubai, UAE. Buy authentic Terea Heats sticks (Kazakhstan & Indonesia) and IQOS Iluma devices. Same-day delivery across Dubai, Abu Dhabi & UAE. 100% authentic products, best prices guaranteed.",
-    url: "https://www.iqosstoredubai.com",
-    telephone: "+971561928359",
-    email: "iqosstoredubai@gmail.com",
-    logo: "https://www.iqosstoredubai.com/HeroSection-Image.png",
-    image: ["https://www.iqosstoredubai.com/HeroSection-Image.png", "https://www.iqosstoredubai.com/TereaGoldEdition.png"],
-    priceRange: "AED 130 - AED 750",
-    currenciesAccepted: "AED",
-    paymentAccepted: ["Cash", "Credit Card", "Cash on Delivery"],
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "AE",
-      addressRegion: "Dubai",
-      addressLocality: "Dubai",
-      postalCode: "00000"
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "25.2048",
-      longitude: "55.2708"
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Dubai",
-        "@id": "https://en.wikipedia.org/wiki/Dubai"
-      },
-      {
-        "@type": "City",
-        name: "Abu Dhabi",
-        "@id": "https://en.wikipedia.org/wiki/Abu_Dhabi"
-      },
-      {
-        "@type": "City",
-        name: "Sharjah"
-      },
-      {
-        "@type": "Country",
-        name: "United Arab Emirates",
-        "@id": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
-      }
-    ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "350",
-      reviewCount: "280"
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "00:00",
-        closes: "23:59"
-      }
-    ],
-    potentialAction: {
-      "@type": "OrderAction",
-      target: "https://www.iqosstoredubai.com/#contact"
-    },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "AED",
-      lowPrice: "130",
-      highPrice: "750",
-      offerCount: totalProducts.toString(),
-      availability: "https://schema.org/InStock"
-    },
-    sameAs: [
-      "https://wa.me/971561928359"
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "IQOS Products",
-      itemListElement: [
+    // Structured data for local SEO. Only facts shown on the site — no ratings, since we don't collect reviews yet.
+    const schemas = [
         {
-          "@type": "OfferCatalog",
-          name: "Terea Heats Sticks",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "Terea Heats Sticks Dubai",
-                description: "Authentic Terea Heats sticks for IQOS devices"
-              }
-            }
-          ]
+            "@context": "https://schema.org",
+            "@type": "Store",
+            "@id": `${STORE.url}/#store`,
+            name: STORE.name,
+            alternateName: ["IQOS Dubai", "Terea Store Dubai", "IQOS UAE Store"],
+            description:
+                "IQOS store in Dubai, UAE. Authentic TEREA sticks from Indonesia, Kazakhstan, Uzbekistan and Japan, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai.",
+            url: STORE.url,
+            telephone: "+971561928359",
+            email: STORE.email,
+            image: `${STORE.url}/HeroSection-Image.png`,
+            priceRange: `AED ${min} - AED ${max}`,
+            currenciesAccepted: "AED",
+            paymentAccepted: ["Cash", "Bank Transfer", "Cash on Delivery"],
+            address: {
+                "@type": "PostalAddress",
+                addressCountry: "AE",
+                addressRegion: "Dubai",
+                addressLocality: "Dubai",
+            },
+            geo: { "@type": "GeoCoordinates", latitude: "25.2048", longitude: "55.2708" },
+            areaServed: { "@type": "Country", name: "United Arab Emirates" },
+            openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                opens: "00:00",
+                closes: "23:59",
+            },
+            sameAs: [`https://wa.me/${STORE.whatsapp}`],
         },
         {
-          "@type": "OfferCatalog",
-          name: "IQOS Devices",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Product",
-                name: "IQOS Iluma Prime Dubai",
-                description: "Premium IQOS Iluma Prime device"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  }
-
-  // Organization Schema for Brand Recognition
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://www.iqosstoredubai.com/#organization",
-    name: "IQOS Store UAE",
-    url: "https://www.iqosstoredubai.com",
-    logo: "https://www.iqosstoredubai.com/HeroSection-Image.png",
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+971561928359",
-      contactType: "Customer Service",
-      areaServed: "AE",
-      availableLanguage: ["English", "Arabic"]
-    },
-    sameAs: [
-      "https://wa.me/971561928359"
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": `${STORE.url}/#website`,
+            url: STORE.url,
+            name: STORE.name,
+            potentialAction: {
+                "@type": "SearchAction",
+                target: `${STORE.url}/listings?q={search_term_string}`,
+                "query-input": "required name=search_term_string",
+            },
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+        },
     ]
-  }
 
-  // Website Schema
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://www.iqosstoredubai.com/#website",
-    url: "https://www.iqosstoredubai.com",
-    name: "IQOS Store UAE",
-    description: "Best IQOS Store in Dubai, UAE - Buy Terea Heats and IQOS Devices",
-    publisher: {
-      "@id": "https://www.iqosstoredubai.com/#organization"
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://www.iqosstoredubai.com/listings?search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-
-  return (
-    <>
-      {/* Local Business Schema for UAE Local SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      {/* Organization Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      {/* Website Schema with Search Action */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <Hero />
-      <TereaCategories />
-      <Products limit={6} showViewAll={true} />
-      <IqosDevices />
-      <About />
-
-      <FAQ />
-
-      <section id="cart" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-balance">
-            Your <span className="text-accent">Cart</span>
-          </h2>
-          <Cart items={cartItems} onUpdateQuantity={updateQuantity} onRemoveItem={removeItem} />
-        </div>
-      </section>
-
-      <section id="contact" className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <InquiryForm cartItems={cartItems} onSubmit={handleFormSubmit} />
-        </div>
-      </section>
-    </>
-  )
+    return (
+        <>
+            {schemas.map((schema, i) => (
+                <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            ))}
+            <Hero />
+            <Reveal>
+                <Collections />
+            </Reveal>
+            <Reveal>
+                <TereaShowcase />
+            </Reveal>
+            <Reveal>
+                <FlavourFinder />
+            </Reveal>
+            <OriginCompare />
+            <Reveal>
+                <CategoryBand category="iluma" dark />
+            </Reveal>
+            <Reveal>
+                <CategoryBand category="stig" />
+            </Reveal>
+            <Reveal>
+                <Delivery />
+            </Reveal>
+            <Reveal>
+                <FAQ />
+            </Reveal>
+        </>
+    )
 }

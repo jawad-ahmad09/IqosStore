@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from "react"
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react"
 
 interface UIContextValue {
     isCartOpen: boolean
@@ -13,12 +13,11 @@ const UIContext = createContext<UIContextValue | undefined>(undefined)
 export function UIProvider({ children }: { children: ReactNode }) {
     const [isCartOpen, setIsCartOpen] = useState(false)
 
-    const openCart = () => setIsCartOpen(true)
-    const closeCart = () => setIsCartOpen(false)
+    const openCart = useCallback(() => setIsCartOpen(true), [])
+    const closeCart = useCallback(() => setIsCartOpen(false), [])
+    const value = useMemo(() => ({ isCartOpen, openCart, closeCart }), [isCartOpen, openCart, closeCart])
 
-    return (
-        <UIContext.Provider value={{ isCartOpen, openCart, closeCart }}>{children}</UIContext.Provider>
-    )
+    return <UIContext.Provider value={value}>{children}</UIContext.Provider>
 }
 
 export function useUI() {
@@ -26,5 +25,3 @@ export function useUI() {
     if (!ctx) throw new Error("useUI must be used within UIProvider")
     return ctx
 }
-
-

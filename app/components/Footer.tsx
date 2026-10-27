@@ -1,184 +1,92 @@
 import Link from "next/link"
+import { Mail, MapPin, Phone } from "lucide-react"
+import { CATEGORIES, REGIONS, STORE, listingHref, whatsappLink } from "@/app/data/store"
+import type { Region } from "@/app/types"
+import { Logo } from "./Header"
+import { WhatsAppIcon } from "./WhatsAppButton"
 
-const Footer = () => {
+export default function Footer() {
+    const linkClass = "text-sm text-white/60 transition hover:text-white"
+
     return (
-        <footer className="bg-gradient-to-b from-primary to-primary/90 text-background py-16 relative overflow-hidden">
-            {/* Animated background shapes */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
-                <div className="absolute top-10 right-20 w-64 h-64 bg-accent rounded-full blur-3xl animate-float"></div>
-                <div className="absolute bottom-20 left-20 w-48 h-48 bg-accent rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-            </div>
+        <footer className="grain relative overflow-hidden bg-night pb-24 text-white md:pb-0">
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-ember/20 blur-3xl" />
 
-            <div className="container mx-auto px-4 relative z-10">
-                {/* Trust Section */}
-                <div className="mb-12 pb-8 border-b border-white/10">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                        <div className="flex flex-col items-center group hover-lift animate-fade-in-up">
-                            <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-accent/30 transition-all group-hover:scale-110">
-                                <span className="text-accent text-2xl group-hover:animate-bounce-in">✓</span>
-                            </div>
-                            <p className="font-semibold text-sm">100% Authentic</p>
-                            <p className="text-xs text-gray-400 mt-1">Verified Products</p>
-                        </div>
-                        <div className="flex flex-col items-center group hover-lift animate-fade-in-up stagger-1">
-                            <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-accent/30 transition-all group-hover:scale-110">
-                                <span className="text-accent text-2xl group-hover:animate-wiggle">🚚</span>
-                            </div>
-                            <p className="font-semibold text-sm">Fast Delivery</p>
-                            <p className="text-xs text-gray-400 mt-1">Before 12PM: Same Day</p>
-                        </div>
-                        <div className="flex flex-col items-center group hover-lift animate-fade-in-up stagger-2">
-                            <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-accent/30 transition-all group-hover:scale-110">
-                                <span className="text-accent text-2xl group-hover:animate-pulse">🔒</span>
-                            </div>
-                            <p className="font-semibold text-sm">Secure Payment</p>
-                            <p className="text-xs text-gray-400 mt-1">Safe & Easy</p>
-                        </div>
-                        <div className="flex flex-col items-center group hover-lift animate-fade-in-up stagger-3">
-                            <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-3 group-hover:bg-accent/30 transition-all group-hover:scale-110">
-                                <span className="text-accent text-2xl group-hover:animate-wiggle">💬</span>
-                            </div>
-                            <p className="font-semibold text-sm">24/7 Support</p>
-                            <p className="text-xs text-gray-400 mt-1">Always Available</p>
-                        </div>
+            <div className="container-x relative">
+                <div className="flex flex-col items-start justify-between gap-6 border-b border-line-dark py-12 md:flex-row md:items-center">
+                    <div>
+                        <h2 className="text-3xl font-extrabold md:text-4xl">
+                            Need help choosing a flavour?
+                        </h2>
+                        <p className="mt-2 text-white/60">Message us — we reply in minutes, day or night.</p>
                     </div>
+                    <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp shrink-0 text-base">
+                        <WhatsAppIcon size={20} /> Chat on WhatsApp
+                    </a>
                 </div>
 
-                {/* Main Footer Content */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                    <div>
-                        <div className="relative inline-block mb-4 group">
-                            <div className="absolute inset-0 bg-gradient-to-r from-accent to-white rounded-lg blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                            <h3 className="relative text-2xl font-bold flex items-baseline gap-2">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white">IQOS</span>
-                                <span className="text-accent">Store</span>
-                                <span className="text-accent text-sm animate-pulse">✨</span>
-                            </h3>
-                        </div>
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                            Your trusted source for authentic Terea Heats and IQOS devices in UAE. Premium quality, fast delivery, best prices.
+                <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
+                    <div className="col-span-2 md:col-span-1">
+                        <Logo light />
+                        <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+                            Authentic TEREA, IQOS ILUMA and VGOD STIG with same-day delivery across Dubai and fast delivery to every emirate.
                         </p>
-                        <div className="flex gap-3">
-                            <a href="tel:+971561928359" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group" title="Call Us">
-                                <span className="text-base group-hover:animate-wiggle">📱</span>
-                            </a>
-                            <a href="mailto:iqosstoredubai@gmail.com" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group" title="Email Us">
-                                <span className="text-base group-hover:animate-bounce">📧</span>
-                            </a>
-                            <a href="https://wa.me/971561928359?text=Hello!%20I'm%20interested%20in%20IQOS%20products" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12 group animate-heartbeat" title="WhatsApp">
-                                <span className="text-base">💬</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="relative inline-block mb-4 group">
-                            <h4 className="relative font-bold text-white flex items-center gap-2">
-                                <span className="text-accent">🛍️</span>
-                                Shop
-                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
-                            </h4>
-                        </div>
-                        <ul className="space-y-3 text-sm">
+                        <ul className="mt-5 space-y-2.5">
                             <li>
-                                <Link href="/listings" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> All Products
-                                </Link>
+                                <a href={STORE.phoneHref} className={`${linkClass} flex items-center gap-2`}>
+                                    <Phone size={15} /> {STORE.phone}
+                                </a>
                             </li>
                             <li>
-                                <Link href="/#products" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> Terea Heats
-                                </Link>
+                                <a href={`mailto:${STORE.email}`} className={`${linkClass} flex items-center gap-2`}>
+                                    <Mail size={15} /> {STORE.email}
+                                </a>
                             </li>
-                            <li>
-                                <Link href="/#iqos-devices" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> IQOS Devices
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> Order Now
-                                </Link>
+                            <li className="flex items-center gap-2 text-sm text-white/60">
+                                <MapPin size={15} /> Dubai, United Arab Emirates
                             </li>
                         </ul>
                     </div>
+
                     <div>
-                        <div className="relative inline-block mb-4 group">
-                            <h4 className="relative font-bold text-white flex items-center gap-2">
-                                <span className="text-accent">ℹ️</span>
-                                Information
-                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
-                            </h4>
-                        </div>
-                        <ul className="space-y-3 text-sm">
-                            <li>
-                                <Link href="/#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> About Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/#faq" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> Delivery Info
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/#about" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> Authenticity Guarantee
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/#faq" className="text-gray-300 hover:text-accent transition-smooth flex items-center gap-2">
-                                    <span className="text-accent">→</span> FAQ
-                                </Link>
-                            </li>
+                        <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">TEREA</h3>
+                        <ul className="space-y-2.5">
+                            {(Object.keys(REGIONS) as Region[]).map((region) => (
+                                <li key={region}>
+                                    <Link href={listingHref({ category: "terea", region })} className={`${linkClass} flex items-center gap-2`}>
+                                        <span className="h-1.5 w-1.5 rounded-full" style={{ background: REGIONS[region].color }} />
+                                        TEREA {region}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
+
                     <div>
-                        <div className="relative inline-block mb-4 group">
-                            <h4 className="relative font-bold text-white flex items-center gap-2">
-                                <span className="text-accent">📞</span>
-                                Contact Us
-                                <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-accent to-transparent rounded-full"></div>
-                            </h4>
-                        </div>
-                        <div className="space-y-3 text-sm text-gray-300">
-                            <div className="flex items-start gap-2">
-                                <span className="text-accent mt-1">📍</span>
-                                <p>Dubai, United Arab Emirates</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                                <span className="text-accent mt-1">📧</span>
-                                <a href="mailto:iqosstoredubai@gmail.com" className="hover:text-accent transition-smooth">
-                                    iqosstoredubai@gmail.com
-                                </a>
-                            </div>
-                            <div className="flex items-start gap-2">
-                                <span className="text-accent mt-1">📱</span>
-                                <a href="tel:+971561928359" className="hover:text-accent transition-smooth">
-                                    +971 56 192 8359
-                                </a>
-                            </div>
-                            <div className="flex items-start gap-2">
-                                <span className="text-accent mt-1">💬</span>
-                                <p>WhatsApp: Available 24/7</p>
-                            </div>
-                        </div>
+                        <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">Shop</h3>
+                        <ul className="space-y-2.5">
+                            <li><Link href={listingHref()} className={linkClass}>All products</Link></li>
+                            <li><Link href={listingHref({ category: "iluma" })} className={linkClass}>{CATEGORIES.iluma.label}</Link></li>
+                            <li><Link href={listingHref({ category: "stig" })} className={linkClass}>{CATEGORIES.stig.label}</Link></li>
+                            <li><Link href="/checkout" className={linkClass}>Checkout</Link></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">Help</h3>
+                        <ul className="space-y-2.5">
+                            <li><Link href="/#delivery" className={linkClass}>Delivery & charges</Link></li>
+                            <li><Link href="/#faq" className={linkClass}>FAQ</Link></li>
+                            <li><Link href="/contact" className={linkClass}>Contact us</Link></li>
+                        </ul>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-t border-white/10 pt-8">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-                        <p>© {new Date().getFullYear()} IQOS Store UAE. All rights reserved.</p>
-                        <div className="flex gap-6">
-                            <a href="#privacy" className="hover:text-accent transition-smooth">Privacy Policy</a>
-                            <a href="#terms" className="hover:text-accent transition-smooth">Terms & Conditions</a>
-                            <a href="#returns" className="hover:text-accent transition-smooth">Return Policy</a>
-                        </div>
-                    </div>
+                <div className="flex flex-col gap-2 border-t border-line-dark py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+                    <p>© {new Date().getFullYear()} {STORE.name}. All rights reserved.</p>
+                    <p>For adults 18+ only. Tobacco and nicotine products are addictive and harmful to health.</p>
                 </div>
             </div>
         </footer>
     )
 }
-
-export default Footer

@@ -1,25 +1,31 @@
+export type Category = "terea" | "iluma" | "stig"
+
+export type Region = "Indonesia" | "Kazakhstan" | "Uzbekistan" | "Japan"
+
 export interface Product {
-    id: number
+    id: string // URL slug
     name: string
-    description: string
-    TotalPuffs?: string
-    Origin?: string
-    price: number
-    originalPrice?: number // For showing sale/discount
-    image: string
-    images?: string[] // Multiple images support
-    flavor?: string
-    device?: string
-    stickType?: string
+    category: Category
+    region?: Region // TEREA only
+    line?: string // ILUMA / STIG model line, e.g. "ILUMA Prime", "STIG XL"
+    family: string // Tobacco, Menthol, Capsule, Fruit, Device...
+    notes: string
     intensity?: string
-    category?: "Terea Heats" | "IQOS Device"
-    region?: "KAZAKHSTAN" | "Indonesia" | "UAE" | "Japan"
-    deviceType?: "IQOS ILUMA PRIME KIT" | "IQOS ILUMA ONE" | "IQOS ILUMA Standard Kit"
-    specifications?: string[]
+    description: string
+    specs: string[]
+    price: number
+    compareAt?: number
+    inStock: boolean
+    images: string[]
 }
 
-export interface CartItem extends Product {
+export interface CartLine {
+    id: string
     quantity: number
+}
+
+export interface CartItem extends CartLine {
+    product: Product
 }
 
 export interface ContactFormData {
@@ -27,8 +33,7 @@ export interface ContactFormData {
     email: string
     phone: string
     address?: string
-    city?: string
-    country?: string
+    emirate?: string
     message?: string
-    selectedProducts?: CartItem[]
+    items?: CartLine[]
 }

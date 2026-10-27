@@ -1,81 +1,116 @@
 "use client"
 
-import { createContext, useContext, useMemo, useState, useEffect, type ReactNode } from "react"
-import type { CartItem, Product } from "@/app/types"
+import { useMemo, useSyncExternalStore } from "react"
+import { getProductById } from "@/app/data/products"
+import { MAX_QUANTITY } from "@/app/lib/pricing"
+import type { CartItem, CartLine } from "@/app/types"
 
-interface CartContextValue {
-    items: CartItem[]
-    addItem: (product: Product, quantity?: number) => void
-    updateQuantity: (id: number, quantity: number) => void
-    removeItem: (id: number) => void
-    clear: () => void
-    total: number
+// The cart only stores product ids and quantities; names and prices are always
+// read from the catalogue so a stale localStorage cart can never show old prices.
+const CART_STORAGE_KEY = "iqos-cart-v2"
+const EMPTY: CartLine[] = []
+
+let lines: CartLine[] = EMPTY
+let loaded = false
+const listeners = new Set<() => void>()
+
+function readStorage(): CartLine[] {
+    try {
+        const parsed: unknown = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) ?? "[]")
+        if (!Array.isArray(parsed)) return EMPTY
+        return parsed.filter(
+            (l): l is CartLine =>
+                typeof l?.id === "string" &&
+                Number.isInteger(l.quantity) &&
+                l.quantity > 0 &&
+                getProductById(l.id)?.inStock === true,
+        )
+    } catch {
+        return EMPTY
+    }
 }
 
-const CartContext = createContext<CartContextValue | undefined>(undefined)
+function emit() {
+    listeners.forEach((listener) => listener())
+}
 
-const CART_STORAGE_KEY = "iqos-cart-items"
-
-export function CartProvider({ children }: { children: ReactNode }) {
-    const [items, setItems] = useState<CartItem[]>([])
-    const [isHydrated, setIsHydrated] = useState(false)
-
-    // Load cart from localStorage on mount
-    useEffect(() => {
-        try {
-            const saved = localStorage.getItem(CART_STORAGE_KEY)
-            if (saved) {
-                const parsed = JSON.parse(saved) as CartItem[]
-                setItems(parsed)
-            }
-        } catch (error) {
-            console.error("Failed to load cart from localStorage:", error)
-        }
-        setIsHydrated(true)
-    }, [])
-
-    // Save cart to localStorage whenever items change (but only after hydration)
-    useEffect(() => {
-        if (isHydrated) {
-            try {
-                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
-            } catch (error) {
-                console.error("Failed to save cart to localStorage:", error)
-            }
-        }
-    }, [items, isHydrated])
-
-    const addItem = (product: Product, quantity: number = 1) => {
-        setItems((prev) => {
-            const existing = prev.find((i) => i.id === product.id)
-            if (existing) {
-                return prev.map((i) => (i.id === product.id ? { ...i, quantity: i.quantity + quantity } : i))
-            }
-            return [...prev, { ...product, quantity }]
-        })
+function setLines(next: CartLine[]) {
+    lines = next
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(lines))
+    } catch {
+        // Storage can be unavailable (private mode); the cart still works for this visit.
     }
+    emit()
+}
 
-    const updateQuantity = (id: number, quantity: number) => {
-        setItems((prev) => prev.map((i) => (i.id === id ? { ...i, quantity } : i)))
+function onStorage(e: StorageEvent) {
+    if (e.key !== CART_STORAGE_KEY) return
+    lines = readStorage()
+    emit()
+}
+
+function subscribe(listener: () => void) {
+    listeners.add(listener)
+    if (listeners.size === 1) window.addEventListener("storage", onStorage)
+    return () => {
+        listeners.delete(listener)
+        if (listeners.size === 0) window.removeEventListener("storage", onStorage)
     }
+}
 
-    const removeItem = (id: number) => {
-        setItems((prev) => prev.filter((i) => i.id !== id))
+function getSnapshot() {
+    if (!loaded) {
+        loaded = true
+        lines = readStorage()
     }
+    return lines
+}
 
-    const clear = () => setItems([])
+function getServerSnapshot() {
+    return EMPTY
+}
 
-    const total = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items])
+const clamp = (q: number) => Math.max(0, Math.min(MAX_QUANTITY, Math.floor(q)))
 
-    const value: CartContextValue = { items, addItem, updateQuantity, removeItem, clear, total }
-
-    return <CartContext.Provider value={value}>{children}</CartContext.Provider>
+const actions = {
+    addItem(id: string, quantity = 1) {
+        const product = getProductById(id)
+        if (!product?.inStock) return
+        const existing = lines.find((l) => l.id === id)
+        setLines(
+            existing
+                ? lines.map((l) => (l.id === id ? { ...l, quantity: clamp(l.quantity + quantity) } : l))
+                : [...lines, { id, quantity: clamp(quantity) }],
+        )
+    },
+    updateQuantity(id: string, quantity: number) {
+        const q = clamp(quantity)
+        setLines(q === 0 ? lines.filter((l) => l.id !== id) : lines.map((l) => (l.id === id ? { ...l, quantity: q } : l)))
+    },
+    removeItem(id: string) {
+        setLines(lines.filter((l) => l.id !== id))
+    },
+    clear() {
+        setLines([])
+    },
 }
 
 export function useCart() {
-    const ctx = useContext(CartContext)
-    if (!ctx) throw new Error("useCart must be used within CartProvider")
-    return ctx
+    const current = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+
+    return useMemo(() => {
+        const items: CartItem[] = []
+        for (const line of current) {
+            const product = getProductById(line.id)
+            if (product) items.push({ ...line, product })
+        }
+        return {
+            lines: current,
+            items,
+            count: items.reduce((sum, i) => sum + i.quantity, 0),
+            subtotal: items.reduce((sum, i) => sum + i.product.price * i.quantity, 0),
+            ...actions,
+        }
+    }, [current])
 }
-
-
