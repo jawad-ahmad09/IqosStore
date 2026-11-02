@@ -46,7 +46,7 @@ export function productFaqs(product: Product) {
 
     faqs.push({
         question: `How fast can I get ${product.name} delivered?`,
-        answer: `Order before 12PM for same-day delivery in Dubai; other emirates get next-day delivery. Delivery is free on ${FREE_DELIVERY_RULE}; otherwise ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
+        answer: `Order before 12PM for same-day delivery in Dubai; other emirates get next-day delivery. Delivery is free on ${FREE_DELIVERY_RULE}; below that it's ${formatAED(DELIVERY.fee)}.`,
     })
     return faqs
 }

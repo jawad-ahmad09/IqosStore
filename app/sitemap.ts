@@ -63,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
         { url: url("/ar/delivery"), lastModified: now, changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
         { url: url("/terea-price-uae"), lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+        { url: url("/heets-dubai"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
         { url: url("/flavours"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
         ...FLAVOURS.map((f) => ({ url: url(`/flavours/${f.slug}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.75 })),
         ...POLICIES.map((p) => ({ url: url(`/policies/${p.slug}`), lastModified: new Date(p.updated), changeFrequency: "yearly" as const, priority: 0.3 })),

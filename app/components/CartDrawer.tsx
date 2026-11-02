@@ -34,17 +34,17 @@ export function QuantityStepper({
     )
 }
 
-export function FreeDeliveryMeter({ count, subtotal }: { count: number; subtotal: number }) {
-    const free = qualifiesForFreeDelivery(count, subtotal)
-    const remaining = Math.max(0, DELIVERY.freeFromItems - count)
-    const pct = free ? 100 : Math.max((count / DELIVERY.freeFromItems) * 100, (subtotal / DELIVERY.freeFromAmount) * 100)
+export function FreeDeliveryMeter({ subtotal }: { subtotal: number }) {
+    const free = qualifiesForFreeDelivery(subtotal)
+    const remaining = Math.max(0, DELIVERY.freeFromAmount - subtotal)
+    const pct = Math.min(100, (subtotal / DELIVERY.freeFromAmount) * 100)
     return (
         <div className="rounded-2xl bg-ember-soft p-3">
             <p className="flex items-center gap-2 text-sm font-bold text-ember-deep">
                 <Truck size={16} />
                 {free
                     ? "You've unlocked free delivery!"
-                    : `Add ${remaining} more item (or reach ${formatAED(DELIVERY.freeFromAmount)}) for free delivery`}
+                    : `Add ${formatAED(remaining)} more for free delivery`}
             </p>
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white">
                 <div className="h-full rounded-full bg-ember transition-all duration-500" style={{ width: `${pct}%` }} />
@@ -54,15 +54,19 @@ export function FreeDeliveryMeter({ count, subtotal }: { count: number; subtotal
 }
 
 function FreeDeliveryUpsell() {
-    const { items, addItem } = useCart()
-    if (items.length !== 1 || items[0].quantity !== 1 || items[0].product.price >= DELIVERY.freeFromAmount) return null
+    const { items, subtotal, addItem } = useCart()
+    if (items.length === 0 || qualifiesForFreeDelivery(subtotal)) return null
     const inCart = items[0].product
-    const suggestions = getRelatedProducts(inCart, 6).filter((p) => p.id !== inCart.id).slice(0, 4)
+    const suggestions = getRelatedProducts(inCart, 8)
+        .filter((p) => !items.some((i) => i.id === p.id))
+        .slice(0, 4)
     if (suggestions.length === 0) return null
 
     return (
         <div className="mt-3">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-wider text-ink-faint">Add one of these — delivery becomes free</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-wider text-ink-faint">
+                Add more — free delivery over {formatAED(DELIVERY.freeFromAmount)}
+            </p>
             <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5">
                 {suggestions.map((p) => {
                     const tag = productTag(p)
@@ -134,7 +138,7 @@ export default function CartDrawer() {
                 ) : (
                     <>
                         <div className="px-5 pt-4">
-                            <FreeDeliveryMeter count={count} subtotal={subtotal} />
+                            <FreeDeliveryMeter subtotal={subtotal} />
                             <FreeDeliveryUpsell />
                         </div>
                         <ul className="flex-1 space-y-3 overflow-y-auto px-5 py-4">

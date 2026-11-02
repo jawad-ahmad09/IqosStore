@@ -41,7 +41,7 @@ export default function CheckoutClient() {
     const [status, setStatus] = useState<"idle" | "sending" | "error">("idle")
     const [placed, setPlaced] = useState<{ order: Order; name: string } | null>(null)
 
-    const order = priceOrder(lines, form.emirate)
+    const order = priceOrder(lines)
 
     const update = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
         setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -247,7 +247,7 @@ export default function CheckoutClient() {
                                 </li>
                             ))}
                         </ul>
-                        <FreeDeliveryMeter count={order.items} subtotal={order.subtotal} />
+                        <FreeDeliveryMeter subtotal={order.subtotal} />
                         <dl className="space-y-2 border-t border-line pt-4 text-sm">
                             <div className="flex justify-between">
                                 <dt className="text-ink-soft">Subtotal</dt>

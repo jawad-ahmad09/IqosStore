@@ -7,7 +7,7 @@ export const faqItems = [
     },
     {
         question: "How much does delivery cost?",
-        answer: `Delivery is free anywhere in the UAE for ${DELIVERY.freeFromItems} or more items, or for any order over AED ${DELIVERY.freeFromAmount}. Otherwise it's AED ${DELIVERY.dubai} in Dubai and AED ${DELIVERY.otherEmirates} for other emirates.`,
+        answer: `Delivery is free anywhere in the UAE on orders over AED ${DELIVERY.freeFromAmount}. For smaller orders it's a flat AED ${DELIVERY.fee}.`,
     },
     {
         question: "What's the difference between Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan TEREA?",

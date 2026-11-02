@@ -47,7 +47,7 @@ export default function Hero() {
 
                     <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
                         {products.length}+ products — TEREA from {ORIGIN_LIST}, plus IQOS ILUMA devices and VGOD STIG
-                        pods. Same-day delivery in Dubai, free on 2+ items.
+                        pods. Same-day delivery in Dubai, free over AED 400.
                     </p>
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">

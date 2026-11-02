@@ -10,7 +10,7 @@ import { arabicMetadata } from "@/app/lib/seo"
 export const metadata: Metadata = arabicMetadata(
     "/delivery",
     "توصيل ايكوس وتيريا إلى جميع الإمارات | IQOS Store UAE",
-    `نوصل تيريا وأجهزة ايكوس إيلوما وستيج إلى دبي وأبوظبي والشارقة وعجمان ورأس الخيمة والفجيرة وأم القيوين والعين. توصيل مجاني لـ ${DELIVERY.freeFromItems} منتجات أو أكثر والدفع عند الاستلام.`,
+    `نوصل تيريا وايكوس إيلوما وستيج إلى جميع الإمارات: دبي، أبوظبي، الشارقة، عجمان، رأس الخيمة، الفجيرة، أم القيوين والعين. مجاني فوق ${aed(DELIVERY.freeFromAmount)} والدفع عند الاستلام.`,
 )
 
 export default function ArDeliveryPage() {
@@ -25,8 +25,8 @@ export default function ArDeliveryPage() {
                     </div>
                     <h1 className="mt-5 text-4xl font-extrabold leading-[1.25] md:text-6xl">التوصيل إلى جميع الإمارات</h1>
                     <p className="mt-4 max-w-2xl text-white/75 md:text-lg">
-                        متجر إلكتروني يوصل إلى باب منزلك في كل إمارة. توصيل في نفس اليوم داخل دبي للطلبات قبل الساعة 12 ظهراً، وتوصيل مجاني لـ{" "}
-                        {DELIVERY.freeFromItems} منتجات أو أكثر أو للطلبات فوق {aed(DELIVERY.freeFromAmount)}، مع الدفع عند الاستلام.
+                        متجر إلكتروني يوصل إلى باب منزلك في كل إمارة. توصيل في نفس اليوم داخل دبي للطلبات قبل الساعة 12 ظهراً، وتوصيل مجاني للطلبات فوق{" "}
+                        {aed(DELIVERY.freeFromAmount)}، مع الدفع عند الاستلام.
                     </p>
                 </div>
             </section>
@@ -38,7 +38,7 @@ export default function ArDeliveryPage() {
                         </h2>
                         <p className="mt-2 text-sm text-ink-soft">{e.speed}</p>
                         <p className="mt-3 text-xs font-bold">
-                            منتج واحد: {aed(e.fee)} · {DELIVERY.freeFromItems}+ منتجات أو فوق {aed(DELIVERY.freeFromAmount)}: مجاناً
+                            أقل من {aed(DELIVERY.freeFromAmount)}: {aed(DELIVERY.fee)} · فوق {aed(DELIVERY.freeFromAmount)}: مجاناً
                         </p>
                         <Link href={`/delivery/${e.slug}`} lang="en" className="mt-3 inline-block text-xs font-bold text-ember">
                             English →

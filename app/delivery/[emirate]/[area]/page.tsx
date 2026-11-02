@@ -10,6 +10,7 @@ import { DUBAI_AREAS, getDubaiArea, type DubaiArea } from "@/app/data/dubaiAreas
 import { getProductById, getProducts } from "@/app/data/products"
 import { ORIGIN_COUNT, STORE, whatsappLink } from "@/app/data/store"
 import { DELIVERY, FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
+import { OG_IMAGE } from "@/app/lib/seo"
 import type { Product } from "@/app/types"
 
 type Params = { params: Promise<{ emirate: string; area: string }> }
@@ -36,7 +37,7 @@ function faqsFor(a: DubaiArea) {
         },
         {
             question: `How much is delivery to ${name}?`,
-            answer: `Free on ${FREE_DELIVERY_RULE}. Otherwise it's ${formatAED(DELIVERY.dubai)}, the standard Dubai rate.`,
+            answer: `Free on ${FREE_DELIVERY_RULE}. Below that it's a flat ${formatAED(DELIVERY.fee)}.`,
         },
         {
             question: `Can I pay cash on delivery in ${name}?`,
@@ -50,13 +51,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     if (!a) return {}
     const name = short(a)
     const path = `/delivery/dubai/${a.slug}`
-    const title = `IQOS & TEREA Delivery in ${name}, Dubai — Same-Day | ${STORE.name}`
-    const description = `Order TEREA, IQOS ILUMA and VGOD STIG online for delivery in ${a.name}, Dubai. Same-day before 12PM, free on ${FREE_DELIVERY_RULE}, cash on delivery.`
+    const title = `IQOS & TEREA Delivery in ${name} — Same-Day Dubai`
+    const description = `TEREA, IQOS ILUMA & VGOD STIG delivered in ${a.name}, Dubai. Same-day before 12PM, free over AED ${DELIVERY.freeFromAmount}, cash on delivery.`
     return {
         title: { absolute: title },
         description,
         alternates: { canonical: path },
-        openGraph: { title, description, url: path },
+        openGraph: { title, description, url: path, images: OG_IMAGE },
     }
 }
 
@@ -98,7 +99,7 @@ export default async function DubaiAreaPage({ params }: Params) {
                 name: `${a.name}, Dubai`,
                 containedInPlace: { "@type": "City", name: "Dubai", containedInPlace: { "@type": "Country", name: "United Arab Emirates" } },
             },
-            offers: { "@type": "Offer", priceCurrency: "AED", price: DELIVERY.dubai, description: `Delivery fee; free on ${FREE_DELIVERY_RULE}` },
+            offers: { "@type": "Offer", priceCurrency: "AED", price: DELIVERY.fee, description: `Delivery fee; free on ${FREE_DELIVERY_RULE}` },
         },
         {
             "@context": "https://schema.org",
@@ -149,7 +150,7 @@ export default async function DubaiAreaPage({ params }: Params) {
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                     {[
                         { icon: Clock, title: "Same-day", text: "Order before 12PM, delivered today" },
-                        { icon: Truck, title: "Delivery fee", text: `Free on ${FREE_DELIVERY_RULE} · else ${formatAED(DELIVERY.dubai)}` },
+                        { icon: Truck, title: "Delivery fee", text: `Free on ${FREE_DELIVERY_RULE} · else ${formatAED(DELIVERY.fee)}` },
                         { icon: Banknote, title: "Cash on delivery", text: "Or bank transfer / online payment" },
                         { icon: MapPin, title: "Door to door", text: `Anywhere in ${name}` },
                     ].map(({ icon: Icon, title, text }) => (

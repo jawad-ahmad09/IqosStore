@@ -7,12 +7,13 @@ import BrandDisclaimer from "@/app/components/BrandDisclaimer"
 import ProductRail from "@/app/components/home/ProductRail"
 import { getProductById, getRelatedProducts, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref } from "@/app/data/store"
-import { DELIVERY, formatAED } from "@/app/lib/pricing"
+import { DELIVERY, formatAED, qualifiesForFreeDelivery } from "@/app/lib/pricing"
 import { discountPercent, isLimited } from "@/app/lib/product"
 import { productFaqs } from "@/app/lib/productFaqs"
 import { FaqList } from "@/app/components/collection/CollectionView"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { flavourForProduct } from "@/app/data/flavours"
+import { heetsMatchFor } from "@/app/data/heets"
 import ProductGallery from "./ProductGallery"
 import ProductActions from "./ProductActions"
 
@@ -26,11 +27,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const product = getProductById((await params).id)
     if (!product) return {}
     const where = product.region ? ` ${product.region}` : ""
-    const title = `${product.name}${where} Dubai — ${formatAED(product.price)} | ${STORE.name}`
-    const description = `Buy ${product.name}${where} in Dubai & UAE for ${formatAED(product.price)}. ${product.description || product.notes} Same-day delivery in Dubai, free on ${DELIVERY.freeFromItems}+ items.`
+    // Keep titles inside Google's ~60-character limit: the brand suffix only goes on when it fits.
+    const base = `${product.name}${where} Dubai — ${formatAED(product.price)}`
+    const title = base.length + STORE.name.length + 3 <= 62 ? `${base} | ${STORE.name}` : base
+    // Descriptions stay under ~160 characters so Google shows the delivery promise instead of cutting it off.
+    const lead = `Buy ${product.name}${where} in Dubai & UAE for ${formatAED(product.price)}.`
+    const tail = `Same-day delivery in Dubai, free over AED ${DELIVERY.freeFromAmount}, cash on delivery.`
+    const withNotes = `${lead} ${product.notes}. ${tail}`
+    const description = withNotes.length <= 158 ? withNotes : `${lead} ${tail}`
     return {
         title: { absolute: title },
-        description: description.length > 300 ? `${description.slice(0, 297)}…` : description,
+        description,
         alternates: { canonical: `/products/${product.id}` },
         openGraph: { title, description, type: "website", url: `/products/${product.id}` },
         twitter: { card: "summary_large_image", title, description },
@@ -49,6 +56,7 @@ export default async function ProductPage({ params }: Params) {
 
     const faqs = productFaqs(product)
     const flavour = flavourForProduct(product)
+    const heets = heetsMatchFor(product)
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -62,7 +70,8 @@ export default async function ProductPage({ params }: Params) {
         description: product.description || product.notes,
         image: product.images.map((src) => `${STORE.url}${src}`),
         sku: product.id,
-        brand: { "@type": "Brand", name: product.category === "stig" ? "VGOD" : "IQOS" },
+        brand: { "@type": "Brand", name: { terea: "TEREA", iluma: "IQOS", stig: "VGOD" }[product.category] },
+        category: CATEGORIES[product.category].label,
         offers: {
             "@type": "Offer",
             url: `${STORE.url}/products/${product.id}`,
@@ -73,7 +82,7 @@ export default async function ProductPage({ params }: Params) {
             seller: { "@id": `${STORE.url}/#store` },
             shippingDetails: {
                 "@type": "OfferShippingDetails",
-                shippingRate: { "@type": "MonetaryAmount", value: DELIVERY.dubai, currency: "AED" },
+                shippingRate: { "@type": "MonetaryAmount", value: qualifiesForFreeDelivery(product.price) ? 0 : DELIVERY.fee, currency: "AED" },
                 shippingDestination: { "@type": "DefinedRegion", addressCountry: "AE" },
                 deliveryTime: {
                     "@type": "ShippingDeliveryTime",
@@ -152,7 +161,7 @@ export default async function ProductPage({ params }: Params) {
                         <div className="mt-6 grid grid-cols-3 gap-2 text-center">
                             {[
                                 { icon: Clock, title: "Same day", text: "Dubai, before 12PM" },
-                                { icon: Truck, title: `Free ${DELIVERY.freeFromItems}+ items`, text: `or AED ${DELIVERY.freeFromAmount}+ · else from ${formatAED(DELIVERY.dubai)}` },
+                                { icon: Truck, title: `Free over AED ${DELIVERY.freeFromAmount}`, text: `Else ${formatAED(DELIVERY.fee)} delivery` },
                                 { icon: BadgeCheck, title: "Authentic", text: "Sealed stock" },
                             ].map(({ icon: Icon, title, text }) => (
                                 <div key={title} className="rounded-2xl bg-paper p-3">
@@ -174,6 +183,15 @@ export default async function ProductPage({ params }: Params) {
                                 </span>
                                 <span className="text-ember">→</span>
                             </Link>
+                        )}
+
+                        {heets && (
+                            <p className="mt-3 text-sm text-ink-soft">
+                                Switching from <strong className="text-ink">{heets}</strong>? {product.name} is the TEREA version for IQOS ILUMA.{" "}
+                                <Link href="/heets-dubai" className="font-bold text-ember">
+                                    All HEETS → TEREA matches
+                                </Link>
+                            </p>
                         )}
 
                         {product.description && (

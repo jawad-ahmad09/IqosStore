@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { permanentRedirect } from "next/navigation"
 import { Suspense } from "react"
-import { CATEGORIES, ORIGIN_LIST, REGIONS, listingHref } from "@/app/data/store"
+import { CATEGORIES, ORIGIN_COUNT, REGIONS, listingHref } from "@/app/data/store"
 import type { Category, Region } from "@/app/types"
 import ListingsClient from "./ListingsClient"
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     return {
         title: { absolute: "Shop All — TEREA, IQOS ILUMA & STIG in Dubai | IQOS Store UAE" },
         description:
-            `Browse every product: TEREA sticks from ${ORIGIN_LIST}, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai, free delivery on 2+ items.`,
+            `Every product in one place: TEREA from ${ORIGIN_COUNT} origins, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai, free over AED 400.`,
         alternates: { canonical: "/listings" },
         // Search result variations shouldn't compete with the real collection pages.
         robots: q ? { index: false, follow: true } : undefined,

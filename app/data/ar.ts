@@ -49,6 +49,7 @@ export interface ArCollection {
     slug: string // English slug; Arabic URL is /ar/<slug>
     category: Category
     region?: Region
+    line?: string // model line filter, e.g. "ILUMA i"
     h1: string
     metaTitle: string
     metaDescription: string
@@ -66,7 +67,7 @@ const regionCollection = (region: Region, slug: string, intro: string, extra: st
         region,
         h1: `تيريا ${name} في دبي والإمارات`,
         metaTitle: `تيريا ${name} دبي — ${list.length} نكهة من ${fromPrice(list)} | IQOS Store UAE`,
-        metaDescription: `اشترِ سجائر تيريا ${name} الأصلية في دبي والإمارات. ${list.length} نكهة بسعر ${range(list)} للكرتونة، توصيل في نفس اليوم داخل دبي وتوصيل مجاني لطلبين أو أكثر.`,
+        metaDescription: `تيريا ${name} الأصلية في دبي والإمارات: ${list.length} نكهة بسعر ${range(list)} للكرتونة. توصيل في نفس اليوم داخل دبي ومجاني فوق ${aed(DELIVERY.freeFromAmount)}.`,
         intro,
         body: [
             { heading: `لماذا تيريا ${name}؟`, text: extra },
@@ -82,7 +83,7 @@ const regionCollection = (region: Region, slug: string, intro: string, extra: st
             },
             {
                 question: "هل التوصيل متاح خارج دبي؟",
-                answer: `نعم، نوصل إلى جميع الإمارات. التوصيل مجاني عند طلب ${DELIVERY.freeFromItems} منتجات أو أكثر أو للطلبات فوق ${aed(DELIVERY.freeFromAmount)}.`,
+                answer: `نعم، نوصل إلى جميع الإمارات. التوصيل مجاني للطلبات فوق ${aed(DELIVERY.freeFromAmount)}.`,
             },
         ],
     }
@@ -94,7 +95,7 @@ export const AR_COLLECTIONS: ArCollection[] = [
         category: "terea",
         h1: "سجائر تيريا في دبي والإمارات",
         metaTitle: `تيريا دبي — جميع النكهات من ${fromPrice(tereaList())} | IQOS Store UAE`,
-        metaDescription: `تسوّق سجائر تيريا الأصلية في دبي والإمارات: إندونيسيا، كازاخستان، أوزبكستان، سويسرا واليابان. أكثر من ${tereaList().length} نكهة، توصيل في نفس اليوم داخل دبي، والدفع عند الاستلام.`,
+        metaDescription: `تيريا الأصلية في دبي والإمارات من إندونيسيا وكازاخستان وأوزبكستان وسويسرا وإيطاليا واليابان: أكثر من ${tereaList().length} نكهة، توصيل في نفس اليوم والدفع عند الاستلام.`,
         intro: "جميع نكهات تيريا في مكان واحد — من التبغ الكلاسيكي إلى المنثول وكبسولات النكهة. اختر حسب بلد المنشأ أو حسب الطعم، واستلم طلبك في نفس اليوم داخل دبي.",
         body: [
             {
@@ -158,7 +159,7 @@ export const AR_COLLECTIONS: ArCollection[] = [
         category: "iluma",
         h1: "أجهزة ايكوس إيلوما في دبي والإمارات",
         metaTitle: `سعر ايكوس إيلوما في الإمارات — من ${fromPrice(getProducts({ category: "iluma" }))} | IQOS Store UAE`,
-        metaDescription: `اشترِ ايكوس إيلوما الأصلي في دبي والإمارات: إيلوما i، إيلوما i برايم، برايم، ون والإصدارات المحدودة. من ${fromPrice(getProducts({ category: "iluma" }))} مع توصيل في نفس اليوم داخل دبي.`,
+        metaDescription: `ايكوس إيلوما الأصلي في دبي والإمارات: إيلوما i وبرايم وون والإصدارات المحدودة. من ${fromPrice(getProducts({ category: "iluma" }))} مع توصيل في نفس اليوم داخل دبي.`,
         intro: "يسخّن ايكوس إيلوما أعواد تيريا من الداخل بتقنية SMARTCORE INDUCTION — بدون شفرة وبدون تنظيف. اختر سلسلة إيلوما i الأحدث، أو برايم الفاخر، أو ون الصغير، أو إصداراً محدوداً.",
         body: [
             {
@@ -178,6 +179,35 @@ export const AR_COLLECTIONS: ArCollection[] = [
         ],
     },
     {
+        slug: "iqos-iluma-i",
+        category: "iluma",
+        line: "ILUMA i",
+        h1: "ايكوس إيلوما i في دبي والإمارات",
+        metaTitle: `سعر ايكوس إيلوما i في الإمارات — من ${fromPrice(getProducts({ category: "iluma", line: "ILUMA i" }))} | IQOS Store UAE`,
+        metaDescription: `ايكوس إيلوما i الجديد في دبي والإمارات: i ون وi ستاندرد وi برايم بجميع الألوان. أجهزة أصلية مغلّفة من ${fromPrice(getProducts({ category: "iluma", line: "ILUMA i" }))} مع توصيل في نفس اليوم داخل دبي.`,
+        intro: "إيلوما i هو الجيل الأحدث من ايكوس: تسخين بالحث بدون شفرة، مع وضع الإيقاف المؤقت وميزة FlexPuff، وشاشة لمس في طرازي i ستاندرد وi برايم. اختر الطراز واللون المناسب لك.",
+        body: [
+            {
+                heading: "i ون أم i ستاندرد أم i برايم؟",
+                text: "إيلوما i ون جهاز متكامل بدون شاحن منفصل، يكفي لنحو 20 جلسة بالشحنة الواحدة. إيلوما i ستاندرد حامل مع شاحن جيب بشاشة لمس لجلسات متتالية. وإيلوما i برايم يضيف تصميماً فاخراً من الألمنيوم.",
+            },
+            {
+                heading: "ما الجديد مقارنة بإيلوما؟",
+                text: "وضع الإيقاف المؤقت يتيح لك إيقاف الجلسة لدقائق ثم متابعتها، وFlexPuff يعدّل طول الجلسة حسب طريقة استخدامك، وتعرض شاشة اللمس البطارية والجلسات. ومثل كل أجهزة إيلوما، يعمل مع أعواد تيريا فقط.",
+            },
+        ],
+        faqs: [
+            {
+                question: "كم سعر ايكوس إيلوما i في الإمارات؟",
+                answer: `إيلوما i ون من ${fromPrice(getProducts({ category: "iluma", line: "ILUMA i One" }))}، وi ستاندرد من ${fromPrice(getProducts({ category: "iluma", line: "ILUMA i Standard" }))}، وi برايم من ${fromPrice(getProducts({ category: "iluma", line: "ILUMA i Prime" }))}، حسب اللون والإصدار.`,
+            },
+            {
+                question: "هل يعمل إيلوما i مع جميع أعواد تيريا؟",
+                answer: "نعم. تعمل تيريا من جميع المناشئ — إندونيسيا وكازاخستان وأوزبكستان وسويسرا وإيطاليا واليابان — مع كل طرازات إيلوما i.",
+            },
+        ],
+    },
+    {
         slug: "vgod-stig",
         category: "stig",
         h1: "ستيج VGOD في دبي والإمارات",
@@ -193,7 +223,7 @@ export const AR_COLLECTIONS: ArCollection[] = [
         faqs: [
             {
                 question: "كم سعر ستيج في دبي؟",
-                answer: `تبدأ أسعار ستيج لدينا من ${fromPrice(getProducts({ category: "stig" }))}، مع توصيل مجاني عند طلب منتجين أو أكثر.`,
+                answer: `تبدأ أسعار ستيج لدينا من ${fromPrice(getProducts({ category: "stig" }))}، مع توصيل مجاني للطلبات فوق ${aed(DELIVERY.freeFromAmount)}.`,
             },
         ],
     },
@@ -206,6 +236,6 @@ export function getArCollection(slug: string) {
 export const AR_DELIVERY = EMIRATE_PAGES.map((e) => ({
     slug: e.slug,
     name: AR_EMIRATE[e.slug],
-    fee: e.singleItemFee,
+    fee: DELIVERY.fee,
     speed: e.slug === "dubai" ? "توصيل في نفس اليوم للطلبات قبل الساعة 12 ظهراً، وفي اليوم التالي بعد ذلك." : "توصيل في اليوم التالي.",
 }))

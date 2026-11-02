@@ -1,13 +1,14 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { getProducts, priceRange } from "@/app/data/products"
-import { ORIGIN_COUNT, ORIGIN_LIST, REGIONS, listingHref } from "@/app/data/store"
+import { ORIGIN_COUNT, REGIONS, listingHref } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
 import type { Product, Region } from "@/app/types"
 
 export interface Guide {
     slug: string
     title: string
+    metaTitle?: string // shorter <title> when the headline is too long for search results
     description: string
     published: string
     updated: string
@@ -107,7 +108,7 @@ function OriginGuide() {
                 For value and variety, start with <Link href="/terea/indonesia">Indonesia</Link>. For the familiar classics, choose{" "}
                 <Link href="/terea/kazakhstan">Kazakhstan</Link> or <Link href="/terea/uzbekistan">Uzbekistan</Link>. For classic European
                 tobacco, try <Link href="/terea/switzerland">Switzerland</Link> or <Link href="/terea/italy">Italy</Link>. For something premium, go
-                with <Link href="/terea/japan">Japan</Link>. Mixing origins in one order is fine — and with 2 or more cartons, delivery is free.
+                with <Link href="/terea/japan">Japan</Link>. Mixing origins in one order is fine — and once your order is over AED 400, delivery is free.
             </p>
         </>
     )
@@ -211,7 +212,8 @@ function HeetsVsTereaGuide() {
         <>
             <p>
                 Lots of people in the UAE still search for &quot;HEETS&quot; when what they actually need is TEREA. They look similar, but they&apos;re
-                made for different devices and can&apos;t be swapped.
+                made for different devices and can&apos;t be swapped. (Just want the TEREA match for your old HEETS flavour? See{" "}
+                <Link href="/heets-dubai">HEETS in Dubai</Link>.)
             </p>
             <h2>The short answer</h2>
             <ul>
@@ -244,7 +246,7 @@ export const GUIDES: Guide[] = [
         slug: "terea-flavour-guide",
         title: "TEREA Flavour Guide UAE: Every Flavour Explained",
         description:
-            `Every TEREA flavour sold in the UAE, grouped by taste — tobacco, menthol and capsule pearls — from ${ORIGIN_LIST}, with prices.`,
+            `Every TEREA flavour sold in the UAE grouped by taste — tobacco, menthol and capsule pearls — across ${ORIGIN_COUNT} origins, with prices.`,
         published: "2026-10-27",
         updated: "2026-10-27",
         readMinutes: 6,
@@ -253,6 +255,7 @@ export const GUIDES: Guide[] = [
     {
         slug: "terea-indonesia-vs-kazakhstan-vs-japan",
         title: "TEREA Indonesia vs Kazakhstan vs Uzbekistan vs Swiss vs Japan: What's the Difference?",
+        metaTitle: "Indonesia vs Kazakhstan vs Japan TEREA Compared",
         description:
             "Indonesian, Kazakh, Uzbek, Swiss or Japanese TEREA? What changes between origins — flavours, packaging and price — and which one to buy in Dubai.",
         published: "2026-10-27",
@@ -263,6 +266,7 @@ export const GUIDES: Guide[] = [
     {
         slug: "iqos-iluma-models-compared",
         title: "IQOS ILUMA Models Compared: ILUMA i, Prime, One & Standard",
+        metaTitle: "ILUMA i vs Prime vs One vs Standard Compared",
         description:
             "Which IQOS ILUMA should you buy in the UAE? ILUMA One, Standard, Prime and the new ILUMA i series compared — design, battery, features and prices.",
         published: "2026-10-27",
@@ -273,6 +277,7 @@ export const GUIDES: Guide[] = [
     {
         slug: "how-to-use-terea",
         title: "How to Use TEREA with IQOS ILUMA: Step-by-Step Guide",
+        metaTitle: "How to Use TEREA with IQOS ILUMA",
         description: "How to use TEREA sticks with IQOS ILUMA, ILUMA One, Prime and ILUMA i — charging, inserting a stick, session length and tips.",
         published: "2026-10-27",
         updated: "2026-10-27",
@@ -282,6 +287,7 @@ export const GUIDES: Guide[] = [
     {
         slug: "heets-vs-terea",
         title: "HEETS vs TEREA: What's the Difference and Which Do You Need?",
+        metaTitle: "HEETS vs TEREA: Difference & Which You Need",
         description: "HEETS or TEREA? Which sticks work with IQOS ILUMA vs older IQOS devices, why they aren't interchangeable, and matching flavours.",
         published: "2026-10-27",
         updated: "2026-10-27",

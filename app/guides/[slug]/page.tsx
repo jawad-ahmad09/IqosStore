@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
 import { GUIDES, getGuide } from "@/app/data/guides"
 import { STORE } from "@/app/data/store"
+import { OG_IMAGE } from "@/app/lib/seo"
 
 type Params = { params: Promise<{ slug: string }> }
 
@@ -18,10 +19,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const guide = getGuide((await params).slug)
     if (!guide) return {}
     return {
-        title: guide.title,
+        title: guide.metaTitle ?? guide.title,
         description: guide.description,
         alternates: { canonical: `/guides/${guide.slug}` },
-        openGraph: { title: guide.title, description: guide.description, type: "article", publishedTime: guide.published, modifiedTime: guide.updated },
+        openGraph: { title: guide.title, description: guide.description, type: "article", publishedTime: guide.published, modifiedTime: guide.updated, images: OG_IMAGE },
     }
 }
 

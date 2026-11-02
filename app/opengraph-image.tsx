@@ -49,7 +49,7 @@ export default function OpengraphImage() {
                     </div>
                 </div>
                 <div style={{ display: "flex", gap: 16, fontSize: 26, fontWeight: 700 }}>
-                    {[`${products.length}+ products`, "Same-day in Dubai", "Free delivery 2+ items", "Cash on delivery"].map((t) => (
+                    {[`${products.length}+ products`, "Same-day in Dubai", "Free delivery over AED 400", "Cash on delivery"].map((t) => (
                         <div key={t} style={{ display: "flex", padding: "12px 22px", borderRadius: 999, background: "rgba(255,255,255,0.1)" }}>
                             {t}
                         </div>

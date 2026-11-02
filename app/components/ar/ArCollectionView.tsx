@@ -14,7 +14,7 @@ const AR_HOME: Crumb = { name: "الرئيسية", href: "/ar" }
 export function ArNav({ active }: { active?: string }) {
     const items = AR_COLLECTIONS.map((c) => ({
         href: arPath(`/${c.slug}`),
-        label: c.region ? AR_REGION[c.region] : c.slug === "terea" ? "تيريا" : c.slug === "iqos-iluma" ? "إيلوما" : "ستيج",
+        label: c.region ? AR_REGION[c.region] : c.slug === "terea" ? "تيريا" : c.slug === "iqos-iluma-i" ? "إيلوما i" : c.slug === "iqos-iluma" ? "إيلوما" : "ستيج",
         color: c.region ? REGIONS[c.region].color : c.slug === "terea" ? undefined : CATEGORIES[c.category].color,
     }))
     return (
@@ -38,7 +38,7 @@ export function EnglishLink({ href }: { href: string }) {
 }
 
 export default function ArCollectionView({ collection }: { collection: ArCollection }) {
-    const products = getProducts({ category: collection.category, region: collection.region })
+    const products = getProducts({ category: collection.category, region: collection.region, line: collection.line })
     const enPath = `/${collection.slug}`
     const path = arPath(enPath)
     const accent = collection.region ? REGIONS[collection.region].color : CATEGORIES[collection.category].color
@@ -47,7 +47,12 @@ export default function ArCollectionView({ collection }: { collection: ArCollect
               { name: "تيريا", href: "/ar/terea" },
               { name: AR_REGION[collection.region], href: path },
           ]
-        : [{ name: collection.h1.split(" في ")[0], href: path }]
+        : collection.line
+          ? [
+                { name: "إيلوما", href: "/ar/iqos-iluma" },
+                { name: collection.h1.split(" في ")[0], href: path },
+            ]
+          : [{ name: collection.h1.split(" في ")[0], href: path }]
 
     return (
         <>
@@ -72,7 +77,7 @@ export default function ArCollectionView({ collection }: { collection: ArCollect
                             <Clock size={15} className="text-gold" /> توصيل في نفس اليوم داخل دبي قبل 12 ظهراً
                         </span>
                         <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2">
-                            <Truck size={15} className="text-gold" /> توصيل مجاني لـ {DELIVERY.freeFromItems} منتجات أو أكثر أو فوق {aed(DELIVERY.freeFromAmount)}
+                            <Truck size={15} className="text-gold" /> توصيل مجاني للطلبات فوق {aed(DELIVERY.freeFromAmount)}
                         </span>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { STORE } from "@/app/data/store"
 
 export const metadata: Metadata = {
     title: "Contact Us — WhatsApp, Phone & Email",
@@ -6,6 +7,19 @@ export const metadata: Metadata = {
     alternates: { canonical: "/contact" },
 }
 
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: `Contact ${STORE.name}`,
+    url: `${STORE.url}/contact`,
+    mainEntity: { "@id": `${STORE.url}/#store` },
+}
+
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
-    return children
+    return (
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            {children}
+        </>
+    )
 }

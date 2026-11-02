@@ -5,6 +5,7 @@ import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { DELIVERY, FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 import { languageAlternates } from "@/app/lib/seo"
+import { STORE } from "@/app/data/store"
 
 export const metadata: Metadata = {
     title: { absolute: "IQOS & TEREA Delivery Across the UAE — All Emirates" },
@@ -12,14 +13,26 @@ export const metadata: Metadata = {
     alternates: { canonical: "/delivery", languages: languageAlternates("/delivery") },
 }
 
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "IQOS, TEREA and STIG home delivery across the UAE",
+    serviceType: "Home delivery",
+    url: `${STORE.url}/delivery`,
+    provider: { "@id": `${STORE.url}/#store` },
+    areaServed: EMIRATE_PAGES.map((e) => ({ "@type": "City", name: e.name, containedInPlace: { "@type": "Country", name: "United Arab Emirates" } })),
+    offers: { "@type": "Offer", priceCurrency: "AED", price: DELIVERY.fee, description: `Delivery fee; free on ${FREE_DELIVERY_RULE}` },
+}
+
 export default function DeliveryIndex() {
     return (
         <div className="container-x py-8 md:py-14">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             <Breadcrumbs items={[{ name: "Delivery", href: "/delivery" }]} />
             <h1 className="mt-5 text-4xl font-extrabold md:text-6xl">Delivery across the UAE</h1>
             <p className="mt-4 max-w-2xl text-ink-soft md:text-lg">
                 We&apos;re an online store, delivering door to door in every emirate. Same-day in Dubai when you order before 12PM, and free
-                delivery anywhere on {DELIVERY.freeFromItems} or more items or orders over {formatAED(DELIVERY.freeFromAmount)}.
+                delivery anywhere on orders over {formatAED(DELIVERY.freeFromAmount)}.
             </p>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {EMIRATE_PAGES.map((e) => (
@@ -30,7 +43,7 @@ export default function DeliveryIndex() {
                         </span>
                         <span className="mt-2 block text-sm text-ink-soft">{e.speed}</span>
                         <span className="mt-3 block text-xs font-bold">
-                            1 item {formatAED(e.singleItemFee)} · {DELIVERY.freeFromItems}+ items or AED {DELIVERY.freeFromAmount}+ free
+                            Free over AED {DELIVERY.freeFromAmount} · else {formatAED(DELIVERY.fee)}
                         </span>
                     </Link>
                 ))}

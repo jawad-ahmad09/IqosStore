@@ -12,8 +12,8 @@ const terea = getProducts({ category: "terea" })
 const updated = new Date().toLocaleDateString("en-AE", { month: "long", year: "numeric" })
 
 export const metadata: Metadata = {
-    title: { absolute: `TEREA Price in UAE (${new Date().getFullYear()}) — Full Price List by Origin | ${STORE.name}` },
-    description: `Current TEREA prices in Dubai & UAE: every flavour from ${REGION_KEYS.join(", ")}, plus IQOS ILUMA and STIG prices. TEREA from ${formatAED(priceRange(terea).min)} per carton.`,
+    title: { absolute: `TEREA Price in UAE (${new Date().getFullYear()}) — Full Price List | ${STORE.name}` },
+    description: `TEREA prices in Dubai & UAE by origin (${REGION_KEYS.join(", ")}), plus IQOS ILUMA and STIG. From ${formatAED(priceRange(terea).min)} per carton.`,
     alternates: { canonical: "/terea-price-uae" },
 }
 
@@ -57,11 +57,11 @@ export default function PriceListPage() {
         },
         {
             question: "What's the cheapest TEREA in Dubai?",
-            answer: `Our lowest TEREA price is ${formatAED(priceRange(terea).min)} per carton. Order 2 or more items and delivery is free anywhere in the UAE.`,
+            answer: `Our lowest TEREA price is ${formatAED(priceRange(terea).min)} per carton. Spend AED 400 or more and delivery is free anywhere in the UAE.`,
         },
         {
             question: "Is delivery included in the price?",
-            answer: `Delivery is free on ${DELIVERY.freeFromItems}+ items or orders over ${formatAED(DELIVERY.freeFromAmount)}. Otherwise it's ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
+            answer: `Delivery is free on orders over ${formatAED(DELIVERY.freeFromAmount)}. Below that it's a flat ${formatAED(DELIVERY.fee)} anywhere in the UAE.`,
         },
     ]
 

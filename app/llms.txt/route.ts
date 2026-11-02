@@ -27,6 +27,7 @@ export function GET() {
         "",
         "## Prices & flavours",
         line("/terea-price-uae", "TEREA price list (all products)"),
+        line("/heets-dubai", "HEETS in Dubai — TEREA equivalents for IQOS ILUMA"),
         ...FLAVOURS.map((f) => line(`/flavours/${f.slug}`, `TEREA ${f.name} compared`, f.products.map((p) => `${p.region} ${formatAED(p.price)}`).join(", "))),
         "",
         "## Delivery",

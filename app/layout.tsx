@@ -11,7 +11,7 @@ import CartDrawer from "./components/CartDrawer"
 import WhatsAppButton from "./components/WhatsAppButton"
 import AgeGate from "./components/AgeGate"
 import BrandDisclaimer from "./components/BrandDisclaimer"
-import { ORIGIN_LIST } from "./data/store"
+import { ORIGIN_COUNT, ORIGIN_LIST } from "./data/store"
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" })
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" })
@@ -20,10 +20,10 @@ const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-arabic", p
 
 export const metadata: Metadata = {
   title: {
-    default: "IQOS Dubai & UAE — Buy TEREA, IQOS ILUMA & STIG Online | Same-Day Delivery",
+    default: "IQOS Dubai & UAE — TEREA, ILUMA & STIG | Same-Day Delivery",
     template: "%s | IQOS Store UAE",
   },
-  description: `Buy authentic TEREA sticks (${ORIGIN_LIST}), IQOS ILUMA devices and VGOD STIG pods online in Dubai & UAE. Same-day delivery in Dubai, free delivery on 2+ items, cash on delivery.`,
+  description: `Authentic TEREA from ${ORIGIN_COUNT} origins, IQOS ILUMA devices & VGOD STIG pods delivered across Dubai & UAE. Same-day delivery, free over AED 400, cash on delivery.`,
   keywords: [
     // Primary Keywords
     "IQOS Dubai", "IQOS UAE", "Terea Dubai", "Terea UAE", "IQOS Store Dubai", "IQOS Store UAE",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   category: "E-commerce, Heated Tobacco, IQOS Products",
   openGraph: {
     title: "IQOS Dubai & UAE — TEREA, IQOS ILUMA & STIG | Same-Day Delivery",
-    description: `Authentic TEREA from ${ORIGIN_LIST}, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai, free on 2+ items.`,
+    description: `Authentic TEREA from ${ORIGIN_LIST}, IQOS ILUMA devices and VGOD STIG pods. Same-day delivery in Dubai, free over AED 400.`,
     url: "https://www.iqosstoredubai.com",
     siteName: "IQOS Store UAE",
     locale: "en_AE",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "IQOS Dubai & UAE — TEREA, IQOS ILUMA & STIG | Same-Day Delivery",
-    description: "Authentic TEREA, IQOS ILUMA and VGOD STIG. Same-day delivery in Dubai, free on 2+ items.",
+    description: "Authentic TEREA, IQOS ILUMA and VGOD STIG. Same-day delivery in Dubai, free over AED 400.",
   },
   // Search Console / Bing Webmaster ownership codes: set them on Vercel, no code change needed.
   verification: {

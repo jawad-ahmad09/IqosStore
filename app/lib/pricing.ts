@@ -2,25 +2,23 @@ import { getProductById } from "@/app/data/products"
 import type { CartLine, Product } from "@/app/types"
 
 export const DELIVERY = {
-    freeFromItems: 2,
     freeFromAmount: 400,
-    dubai: 20,
-    otherEmirates: 30,
+    fee: 20,
 }
 
-// Short wording used across the site, e.g. "Free delivery on 2+ items or orders over AED 400".
-export const FREE_DELIVERY_RULE = `${DELIVERY.freeFromItems}+ items or orders over AED ${DELIVERY.freeFromAmount}`
+// Short wording used across the site, e.g. "Free delivery on orders over AED 400".
+export const FREE_DELIVERY_RULE = `orders over AED ${DELIVERY.freeFromAmount}`
 
 export const MAX_QUANTITY = 99
 
-export function qualifiesForFreeDelivery(totalItems: number, subtotal: number) {
-    return totalItems >= DELIVERY.freeFromItems || subtotal >= DELIVERY.freeFromAmount
+export function qualifiesForFreeDelivery(subtotal: number) {
+    return subtotal >= DELIVERY.freeFromAmount
 }
 
-// Free anywhere in the UAE for 2+ items or orders of AED 400+; otherwise AED 20 in Dubai, AED 30 elsewhere.
-export function deliveryCharge(totalItems: number, subtotal: number, emirate?: string) {
-    if (totalItems === 0 || qualifiesForFreeDelivery(totalItems, subtotal)) return 0
-    return emirate === "Dubai" ? DELIVERY.dubai : DELIVERY.otherEmirates
+// Free anywhere in the UAE on orders of AED 400+; AED 20 below that.
+export function deliveryCharge(subtotal: number) {
+    if (subtotal <= 0 || qualifiesForFreeDelivery(subtotal)) return 0
+    return DELIVERY.fee
 }
 
 export interface PricedLine {
@@ -30,7 +28,7 @@ export interface PricedLine {
 }
 
 // Prices always come from the catalogue, never from the client.
-export function priceOrder(lines: CartLine[], emirate?: string) {
+export function priceOrder(lines: CartLine[]) {
     const priced: PricedLine[] = []
     for (const line of lines) {
         const product = getProductById(line.id)
@@ -41,7 +39,7 @@ export function priceOrder(lines: CartLine[], emirate?: string) {
     }
     const items = priced.reduce((sum, l) => sum + l.quantity, 0)
     const subtotal = priced.reduce((sum, l) => sum + l.lineTotal, 0)
-    const delivery = deliveryCharge(items, subtotal, emirate)
+    const delivery = deliveryCharge(subtotal)
     return { lines: priced, items, subtotal, delivery, total: subtotal + delivery }
 }
 

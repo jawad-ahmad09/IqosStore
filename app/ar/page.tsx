@@ -15,8 +15,8 @@ const terea = getProducts({ category: "terea" })
 
 export const metadata: Metadata = arabicMetadata(
     "/",
-    "ايكوس دبي والإمارات — تيريا وايكوس إيلوما وستيج | توصيل في نفس اليوم",
-    `متجر ايكوس إلكتروني في الإمارات: سجائر تيريا الأصلية من إندونيسيا وكازاخستان وأوزبكستان وسويسرا واليابان، أجهزة ايكوس إيلوما وبودات ستيج. توصيل في نفس اليوم داخل دبي، مجاني لطلبين أو أكثر، والدفع عند الاستلام.`,
+    "ايكوس دبي — تيريا وإيلوما وستيج | توصيل في نفس اليوم",
+    `متجر ايكوس إلكتروني في الإمارات: تيريا الأصلية من ستة مناشئ، أجهزة ايكوس إيلوما وبودات ستيج. توصيل في نفس اليوم في دبي، مجاني فوق 400 درهم، والدفع عند الاستلام.`,
 )
 
 const FAQS = [
@@ -26,7 +26,7 @@ const FAQS = [
     },
     {
         question: "كم تكلفة التوصيل؟",
-        answer: `التوصيل مجاني لـ ${DELIVERY.freeFromItems} منتجات أو أكثر أو للطلبات فوق ${aed(DELIVERY.freeFromAmount)} في أي مكان في الإمارات. غير ذلك: ${aed(DELIVERY.dubai)} في دبي و${aed(DELIVERY.otherEmirates)} لباقي الإمارات.`,
+        answer: `التوصيل مجاني للطلبات فوق ${aed(DELIVERY.freeFromAmount)} في أي مكان في الإمارات. للطلبات الأقل: ${aed(DELIVERY.fee)} فقط.`,
     },
     {
         question: "ما الفرق بين تيريا إندونيسيا وكازاخستان واليابان؟",
@@ -81,7 +81,7 @@ export default function ArabicHome() {
                     </h1>
                     <p className="mt-6 max-w-2xl leading-loose text-white/75 md:text-lg">
                         أكثر من {products.length} منتج — تيريا من إندونيسيا وكازاخستان وأوزبكستان وسويسرا واليابان، وأجهزة ايكوس إيلوما وبودات ستيج.
-                        توصيل في نفس اليوم داخل دبي، ومجاني لطلبين أو أكثر.
+                        توصيل في نفس اليوم داخل دبي، ومجاني للطلبات فوق {aed(DELIVERY.freeFromAmount)}.
                     </p>
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                         <Link href="/ar/terea" className="btn btn-ember text-base">
@@ -105,7 +105,7 @@ export default function ArabicHome() {
                     <h2 className="text-3xl font-extrabold md:text-5xl">تسوّق حسب المجموعة</h2>
                     <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                         {AR_COLLECTIONS.filter((c) => c.slug !== "terea").map((c) => {
-                            const list = getProducts({ category: c.category, region: c.region })
+                            const list = getProducts({ category: c.category, region: c.region, line: c.line })
                             const color = c.region ? REGIONS[c.region].color : CATEGORIES[c.category].color
                             return (
                                 <Link

@@ -1,5 +1,5 @@
 import { getProducts, priceRange } from "@/app/data/products"
-import { ORIGIN_COUNT, ORIGIN_LIST } from "@/app/data/store"
+import { ORIGIN_COUNT } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
 import type { Category, Product, Region } from "@/app/types"
 
@@ -36,7 +36,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "TEREA Sticks in Dubai & UAE",
         metaTitle: `Buy TEREA Sticks in Dubai & UAE — All Flavours from ${tereaFrom()}`,
         metaDescription:
-            `Shop authentic TEREA sticks in Dubai and across the UAE: ${ORIGIN_LIST} editions. From ${tereaFrom()} per carton, same-day delivery in Dubai, free on 2+ cartons.`,
+            `Authentic TEREA sticks (the ILUMA version of HEETS) from ${ORIGIN_COUNT} origins in Dubai & UAE. From ${tereaFrom()} per carton, same-day delivery in Dubai, free over AED 400.`,
         intro:
             "Every TEREA flavour we stock, in one place — from classic tobacco blends to menthol and click-capsule pearls. Pick by origin or by taste, and get it delivered the same day in Dubai.",
         body: [
@@ -60,7 +60,7 @@ export const COLLECTIONS: Collection[] = [
             },
             {
                 question: "Do you deliver TEREA outside Dubai?",
-                answer: "Yes — we deliver to every emirate, including Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain and Al Ain. Delivery is free on 2 or more items.",
+                answer: "Yes — we deliver to every emirate, including Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain and Al Ain. Delivery is free on orders over AED 400.",
             },
             {
                 question: "Will TEREA work in my IQOS ILUMA i?",
@@ -75,7 +75,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "TEREA Indonesia in Dubai & UAE",
         metaTitle: `TEREA Indonesia Dubai — Pearls, Editions & Waves from ${tereaFrom("Indonesia")}`,
         metaDescription:
-            `Buy TEREA Indonesia in Dubai and the UAE: Sun Pearl, Oasis Pearl, Purple Wave, Black Green, Golden Edition and more. From ${tereaFrom("Indonesia")} per carton with same-day Dubai delivery.`,
+            `TEREA Indonesia in Dubai & UAE: Sun Pearl, Oasis Pearl, Purple Wave, Black Green, Golden Edition and more. From ${tereaFrom("Indonesia")} per carton, same-day Dubai delivery.`,
         intro:
             "Indonesia has the widest TEREA line-up we carry — limited editions, fruity pearls with click capsules, and icy waves — at everyday carton prices.",
         body: [
@@ -106,7 +106,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "TEREA Kazakhstan in Dubai & UAE",
         metaTitle: `TEREA Kazakhstan Dubai — Amber, Turquoise, Silver from ${tereaFrom("Kazakhstan")}`,
         metaDescription:
-            `Shop TEREA Kazakhstan in Dubai and the UAE: Amber, Turquoise Menthol, Silver, Bronze, Yellow, Green Zing and Pearl capsules. From ${tereaFrom("Kazakhstan")}, same-day delivery in Dubai.`,
+            `TEREA Kazakhstan in Dubai & UAE: Amber, Turquoise Menthol, Silver, Bronze, Yellow and pearl capsules. From ${tereaFrom("Kazakhstan")}, same-day delivery in Dubai.`,
         intro:
             "The Kazakhstan range covers the TEREA classics most UAE customers grew up with — Amber, Silver, Bronze, Turquoise — plus a strong selection of click-capsule pearls.",
         body: [
@@ -126,7 +126,7 @@ export const COLLECTIONS: Collection[] = [
             },
             {
                 question: "How much is TEREA Kazakhstan in the UAE?",
-                answer: `TEREA Kazakhstan cartons are ${tereaRange("Kazakhstan")} in our store, with free delivery on 2 or more items.`,
+                answer: `TEREA Kazakhstan cartons are ${tereaRange("Kazakhstan")} in our store, with free delivery on orders over AED 400.`,
             },
         ],
     },
@@ -137,13 +137,13 @@ export const COLLECTIONS: Collection[] = [
         h1: "TEREA Uzbekistan in Dubai & UAE",
         metaTitle: `TEREA Uzbekistan Dubai — Smooth Classics from ${tereaFrom("Uzbekistan")}`,
         metaDescription:
-            `Buy TEREA Uzbekistan in Dubai and across the UAE: Amber, Bronze, Silver, Yellow, Turquoise, Purple Wave, Summer Wave and pearls. ${tereaRange("Uzbekistan")} per carton, same-day Dubai delivery.`,
+            `TEREA Uzbekistan in Dubai & UAE: Amber, Bronze, Silver, Yellow, Turquoise, Purple Wave and pearls. ${tereaRange("Uzbekistan")} per carton, same-day Dubai delivery.`,
         intro:
             "Uzbekistan TEREA brings the smooth favourites — Amber, Silver, Bronze, Turquoise and the Wave range — at a flat, fair price per carton.",
         body: [
             {
                 heading: "Everyday favourites at one price",
-                text: "Every Uzbekistan carton in our range is the same price, which makes it easy to mix tobacco, menthol and capsule flavours in one order — and with 2 or more items, delivery is free.",
+                text: "Every Uzbekistan carton in our range is the same price, which makes it easy to mix tobacco, menthol and capsule flavours in one order — and orders over AED 400 ship free.",
             },
         ],
         faqs: [
@@ -163,7 +163,7 @@ export const COLLECTIONS: Collection[] = [
         region: "Switzerland",
         h1: "TEREA Swiss in Dubai & UAE",
         metaTitle: `TEREA Swiss Dubai — Amber, Teak, Silver & More from ${tereaFrom("Switzerland")}`,
-        metaDescription: `Buy TEREA Swiss in Dubai and the UAE: Amber, Bronze, Sienna, Teak, Silver, Yellow, Turquoise and Purple Wave. Swiss-made TEREA at ${tereaRange("Switzerland")} per carton, same-day delivery in Dubai.`,
+        metaDescription: `TEREA Swiss in Dubai & UAE: Amber, Bronze, Sienna, Teak, Silver, Yellow, Turquoise and Purple Wave. ${tereaRange("Switzerland")} per carton, same-day Dubai delivery.`,
         intro:
             "Swiss-made TEREA covers the classic European line-up — from light Silver and sweet Yellow to rich Amber and bold, smoky Teak — plus two menthol options.",
         body: [
@@ -179,7 +179,7 @@ export const COLLECTIONS: Collection[] = [
         faqs: [
             {
                 question: "How much is TEREA Swiss in Dubai?",
-                answer: `${tereaRange("Switzerland")} per carton of 200 sticks (10 packs × 20) in our store, with free delivery on 2 or more items.`,
+                answer: `${tereaRange("Switzerland")} per carton of 200 sticks (10 packs × 20) in our store, with free delivery on orders over AED 400.`,
             },
             {
                 question: "Which Swiss TEREA is the strongest?",
@@ -193,7 +193,7 @@ export const COLLECTIONS: Collection[] = [
         region: "Italy",
         h1: "TEREA Italy in Dubai & UAE",
         metaTitle: `TEREA Italy Dubai — Amber, Silver, Turquoise & More from ${tereaFrom("Italy")}`,
-        metaDescription: `Buy TEREA from Italy in Dubai and the UAE: Amber, Silver, Yellow, Sienna, Teak, Turquoise Menthol and Purple Wave Menthol. Italian-made TEREA at ${tereaRange("Italy")} per carton, same-day delivery in Dubai.`,
+        metaDescription: `TEREA from Italy in Dubai & UAE: Amber, Silver, Yellow, Sienna, Teak, Turquoise and Purple Wave Menthol. ${tereaRange("Italy")} per carton, same-day Dubai delivery.`,
         intro:
             "Italian-made TEREA brings the European favourites — light Silver, sweet Yellow, rounded Amber and Sienna, bold Teak — plus Turquoise and Purple Wave for menthol fans.",
         body: [
@@ -209,7 +209,7 @@ export const COLLECTIONS: Collection[] = [
         faqs: [
             {
                 question: "How much is TEREA Italy in Dubai?",
-                answer: `${tereaRange("Italy")} per carton of 200 sticks (10 packs × 20) in our store, with free delivery on 2 or more items.`,
+                answer: `${tereaRange("Italy")} per carton of 200 sticks (10 packs × 20) in our store, with free delivery on orders over AED 400.`,
             },
             {
                 question: "Is TEREA from Italy different from Swiss TEREA?",
@@ -224,7 +224,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "TEREA Japan in Dubai & UAE",
         metaTitle: `TEREA Japan Dubai — Premium Japanese Flavours from ${tereaFrom("Japan")}`,
         metaDescription:
-            "Shop TEREA Japan in Dubai and the UAE: Rich Regular, Black Menthol, Tropical Menthol, Blossom Pearl, Ruby Regular and more. Premium Japanese-market TEREA with same-day Dubai delivery.",
+            "TEREA Japan in Dubai & UAE: Rich Regular, Black Menthol, Tropical Menthol, Blossom Pearl, Ruby Regular and more. Premium Japanese TEREA, same-day delivery.",
         intro:
             "Japanese-market TEREA is known for refined, distinctive blends — from deep Rich Regular to Tropical Menthol and floral Blossom Pearl. It's our premium range.",
         body: [
@@ -254,7 +254,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "IQOS ILUMA Devices in Dubai & UAE",
         metaTitle: "IQOS ILUMA Price in UAE — ILUMA i, Prime, One & Limited Editions",
         metaDescription:
-            `Buy IQOS ILUMA in Dubai and the UAE: ILUMA i, ILUMA i Prime, ILUMA Prime, ILUMA One, Standard kits and limited editions. Authentic devices from ${formatAED(priceRange(getProducts({ category: "iluma" })).min)} with same-day Dubai delivery.`,
+            `IQOS ILUMA in Dubai & UAE: ILUMA i, i Prime, Prime, One, Standard kits and limited editions. Authentic devices from ${formatAED(priceRange(getProducts({ category: "iluma" })).min)}, same-day Dubai delivery.`,
         intro:
             "IQOS ILUMA heats TEREA sticks from the inside with SMARTCORE INDUCTION — no blade, no cleaning. Choose the newer ILUMA i series, the premium Prime, the compact One or a collectable limited edition.",
         body: [
@@ -284,8 +284,8 @@ export const COLLECTIONS: Collection[] = [
         line: "ILUMA i",
         label: "ILUMA i",
         h1: "IQOS ILUMA i in Dubai & UAE",
-        metaTitle: `IQOS ILUMA i Price in UAE — i One, i Prime & i Standard from ${lineFrom("iluma", "ILUMA i")}`,
-        metaDescription: `Buy the new IQOS ILUMA i in Dubai and the UAE: ILUMA i One from ${lineFrom("iluma", "ILUMA i One")}, ILUMA i Standard from ${lineFrom("iluma", "ILUMA i Standard")} and ILUMA i Prime from ${lineFrom("iluma", "ILUMA i Prime")}. Authentic, sealed devices with same-day Dubai delivery.`,
+        metaTitle: `IQOS ILUMA i Price UAE — One, Prime & Standard from ${lineFrom("iluma", "ILUMA i")}`,
+        metaDescription: `The new IQOS ILUMA i in Dubai & UAE: i One from ${lineFrom("iluma", "ILUMA i One")}, i Standard from ${lineFrom("iluma", "ILUMA i Standard")}, i Prime from ${lineFrom("iluma", "ILUMA i Prime")}. Sealed devices, same-day Dubai delivery.`,
         intro:
             "ILUMA i is the newest IQOS generation — bladeless SMARTCORE INDUCTION with Pause Mode, FlexPuff and, on i Standard and i Prime, a touchscreen charger. Pick the model and colour that suits you.",
         body: [
@@ -316,7 +316,7 @@ export const COLLECTIONS: Collection[] = [
         label: "ILUMA i One",
         h1: "IQOS ILUMA i One in Dubai & UAE",
         metaTitle: `IQOS ILUMA i One Price in UAE — All Colours from ${lineFrom("iluma", "ILUMA i One")}`,
-        metaDescription: `Buy IQOS ILUMA i One in Dubai and the UAE: Breeze Blue, Midnight Black, Lime Green, Violet Purple, Vivid Terracotta and limited editions. ${lineRange("ILUMA i One")}, same-day delivery in Dubai.`,
+        metaDescription: `IQOS ILUMA i One in Dubai & UAE: Breeze Blue, Midnight Black, Lime Green, Violet Purple, Terracotta and limited editions. ${lineRange("ILUMA i One")}, same-day Dubai delivery.`,
         intro:
             "ILUMA i One is the simplest ILUMA i: holder and battery in one pocket-sized body, around 20 sessions per charge and nothing extra to carry.",
         body: [
@@ -343,7 +343,7 @@ export const COLLECTIONS: Collection[] = [
         label: "ILUMA i Prime",
         h1: "IQOS ILUMA i Prime in Dubai & UAE",
         metaTitle: `IQOS ILUMA i Prime Price in UAE — Kits & Colours from ${lineFrom("iluma", "ILUMA i Prime")}`,
-        metaDescription: `Buy IQOS ILUMA i Prime in Dubai and the UAE: Garnet Red, Aspen Green, Black, Blue, Electric Purple, Galaxy Blue and limited editions. ${lineRange("ILUMA i Prime")}, same-day delivery in Dubai.`,
+        metaDescription: `IQOS ILUMA i Prime in Dubai & UAE: Garnet Red, Aspen Green, Black, Blue, Electric Purple, Galaxy Blue and limited editions. ${lineRange("ILUMA i Prime")}, same-day delivery.`,
         intro:
             "ILUMA i Prime is the flagship: a premium aluminium wraparound pocket charger with touchscreen, plus every ILUMA i feature.",
         body: [
@@ -370,7 +370,7 @@ export const COLLECTIONS: Collection[] = [
         label: "ILUMA i Standard",
         h1: "IQOS ILUMA i Standard in Dubai & UAE",
         metaTitle: `IQOS ILUMA i Standard Price in UAE — All Colours from ${lineFrom("iluma", "ILUMA i Standard")}`,
-        metaDescription: `Buy IQOS ILUMA i Standard in Dubai and the UAE: Black, Breeze Blue, Oasis, Purple, Electric Purple and limited editions. ${lineRange("ILUMA i Standard")}, same-day delivery in Dubai.`,
+        metaDescription: `IQOS ILUMA i Standard in Dubai & UAE: Black, Breeze Blue, Oasis, Purple, Electric Purple and limited editions. ${lineRange("ILUMA i Standard")}, same-day Dubai delivery.`,
         intro:
             "ILUMA i Standard pairs a slim holder with a touchscreen pocket charger, so you can enjoy back-to-back sessions all day.",
         body: [
@@ -396,7 +396,7 @@ export const COLLECTIONS: Collection[] = [
         h1: "VGOD STIG Disposable Pods in Dubai & UAE",
         metaTitle: `VGOD STIG Dubai — Disposable Pods from ${formatAED(priceRange(getProducts({ category: "stig" })).min)}`,
         metaDescription:
-            `Buy VGOD STIG and STIG XL disposable pods in Dubai and the UAE: Iced Mango Bomb, Lush Ice, Cubano, Mix flavours and more. From ${formatAED(priceRange(getProducts({ category: "stig" })).min)} with same-day delivery in Dubai.`,
+            `VGOD STIG and STIG XL disposable pods in Dubai & UAE: Iced Mango Bomb, Lush Ice, Cubano, Mix flavours and more. From ${formatAED(priceRange(getProducts({ category: "stig" })).min)}, same-day Dubai delivery.`,
         intro:
             "VGOD STIG is a pocket-sized disposable pod — no charging, no refilling. Pick a flavour, draw, and go. STIG XL offers a bigger capacity for longer use.",
         body: [
@@ -408,7 +408,7 @@ export const COLLECTIONS: Collection[] = [
         faqs: [
             {
                 question: "How much is VGOD STIG in Dubai?",
-                answer: `STIG packs are ${lineFrom("stig", "STIG")} and STIG XL is ${lineFrom("stig", "STIG XL")} in our store, with free delivery on 2 or more items.`,
+                answer: `STIG packs are ${lineFrom("stig", "STIG")} and STIG XL is ${lineFrom("stig", "STIG XL")} in our store, with free delivery on orders over AED 400.`,
             },
             {
                 question: "Can I buy a full box of STIG?",

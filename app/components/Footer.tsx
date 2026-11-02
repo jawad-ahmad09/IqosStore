@@ -77,6 +77,7 @@ export default function Footer() {
                             <li><Link href={listingHref({ category: "stig" })} className={linkClass}>{CATEGORIES.stig.label}</Link></li>
                             <li><Link href="/terea-price-uae" className={linkClass}>TEREA price list</Link></li>
                             <li><Link href="/flavours" className={linkClass}>Flavours compared</Link></li>
+                            <li><Link href="/heets-dubai" className={linkClass}>HEETS Dubai</Link></li>
                             <li><Link href="/checkout" className={linkClass}>Checkout</Link></li>
                         </ul>
                     </div>

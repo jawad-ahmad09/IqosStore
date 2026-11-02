@@ -28,7 +28,7 @@ export const POLICIES: Policy[] = [
             { heading: "Orders", text: "Placing an order on the website or via WhatsApp is a request to buy. We confirm every order by phone or WhatsApp before dispatch, and we may decline or cancel an order — for example if an item is out of stock or the details can't be verified. If we cancel, you won't be charged." },
             { heading: "Prices", text: "All prices are in UAE dirhams (AED). We try to keep prices and stock accurate, but if an error appears we'll contact you before dispatch so you can confirm or cancel." },
             { heading: "Payment", text: "We accept cash on delivery, bank transfer and online payment. For cash on delivery, payment is due when you receive your order." },
-            { heading: "Delivery", text: `We deliver across the UAE. Delivery is free for ${DELIVERY.freeFromItems} or more items, or for orders over AED ${DELIVERY.freeFromAmount}; otherwise it costs AED ${DELIVERY.dubai} in Dubai and AED ${DELIVERY.otherEmirates} elsewhere. Delivery times are estimates and can be affected by events outside our control.` },
+            { heading: "Delivery", text: `We deliver across the UAE. Delivery is free on orders over AED ${DELIVERY.freeFromAmount}; below that it costs a flat AED ${DELIVERY.fee}. Delivery times are estimates and can be affected by events outside our control.` },
             { heading: "Product use", text: "TEREA sticks are designed only for IQOS ILUMA devices. Please follow the manufacturer's instructions and warnings. We are not responsible for damage caused by misuse." },
             { heading: "Liability", text: "To the extent allowed by UAE law, our liability for any order is limited to the amount you paid for it." },
             { heading: "Governing law", text: "These terms are governed by the laws of the United Arab Emirates and the Emirate of Dubai." },
@@ -52,7 +52,7 @@ export const POLICIES: Policy[] = [
     {
         slug: "privacy",
         title: "Privacy Policy",
-        description: `How ${STORE.name} collects and uses your personal information.`,
+        description: `How ${STORE.name} collects, uses and protects your personal information when you order TEREA, IQOS ILUMA or STIG online in the UAE.`,
         updated: "2026-10-27",
         sections: [
             { heading: "What we collect", text: "When you order or contact us we collect the details you give us: your name, phone number, email (optional), delivery address and any notes. If you message us on WhatsApp, we receive what you send there." },
@@ -66,7 +66,7 @@ export const POLICIES: Policy[] = [
     {
         slug: "age",
         title: "Age Policy (18+)",
-        description: `${STORE.name} sells only to adults aged 18 and over.`,
+        description: `${STORE.name} sells tobacco and nicotine products only to adults aged 18 and over. How we confirm age on the website and at delivery.`,
         updated: "2026-10-27",
         sections: [
             { heading: "Adults only", text: "This website sells tobacco and nicotine products. They are intended only for adults aged 18 and over who already use tobacco or nicotine products." },

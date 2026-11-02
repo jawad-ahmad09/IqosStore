@@ -64,7 +64,7 @@ function clean(value: unknown, max: number) {
 }
 
 function buildEmailText(data: ContactFormData) {
-    const order = priceOrder(data.items ?? [], data.emirate)
+    const order = priceOrder(data.items ?? [])
     const lines: string[] = []
     lines.push(order.lines.length > 0 ? "New IQOS Store Order" : "New IQOS Store Inquiry")
     lines.push("================================")

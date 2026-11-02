@@ -22,8 +22,8 @@ const join = (items: string[]) => (items.length < 2 ? items.join("") : `${items.
 function copyFor(f: Flavour) {
     const { min, max, regions, families, cheapest } = flavourSummary(f)
     const priceText = min === max ? formatAED(min) : `${formatAED(min)} to ${formatAED(max)}`
-    const title = `TEREA ${f.name} Dubai — ${join(regions)} Compared`
-    const description = `Compare TEREA ${f.name} from ${join(regions)}: taste notes, prices (${priceText} per carton) and stock. Buy TEREA ${f.name} in Dubai & UAE with same-day delivery.`
+    const title = `TEREA ${f.name} Dubai — ${regions.length} Origins & Prices`
+    const description = `TEREA ${f.name} from ${join(regions)} compared: taste, price (${priceText}) and stock. Same-day delivery in Dubai & UAE.`
     const faqs = [
         {
             question: `How much is TEREA ${f.name} in Dubai?`,

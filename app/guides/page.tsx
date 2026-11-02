@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
 import { GUIDES } from "@/app/data/guides"
+import { STORE } from "@/app/data/store"
 
 export const metadata: Metadata = {
     title: { absolute: "TEREA & IQOS ILUMA Guides — Flavours, Origins & Devices" },
@@ -10,9 +11,22 @@ export const metadata: Metadata = {
     alternates: { canonical: "/guides" },
 }
 
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "TEREA & IQOS ILUMA guides",
+    url: `${STORE.url}/guides`,
+    mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: GUIDES.length,
+        itemListElement: GUIDES.map((g, i) => ({ "@type": "ListItem", position: i + 1, name: g.title, url: `${STORE.url}/guides/${g.slug}` })),
+    },
+}
+
 export default function GuidesIndex() {
     return (
         <div className="container-x py-8 md:py-14">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             <Breadcrumbs items={[{ name: "Guides", href: "/guides" }]} />
             <h1 className="mt-5 text-4xl font-extrabold md:text-6xl">Guides</h1>
             <p className="mt-4 max-w-2xl text-ink-soft md:text-lg">Everything you need to choose the right TEREA flavour and IQOS ILUMA device.</p>

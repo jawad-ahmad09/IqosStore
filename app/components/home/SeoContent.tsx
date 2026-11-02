@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { COLLECTIONS } from "@/app/data/collections"
+import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { GUIDES } from "@/app/data/guides"
 import { getProducts, priceRange } from "@/app/data/products"
@@ -42,7 +43,7 @@ export default function SeoContent() {
                     </p>
                     <p className="leading-relaxed">
                         Orders placed before 12PM are delivered the same day in Dubai, and the next day everywhere else — including Abu Dhabi,
-                        Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain and Al Ain. Delivery is free on 2 or more items, and you can pay cash
+                        Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain and Al Ain. Delivery is free on orders over AED 400, and you can pay cash
                         on delivery.
                     </p>
                     <p className="leading-relaxed">
@@ -69,6 +70,18 @@ export default function SeoContent() {
                                 <li key={e.slug}>
                                     <Link href={`/delivery/${e.slug}`} className="flex items-center justify-between rounded-xl bg-paper px-3 py-2.5 text-sm font-bold hover:text-ember">
                                         {e.name} <ArrowRight size={14} />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-extrabold">Same-day delivery across Dubai</h3>
+                        <ul className="mt-3 flex flex-wrap gap-2">
+                            {DUBAI_AREAS.map((a) => (
+                                <li key={a.slug}>
+                                    <Link href={`/delivery/dubai/${a.slug}`} className="chip">
+                                        {a.name.replace(/\s*\(.*\)$/, "")}
                                     </Link>
                                 </li>
                             ))}

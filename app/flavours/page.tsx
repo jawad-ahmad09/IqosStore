@@ -2,18 +2,31 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Breadcrumbs from "@/app/components/collection/Breadcrumbs"
 import { FLAVOURS, flavourSummary } from "@/app/data/flavours"
-import { REGIONS } from "@/app/data/store"
+import { REGIONS, STORE } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
 
 export const metadata: Metadata = {
-    title: { absolute: "TEREA Flavours Compared by Origin — Amber, Silver, Sun Pearl & More | IQOS Store UAE" },
-    description: "Compare popular TEREA flavours across Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan — taste notes and prices side by side, with same-day delivery in Dubai.",
+    title: { absolute: "TEREA Flavours Compared by Origin — Taste & Prices in Dubai" },
+    description: "Compare TEREA flavours across Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan: taste notes and prices side by side. Same-day Dubai delivery.",
     alternates: { canonical: "/flavours" },
+}
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "TEREA flavours compared by origin",
+    url: `${STORE.url}/flavours`,
+    mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: FLAVOURS.length,
+        itemListElement: FLAVOURS.map((f, i) => ({ "@type": "ListItem", position: i + 1, name: `TEREA ${f.name}`, url: `${STORE.url}/flavours/${f.slug}` })),
+    },
 }
 
 export default function FlavoursIndex() {
     return (
         <div className="container-x py-8 md:py-14">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             <Breadcrumbs items={[{ name: "Flavours", href: "/flavours" }]} />
             <h1 className="mt-5 text-4xl font-extrabold md:text-6xl">TEREA flavours, compared</h1>
             <p className="mt-4 max-w-2xl text-ink-soft md:text-lg">

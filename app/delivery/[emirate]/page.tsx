@@ -11,7 +11,8 @@ import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES, getEmirate, type EmirateInfo } from "@/app/data/emirates"
 import { getProducts, priceRange } from "@/app/data/products"
 import { ORIGIN_COUNT, REGIONS, STORE, whatsappLink } from "@/app/data/store"
-import { FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
+import { DELIVERY, FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
+import { OG_IMAGE } from "@/app/lib/seo"
 
 type Params = { params: Promise<{ emirate: string }> }
 
@@ -29,7 +30,7 @@ function faqsFor(e: EmirateInfo) {
         },
         {
             question: `How much does delivery to ${e.name} cost?`,
-            answer: `Delivery is free for ${FREE_DELIVERY_RULE}. Otherwise it costs ${formatAED(e.singleItemFee)} to deliver in ${e.name}.`,
+            answer: `Delivery is free on ${FREE_DELIVERY_RULE}. Below that it costs ${formatAED(DELIVERY.fee)} to deliver in ${e.name}.`,
         },
         {
             question: `Do you deliver to ${e.areas[0]} and ${e.areas[1]}?`,
@@ -46,12 +47,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const e = getEmirate((await params).emirate)
     if (!e) return {}
     const title = `IQOS & TEREA Delivery in ${e.name} — ILUMA, TEREA, STIG`
-    const description = `Order TEREA, IQOS ILUMA and VGOD STIG online with delivery in ${e.name}. ${e.speed} Free delivery on ${FREE_DELIVERY_RULE}, cash on delivery available.`
+    const description = `TEREA, IQOS ILUMA & VGOD STIG delivered in ${e.name}. ${e.speed} Free over AED ${DELIVERY.freeFromAmount}, cash on delivery.`
     return {
         title: { absolute: title },
         description,
         alternates: { canonical: `/delivery/${e.slug}` },
-        openGraph: { title, description, url: `/delivery/${e.slug}` },
+        openGraph: { title, description, url: `/delivery/${e.slug}`, images: OG_IMAGE },
     }
 }
 
@@ -76,7 +77,7 @@ export default async function EmiratePage({ params }: Params) {
             offers: {
                 "@type": "Offer",
                 priceCurrency: "AED",
-                price: e.singleItemFee,
+                price: DELIVERY.fee,
                 description: `Delivery fee; free on ${FREE_DELIVERY_RULE}`,
             },
         },
@@ -118,7 +119,7 @@ export default async function EmiratePage({ params }: Params) {
                 <div className="grid gap-3 sm:grid-cols-3">
                     {[
                         { icon: Clock, title: "Delivery time", text: e.speed },
-                        { icon: Truck, title: "Delivery fee", text: `Free on ${FREE_DELIVERY_RULE} · otherwise ${formatAED(e.singleItemFee)}` },
+                        { icon: Truck, title: "Delivery fee", text: `Free on ${FREE_DELIVERY_RULE} · otherwise ${formatAED(DELIVERY.fee)}` },
                         { icon: MapPin, title: "Coverage", text: `All of ${e.name}, door to door` },
                     ].map(({ icon: Icon, title, text }) => (
                         <div key={title} className="rounded-[1.5rem] border border-line bg-paper p-5">
