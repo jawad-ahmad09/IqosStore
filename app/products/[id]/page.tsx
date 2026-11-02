@@ -152,7 +152,7 @@ export default async function ProductPage({ params }: Params) {
                         <div className="mt-6 grid grid-cols-3 gap-2 text-center">
                             {[
                                 { icon: Clock, title: "Same day", text: "Dubai, before 12PM" },
-                                { icon: Truck, title: `Free ${DELIVERY.freeFromItems}+ items`, text: `Else from ${formatAED(DELIVERY.dubai)}` },
+                                { icon: Truck, title: `Free ${DELIVERY.freeFromItems}+ items`, text: `or AED ${DELIVERY.freeFromAmount}+ · else from ${formatAED(DELIVERY.dubai)}` },
                                 { icon: BadgeCheck, title: "Authentic", text: "Sealed stock" },
                             ].map(({ icon: Icon, title, text }) => (
                                 <div key={title} className="rounded-2xl bg-paper p-3">

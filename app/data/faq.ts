@@ -1,3 +1,5 @@
+import { DELIVERY } from "@/app/lib/pricing"
+
 export const faqItems = [
     {
         question: "How fast is delivery in the UAE?",
@@ -5,11 +7,11 @@ export const faqItems = [
     },
     {
         question: "How much does delivery cost?",
-        answer: "Delivery is free for orders of 2 or more items anywhere in the UAE. For a single item it's AED 10 in Dubai and AED 20 for other emirates.",
+        answer: `Delivery is free anywhere in the UAE for ${DELIVERY.freeFromItems} or more items, or for any order over AED ${DELIVERY.freeFromAmount}. Otherwise it's AED ${DELIVERY.dubai} in Dubai and AED ${DELIVERY.otherEmirates} for other emirates.`,
     },
     {
-        question: "What's the difference between Indonesia, Kazakhstan, Uzbekistan, Switzerland and Japan TEREA?",
-        answer: "They're the same TEREA format made for different markets, so the flavour line-up and packaging vary. Japan has premium Japanese-market blends, Indonesia has the widest range of editions and pearls, Kazakhstan and Uzbekistan carry the classic favourites, and Switzerland brings classic European tobacco blends. All work with every IQOS ILUMA device.",
+        question: "What's the difference between Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan TEREA?",
+        answer: "They're the same TEREA format made for different markets, so the flavour line-up and packaging vary. Japan has premium Japanese-market blends, Indonesia has the widest range of editions and pearls, Kazakhstan and Uzbekistan carry the classic favourites, and Switzerland and Italy bring classic European tobacco blends. All work with every IQOS ILUMA device.",
     },
     {
         question: "Are your products 100% authentic?",

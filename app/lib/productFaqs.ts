@@ -1,4 +1,4 @@
-import { DELIVERY, formatAED } from "@/app/lib/pricing"
+import { DELIVERY, FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 import type { Product } from "@/app/types"
 
 // Product-specific questions built from catalogue facts, so every product page
@@ -33,7 +33,7 @@ export function productFaqs(product: Product) {
         })
         faqs.push({
             question: `Which sticks does the ${product.name} use?`,
-            answer: "TEREA sticks only — from any origin (Indonesia, Kazakhstan, Uzbekistan, Switzerland, Japan). Don't use HEETS in an ILUMA device.",
+            answer: "TEREA sticks only — from any origin (Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy, Japan). Don't use HEETS in an ILUMA device.",
         })
     } else {
         faqs.push({
@@ -46,7 +46,7 @@ export function productFaqs(product: Product) {
 
     faqs.push({
         question: `How fast can I get ${product.name} delivered?`,
-        answer: `Order before 12PM for same-day delivery in Dubai; other emirates get next-day delivery. Delivery is free on ${DELIVERY.freeFromItems}+ items, otherwise ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
+        answer: `Order before 12PM for same-day delivery in Dubai; other emirates get next-day delivery. Delivery is free on ${FREE_DELIVERY_RULE}; otherwise ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
     })
     return faqs
 }

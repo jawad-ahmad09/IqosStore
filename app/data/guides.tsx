@@ -71,7 +71,7 @@ function OriginGuide() {
     return (
         <>
             <p>
-                Walk into any TEREA conversation in Dubai and someone will ask: Indonesia, Kazakhstan, Uzbekistan, Switzerland or Japan? They&apos;re all genuine
+                Walk into any TEREA conversation in Dubai and someone will ask: Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy or Japan? They&apos;re all genuine
                 TEREA and they all fit every IQOS ILUMA. Here&apos;s what actually changes between them.
             </p>
             <h2>The short answer</h2>
@@ -99,14 +99,14 @@ function OriginGuide() {
             </p>
             <h2>Packaging</h2>
             <p>
-                Each origin uses its own local-market packaging and health warnings — Indonesian, Kazakh, Uzbek, Swiss/European or Japanese text. That&apos;s the
+                Each origin uses its own local-market packaging and health warnings — Indonesian, Kazakh, Uzbek, Swiss, Italian or Japanese text. That&apos;s the
                 easiest way to tell them apart, and it&apos;s also a sign you&apos;re getting the genuine regional product.
             </p>
             <h2>Which should I buy?</h2>
             <p>
                 For value and variety, start with <Link href="/terea/indonesia">Indonesia</Link>. For the familiar classics, choose{" "}
                 <Link href="/terea/kazakhstan">Kazakhstan</Link> or <Link href="/terea/uzbekistan">Uzbekistan</Link>. For classic European
-                tobacco, try <Link href="/terea/switzerland">Switzerland</Link>. For something premium, go
+                tobacco, try <Link href="/terea/switzerland">Switzerland</Link> or <Link href="/terea/italy">Italy</Link>. For something premium, go
                 with <Link href="/terea/japan">Japan</Link>. Mixing origins in one order is fine — and with 2 or more cartons, delivery is free.
             </p>
         </>
@@ -142,8 +142,10 @@ function IlumaGuide() {
             </p>
             <h2>ILUMA i series — the latest generation</h2>
             <p>
-                ILUMA i and ILUMA i Prime are the newest models, adding features such as a touchscreen on selected models and more control
-                over your session. ILUMA i starts at {from(/^ILUMA i$/)} and ILUMA i Prime at {from(/^ILUMA i Prime$/)}.
+                The <Link href="/iqos-iluma-i">ILUMA i series</Link> is the newest generation, with Pause Mode, FlexPuff and — on i Standard and i
+                Prime — a touchscreen charger. <Link href="/iqos-iluma-i/one">ILUMA i One</Link> starts at {from(/^ILUMA i One$/)},{" "}
+                <Link href="/iqos-iluma-i/standard">ILUMA i Standard</Link> at {from(/^ILUMA i Standard$/)} and{" "}
+                <Link href="/iqos-iluma-i/prime">ILUMA i Prime</Link> at {from(/^ILUMA i Prime$/)}.
             </p>
             <h2>Which sticks do they use?</h2>
             <p>

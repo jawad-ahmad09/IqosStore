@@ -4,8 +4,8 @@ export const STORE = {
     name: "IQOS Store UAE",
     url: "https://www.iqosstoredubai.com",
     email: "iqosstoredubai@gmail.com",
-    phone: "+971 56 192 8359",
-    phoneHref: "tel:+971561928359",
+    phone: "+971 54 301 9680",
+    phoneHref: "tel:+971543019680",
     whatsapp: "971543019680",
     whatsappDisplay: "+971 54 301 9680",
 }
@@ -39,6 +39,12 @@ export const REGIONS: Record<Region, { label: string; code: string; color: strin
         color: "var(--color-ch)",
         blurb: "Classic European blends, made in Switzerland.",
     },
+    Italy: {
+        label: "Italy",
+        code: "IT",
+        color: "var(--color-it)",
+        blurb: "European classics and menthols, made in Italy.",
+    },
     Japan: {
         label: "Japan",
         code: "JP",
@@ -71,7 +77,7 @@ export const CATEGORIES: Record<Category, { label: string; short: string; color:
 const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 const REGION_NAMES = Object.keys(REGIONS) as Region[]
 
-// "Indonesia, Kazakhstan, Uzbekistan, Switzerland and Japan" — kept in sync with REGIONS.
+// "Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan" — kept in sync with REGIONS.
 export const ORIGIN_LIST = `${REGION_NAMES.slice(0, -1).join(", ")} and ${REGION_NAMES[REGION_NAMES.length - 1]}`
 export const ORIGIN_COUNT = NUMBER_WORDS[REGION_NAMES.length] ?? String(REGION_NAMES.length)
 

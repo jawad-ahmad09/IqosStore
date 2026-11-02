@@ -21,6 +21,7 @@ export const AR_REGION: Record<Region, string> = {
     Kazakhstan: "كازاخستان",
     Uzbekistan: "أوزبكستان",
     Switzerland: "سويسرا",
+    Italy: "إيطاليا",
     Japan: "اليابان",
 }
 
@@ -81,7 +82,7 @@ const regionCollection = (region: Region, slug: string, intro: string, extra: st
             },
             {
                 question: "هل التوصيل متاح خارج دبي؟",
-                answer: `نعم، نوصل إلى جميع الإمارات. التوصيل مجاني عند طلب ${DELIVERY.freeFromItems} منتجات أو أكثر.`,
+                answer: `نعم، نوصل إلى جميع الإمارات. التوصيل مجاني عند طلب ${DELIVERY.freeFromItems} منتجات أو أكثر أو للطلبات فوق ${aed(DELIVERY.freeFromAmount)}.`,
             },
         ],
     }
@@ -108,7 +109,7 @@ export const AR_COLLECTIONS: ArCollection[] = [
         faqs: [
             {
                 question: "كم سعر كرتونة تيريا في دبي؟",
-                answer: `إندونيسيا ${range(tereaList("Indonesia"))}، كازاخستان ${range(tereaList("Kazakhstan"))}، أوزبكستان ${range(tereaList("Uzbekistan"))}، سويسرا ${range(tereaList("Switzerland"))}، واليابان ${range(tereaList("Japan"))}.`,
+                answer: `إندونيسيا ${range(tereaList("Indonesia"))}، كازاخستان ${range(tereaList("Kazakhstan"))}، أوزبكستان ${range(tereaList("Uzbekistan"))}، سويسرا ${range(tereaList("Switzerland"))}، إيطاليا ${range(tereaList("Italy"))}، واليابان ${range(tereaList("Japan"))}.`,
             },
             {
                 question: "هل منتجاتكم أصلية؟",
@@ -139,6 +140,12 @@ export const AR_COLLECTIONS: ArCollection[] = [
         "terea/switzerland",
         "تيريا السويسرية تقدم التشكيلة الأوروبية الكلاسيكية — من سيلفر الخفيفة ويلو الحلوة إلى أمبر الغنية وتيك القوية.",
         "سيلفر ويلو هما الأخف، وأمبر وسيينا في الوسط، بينما برونز وتيك الأكثر قوة. وتتوفر أيضاً تركواز بمنثول خفيف وبيربل ويف بنكهة العنب.",
+    ),
+    regionCollection(
+        "Italy",
+        "terea/italy",
+        "تيريا الإيطالية تقدم النكهات الأوروبية المفضلة — سيلفر، يلو، أمبر، سيينا وتيك — إلى جانب تركواز وبيربل ويف بالمنثول.",
+        "سيلفر ويلو هما الأخف، وأمبر وسيينا متوازنتان، وتيك الأقوى. أما تركواز فمنثول ناعم، وبيربل ويف تجمع المنثول مع لمسة التوت.",
     ),
     regionCollection(
         "Japan",

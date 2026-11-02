@@ -26,7 +26,7 @@ const FAQS = [
     },
     {
         question: "كم تكلفة التوصيل؟",
-        answer: `التوصيل مجاني لـ ${DELIVERY.freeFromItems} منتجات أو أكثر في أي مكان في الإمارات. للمنتج الواحد: ${aed(DELIVERY.dubai)} في دبي و${aed(DELIVERY.otherEmirates)} لباقي الإمارات.`,
+        answer: `التوصيل مجاني لـ ${DELIVERY.freeFromItems} منتجات أو أكثر أو للطلبات فوق ${aed(DELIVERY.freeFromAmount)} في أي مكان في الإمارات. غير ذلك: ${aed(DELIVERY.dubai)} في دبي و${aed(DELIVERY.otherEmirates)} لباقي الإمارات.`,
     },
     {
         question: "ما الفرق بين تيريا إندونيسيا وكازاخستان واليابان؟",

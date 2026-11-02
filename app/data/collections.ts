@@ -10,8 +10,8 @@ const rangeText = (list: Product[]) => {
 }
 const tereaFrom = (region?: Region) => formatAED(priceRange(getProducts({ category: "terea", region })).min)
 const tereaRange = (region: Region) => rangeText(getProducts({ category: "terea", region }))
-const lineFrom = (category: Category, line: string) =>
-    formatAED(priceRange(getProducts({ category }).filter((p) => p.line === line)).min)
+const lineFrom = (category: Category, line: string) => formatAED(priceRange(getProducts({ category, line })).min)
+const lineRange = (line: string) => rangeText(getProducts({ category: "iluma", line }))
 
 // Indexable collection landing pages. Each has its own URL, copy and FAQs so it
 // can rank for searches like "TEREA Japan Dubai" or "IQOS ILUMA price UAE".
@@ -19,6 +19,8 @@ export interface Collection {
     slug: string // path without leading slash
     category: Category
     region?: Region
+    line?: string // model line filter, e.g. "ILUMA i" or "ILUMA i One"
+    label?: string // short name for breadcrumbs and menus
     h1: string
     metaTitle: string
     metaDescription: string
@@ -44,7 +46,7 @@ export const COLLECTIONS: Collection[] = [
             },
             {
                 heading: "Which origin should you choose?",
-                text: `All ${ORIGIN_COUNT} origins fit every ILUMA device. Indonesia has the biggest variety of editions and pearls, Kazakhstan and Uzbekistan cover the classic favourites at everyday prices, Switzerland brings classic European tobacco blends, and Japan offers premium Japanese-market blends you rarely find elsewhere in the UAE.`,
+                text: `All ${ORIGIN_COUNT} origins fit every ILUMA device. Indonesia has the biggest variety of editions and pearls, Kazakhstan and Uzbekistan cover the classic favourites at everyday prices, Switzerland and Italy bring classic European tobacco blends, and Japan offers premium Japanese-market blends you rarely find elsewhere in the UAE.`,
             },
             {
                 heading: "Looking for HEETS?",
@@ -54,7 +56,7 @@ export const COLLECTIONS: Collection[] = [
         faqs: [
             {
                 question: "How much is a TEREA carton in Dubai?",
-                answer: `In our store a TEREA carton is ${tereaRange("Indonesia")} for Indonesia, ${tereaRange("Kazakhstan")} for Kazakhstan, ${tereaRange("Uzbekistan")} for Uzbekistan, ${tereaRange("Switzerland")} for Switzerland and ${tereaRange("Japan")} for Japan. Each carton has 200 sticks (10 packs × 20).`,
+                answer: `In our store a TEREA carton is ${tereaRange("Indonesia")} for Indonesia, ${tereaRange("Kazakhstan")} for Kazakhstan, ${tereaRange("Uzbekistan")} for Uzbekistan, ${tereaRange("Switzerland")} for Switzerland, ${tereaRange("Italy")} for Italy and ${tereaRange("Japan")} for Japan. Each carton has 200 sticks (10 packs × 20).`,
             },
             {
                 question: "Do you deliver TEREA outside Dubai?",
@@ -186,6 +188,36 @@ export const COLLECTIONS: Collection[] = [
         ],
     },
     {
+        slug: "terea/italy",
+        category: "terea",
+        region: "Italy",
+        h1: "TEREA Italy in Dubai & UAE",
+        metaTitle: `TEREA Italy Dubai — Amber, Silver, Turquoise & More from ${tereaFrom("Italy")}`,
+        metaDescription: `Buy TEREA from Italy in Dubai and the UAE: Amber, Silver, Yellow, Sienna, Teak, Turquoise Menthol and Purple Wave Menthol. Italian-made TEREA at ${tereaRange("Italy")} per carton, same-day delivery in Dubai.`,
+        intro:
+            "Italian-made TEREA brings the European favourites — light Silver, sweet Yellow, rounded Amber and Sienna, bold Teak — plus Turquoise and Purple Wave for menthol fans.",
+        body: [
+            {
+                heading: "The Italian range, light to bold",
+                text: "Silver and Yellow are the gentlest sticks, Amber and Sienna sit in the middle with a warm, rounded taste, and Teak is the boldest. Turquoise Menthol is clean and cool, while Purple Wave Menthol adds a berry note to the chill.",
+            },
+            {
+                heading: "Made for every ILUMA",
+                text: "TEREA from Italy fits every IQOS ILUMA device, including the ILUMA i series. It doesn't work in older IQOS models such as the IQOS 3 DUO.",
+            },
+        ],
+        faqs: [
+            {
+                question: "How much is TEREA Italy in Dubai?",
+                answer: `${tereaRange("Italy")} per carton of 200 sticks (10 packs × 20) in our store, with free delivery on 2 or more items.`,
+            },
+            {
+                question: "Is TEREA from Italy different from Swiss TEREA?",
+                answer: "The flavours are very close — both are European-market TEREA. The main difference is the packaging and health-warning language. Pick whichever you prefer; both work in every ILUMA.",
+            },
+        ],
+    },
+    {
         slug: "terea/japan",
         category: "terea",
         region: "Japan",
@@ -238,11 +270,123 @@ export const COLLECTIONS: Collection[] = [
         faqs: [
             {
                 question: "What is the IQOS ILUMA price in the UAE?",
-                answer: `In our store, ILUMA One starts at ${lineFrom("iluma", "ILUMA One")}, ILUMA Standard at ${lineFrom("iluma", "ILUMA Standard")}, ILUMA i at ${lineFrom("iluma", "ILUMA i")} and ILUMA i Prime at ${lineFrom("iluma", "ILUMA i Prime")}. Limited editions vary.`,
+                answer: `In our store, ILUMA One starts at ${lineFrom("iluma", "ILUMA One")}, ILUMA Standard at ${lineFrom("iluma", "ILUMA Standard")}, ILUMA i One at ${lineFrom("iluma", "ILUMA i One")}, ILUMA i Standard at ${lineFrom("iluma", "ILUMA i Standard")} and ILUMA i Prime at ${lineFrom("iluma", "ILUMA i Prime")}. Limited editions vary.`,
             },
             {
                 question: "Are your IQOS ILUMA devices original?",
                 answer: "Yes — every device is authentic and delivered sealed.",
+            },
+        ],
+    },
+    {
+        slug: "iqos-iluma-i",
+        category: "iluma",
+        line: "ILUMA i",
+        label: "ILUMA i",
+        h1: "IQOS ILUMA i in Dubai & UAE",
+        metaTitle: `IQOS ILUMA i Price in UAE — i One, i Prime & i Standard from ${lineFrom("iluma", "ILUMA i")}`,
+        metaDescription: `Buy the new IQOS ILUMA i in Dubai and the UAE: ILUMA i One from ${lineFrom("iluma", "ILUMA i One")}, ILUMA i Standard from ${lineFrom("iluma", "ILUMA i Standard")} and ILUMA i Prime from ${lineFrom("iluma", "ILUMA i Prime")}. Authentic, sealed devices with same-day Dubai delivery.`,
+        intro:
+            "ILUMA i is the newest IQOS generation — bladeless SMARTCORE INDUCTION with Pause Mode, FlexPuff and, on i Standard and i Prime, a touchscreen charger. Pick the model and colour that suits you.",
+        body: [
+            {
+                heading: "i One, i Standard or i Prime?",
+                text: "ILUMA i One is an all-in-one device — no separate charger, around 20 sessions per charge. ILUMA i Standard pairs a holder with a touchscreen pocket charger for back-to-back sessions. ILUMA i Prime adds a premium aluminium wraparound design to the same setup.",
+            },
+            {
+                heading: "What's new compared with ILUMA?",
+                text: "Pause Mode lets you stop a session for a few minutes and pick it up again, FlexPuff adapts the session length to how you smoke, and the touchscreen shows battery and session info at a glance. Like every ILUMA, it works with TEREA sticks only.",
+            },
+        ],
+        faqs: [
+            {
+                question: "What is the IQOS ILUMA i price in the UAE?",
+                answer: `In our store, ILUMA i One is ${lineRange("ILUMA i One")}, ILUMA i Standard is ${lineRange("ILUMA i Standard")} and ILUMA i Prime is ${lineRange("ILUMA i Prime")}, depending on colour and edition.`,
+            },
+            {
+                question: "Does ILUMA i work with all TEREA?",
+                answer: "Yes. TEREA from every origin — Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan — works in every ILUMA i model.",
+            },
+        ],
+    },
+    {
+        slug: "iqos-iluma-i/one",
+        category: "iluma",
+        line: "ILUMA i One",
+        label: "ILUMA i One",
+        h1: "IQOS ILUMA i One in Dubai & UAE",
+        metaTitle: `IQOS ILUMA i One Price in UAE — All Colours from ${lineFrom("iluma", "ILUMA i One")}`,
+        metaDescription: `Buy IQOS ILUMA i One in Dubai and the UAE: Breeze Blue, Midnight Black, Lime Green, Violet Purple, Vivid Terracotta and limited editions. ${lineRange("ILUMA i One")}, same-day delivery in Dubai.`,
+        intro:
+            "ILUMA i One is the simplest ILUMA i: holder and battery in one pocket-sized body, around 20 sessions per charge and nothing extra to carry.",
+        body: [
+            {
+                heading: "Who is ILUMA i One for?",
+                text: "It's ideal as a first heated-tobacco device, a light everyday carry or a backup. You get bladeless induction heating, auto-start, FlexPuff and Pause Mode — just without the separate pocket charger.",
+            },
+        ],
+        faqs: [
+            {
+                question: "How much is IQOS ILUMA i One in Dubai?",
+                answer: `${lineRange("ILUMA i One")} in our store, depending on colour and edition.`,
+            },
+            {
+                question: "How many sessions does ILUMA i One last?",
+                answer: "Around 20 sessions on a full charge — enough for most people for a full day.",
+            },
+        ],
+    },
+    {
+        slug: "iqos-iluma-i/prime",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        label: "ILUMA i Prime",
+        h1: "IQOS ILUMA i Prime in Dubai & UAE",
+        metaTitle: `IQOS ILUMA i Prime Price in UAE — Kits & Colours from ${lineFrom("iluma", "ILUMA i Prime")}`,
+        metaDescription: `Buy IQOS ILUMA i Prime in Dubai and the UAE: Garnet Red, Aspen Green, Black, Blue, Electric Purple, Galaxy Blue and limited editions. ${lineRange("ILUMA i Prime")}, same-day delivery in Dubai.`,
+        intro:
+            "ILUMA i Prime is the flagship: a premium aluminium wraparound pocket charger with touchscreen, plus every ILUMA i feature.",
+        body: [
+            {
+                heading: "Why choose i Prime?",
+                text: "You get the same induction heating as the rest of the range, wrapped in premium materials with a distinctive wraparound design and a touchscreen that shows battery and session info. It's the one to pick if design matters to you.",
+            },
+        ],
+        faqs: [
+            {
+                question: "How much is IQOS ILUMA i Prime in Dubai?",
+                answer: `${lineRange("ILUMA i Prime")} in our store, depending on colour and edition.`,
+            },
+            {
+                question: "What's the difference between i Prime and i Standard?",
+                answer: "Both have a holder and touchscreen pocket charger. i Prime adds premium aluminium and a wraparound design; the heating and features are the same.",
+            },
+        ],
+    },
+    {
+        slug: "iqos-iluma-i/standard",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        label: "ILUMA i Standard",
+        h1: "IQOS ILUMA i Standard in Dubai & UAE",
+        metaTitle: `IQOS ILUMA i Standard Price in UAE — All Colours from ${lineFrom("iluma", "ILUMA i Standard")}`,
+        metaDescription: `Buy IQOS ILUMA i Standard in Dubai and the UAE: Black, Breeze Blue, Oasis, Purple, Electric Purple and limited editions. ${lineRange("ILUMA i Standard")}, same-day delivery in Dubai.`,
+        intro:
+            "ILUMA i Standard pairs a slim holder with a touchscreen pocket charger, so you can enjoy back-to-back sessions all day.",
+        body: [
+            {
+                heading: "The everyday ILUMA i",
+                text: "i Standard is the balanced choice: the full ILUMA i feature set — touchscreen, FlexPuff, FlexBattery and Pause Mode — at a lower price than i Prime.",
+            },
+        ],
+        faqs: [
+            {
+                question: "How much is IQOS ILUMA i Standard in Dubai?",
+                answer: `${lineRange("ILUMA i Standard")} in our store, depending on colour and edition.`,
+            },
+            {
+                question: "Can I use back-to-back sessions?",
+                answer: "Yes. The pocket charger recharges the holder between sessions, so you can use it again straight away.",
             },
         ],
     },
@@ -267,6 +411,10 @@ export const COLLECTIONS: Collection[] = [
                 answer: `STIG packs are ${lineFrom("stig", "STIG")} and STIG XL is ${lineFrom("stig", "STIG XL")} in our store, with free delivery on 2 or more items.`,
             },
             {
+                question: "Can I buy a full box of STIG?",
+                answer: `Yes. On any STIG page choose "Full box" to order 10 packs (30 pods) of one flavour in a single tap — from ${formatAED(priceRange(getProducts({ category: "stig", line: "STIG" })).min * 10)} a box, with free delivery.`,
+            },
+            {
                 question: "Do you deliver STIG across the UAE?",
                 answer: "Yes, to every emirate. Same-day in Dubai when you order before 12PM.",
             },
@@ -279,5 +427,5 @@ export function getCollection(slug: string) {
 }
 
 export function collectionFor(category: Category, region?: Region) {
-    return COLLECTIONS.find((c) => c.category === category && c.region === region)
+    return COLLECTIONS.find((c) => c.category === category && c.region === region && !c.line)
 }

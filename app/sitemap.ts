@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { COLLECTIONS } from "@/app/data/collections"
+import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { FLAVOURS } from "@/app/data/flavours"
 import { GUIDES } from "@/app/data/guides"
@@ -38,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: now,
             changeFrequency: "monthly" as const,
             priority: 0.7,
+        })),
+        ...DUBAI_AREAS.map((a) => ({
+            url: url(`/delivery/dubai/${a.slug}`),
+            lastModified: now,
+            changeFrequency: "monthly" as const,
+            priority: 0.65,
         })),
         { url: url("/guides"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
         ...GUIDES.map((g) => ({

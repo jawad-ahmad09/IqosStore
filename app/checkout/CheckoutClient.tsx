@@ -247,7 +247,7 @@ export default function CheckoutClient() {
                                 </li>
                             ))}
                         </ul>
-                        <FreeDeliveryMeter count={order.items} />
+                        <FreeDeliveryMeter count={order.items} subtotal={order.subtotal} />
                         <dl className="space-y-2 border-t border-line pt-4 text-sm">
                             <div className="flex justify-between">
                                 <dt className="text-ink-soft">Subtotal</dt>

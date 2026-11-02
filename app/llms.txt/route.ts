@@ -1,10 +1,11 @@
 import { COLLECTIONS } from "@/app/data/collections"
+import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { FLAVOURS } from "@/app/data/flavours"
 import { GUIDES } from "@/app/data/guides"
 import { getProducts, priceRange } from "@/app/data/products"
 import { ORIGIN_LIST, STORE } from "@/app/data/store"
-import { DELIVERY, formatAED } from "@/app/lib/pricing"
+import { FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 
 export const dynamic = "force-static"
 
@@ -15,11 +16,11 @@ export function GET() {
     const body = [
         `# ${STORE.name}`,
         "",
-        `> Online store in the UAE selling authentic TEREA heated tobacco sticks (${ORIGIN_LIST}), IQOS ILUMA devices and VGOD STIG disposable pods. Same-day delivery in Dubai for orders before 12PM, next-day delivery to all other emirates, free delivery on ${DELIVERY.freeFromItems}+ items, cash on delivery. WhatsApp support 24/7: +${STORE.whatsapp}.`,
+        `> Online store in the UAE selling authentic TEREA heated tobacco sticks (${ORIGIN_LIST}), IQOS ILUMA devices and VGOD STIG disposable pods. Same-day delivery in Dubai for orders before 12PM, next-day delivery to all other emirates, free delivery on ${FREE_DELIVERY_RULE}, cash on delivery. WhatsApp support 24/7: +${STORE.whatsapp}.`,
         "",
         "## Collections",
         ...COLLECTIONS.map((c) => {
-            const list = getProducts({ category: c.category, region: c.region })
+            const list = getProducts({ category: c.category, region: c.region, line: c.line })
             const { min, max } = priceRange(list)
             return line(`/${c.slug}`, c.h1, `${list.length} products, ${formatAED(min)}${min === max ? "" : `–${max}`}`)
         }),
@@ -30,6 +31,7 @@ export function GET() {
         "",
         "## Delivery",
         ...EMIRATE_PAGES.map((e) => line(`/delivery/${e.slug}`, `Delivery in ${e.name}`, e.speed)),
+        ...DUBAI_AREAS.map((a) => line(`/delivery/dubai/${a.slug}`, `Delivery in ${a.name}, Dubai`, "same-day before 12PM")),
         "",
         "## Guides",
         ...GUIDES.map((g) => line(`/guides/${g.slug}`, g.title, g.description)),

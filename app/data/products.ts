@@ -1,7 +1,7 @@
 // Generated from the supplier catalogue. Prices in AED.
 import type { Category, Product, Region } from "@/app/types"
 
-export const products: Product[] = [
+const catalogue: Product[] = [
     {
         id: "terea-sun-pearl-indonesia",
         name: "TEREA Sun Pearl",
@@ -195,7 +195,7 @@ export const products: Product[] = [
         region: "Indonesia",
         family: "Menthol",
         notes: "Cool menthol, tobacco underneath",
-        description: "TEREA Green in its Indonesia edition is for smokers who want a cooling stick but still like to taste tobacco. Menthol gives each draw a cool finish while the tobacco base stays present beneath it. One stick covers a single session of up to 14 puffs or about six minutes on IQOS ILUMA.",
+        description: "Indonesian TEREA Green balances a fresh menthol chill with a tobacco base you can still taste clearly, so it never feels like plain mint. A good middle ground between classic tobacco and stronger icy sticks, with a full ILUMA session per stick.",
         specs: [
             "20 sticks per pack",
             "Origin: Indonesia",
@@ -931,7 +931,7 @@ export const products: Product[] = [
             "Around 14 puffs per stick",
             "For IQOS ILUMA devices only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-rich-regular-japan.png",
@@ -953,7 +953,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-menthol-japan.png",
@@ -974,7 +974,7 @@ export const products: Product[] = [
             "0.5 mg nicotine per stick",
             "About 14 puffs or 6 minutes per stick",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-blossom-pearl-japan.png",
@@ -996,7 +996,7 @@ export const products: Product[] = [
             "About 14 puffs or 6 minutes per stick",
             "For IQOS ILUMA and ILUMA i only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-tropical-menthol-japan.jpg",
@@ -1017,7 +1017,7 @@ export const products: Product[] = [
             "Flavour: mint and yellow citrus",
             "For IQOS ILUMA devices only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-stellar-pearl-japan.png",
@@ -1039,7 +1039,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-purple-menthol-japan.png",
@@ -1061,7 +1061,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-black-menthol-japan.png",
@@ -1083,7 +1083,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-fusion-menthol-japan.png",
@@ -1105,7 +1105,7 @@ export const products: Product[] = [
             "0.5 mg nicotine per stick",
             "Up to 14 puffs per stick",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-sun-pearl-japan.jpg",
@@ -1127,7 +1127,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-bright-menthol-japan.png",
@@ -1149,7 +1149,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-yellow-menthol-japan.png",
@@ -1171,7 +1171,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-mint-japan.png",
@@ -1193,7 +1193,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA i Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-balanced-regular-japan.png",
@@ -1215,7 +1215,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA i Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-smooth-regular-japan.png",
@@ -1237,7 +1237,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-regular-japan.png",
@@ -1250,7 +1250,7 @@ export const products: Product[] = [
         region: "Japan",
         family: "Menthol",
         notes: "Dark berry, menthol finish",
-        description: "Black Purple Menthol, Japan edition, opens with slightly sweet purple berry notes before a menthol finish takes the lead. With Japanese tobacco underneath, it has a fuller flavour than the citrus or mint-led options in the range. Each stick gives up to 14 puffs with 0.5 mg of nicotine on IQOS ILUMA.",
+        description: "From the Japanese line-up, Black Purple Menthol starts with dark, jammy berry and finishes with a strong, cold menthol hit over a rich tobacco body. It's one of the boldest fruit-menthol sticks we carry — made for IQOS ILUMA.",
         specs: [
             "200 sticks per carton (10 packs × 20)",
             "Origin: Japan",
@@ -1258,7 +1258,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-black-purple-menthol-japan.png",
@@ -1279,7 +1279,7 @@ export const products: Product[] = [
             "Up to 14 puffs per stick",
             "Fits ILUMA Prime, Standard and One",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-ruby-regular-japan.png",
@@ -1299,7 +1299,7 @@ export const products: Product[] = [
             "Flavour: raspberry and rose",
             "For IQOS ILUMA devices only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-riviera-pearl-japan.jpg",
@@ -1322,7 +1322,7 @@ export const products: Product[] = [
             "Up to 14 puffs or about 6 minutes per stick",
             "For IQOS ILUMA devices only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-warm-regular-japan.png",
@@ -1342,7 +1342,7 @@ export const products: Product[] = [
             "Click capsule: Yes (tropical menthol)",
             "For IQOS ILUMA devices only",
         ],
-        price: 205,
+        price: 230,
         inStock: true,
         images: [
             "/products/terea-oasis-pearl-japan.png",
@@ -1403,7 +1403,7 @@ export const products: Product[] = [
             "45 mm filter",
             "For IQOS ILUMA and ILUMA i only",
         ],
-        price: 210,
+        price: 230,
         inStock: false,
         images: [
             "/products/terea-hybrid-pearl-green-japan.jpg",
@@ -1504,7 +1504,7 @@ export const products: Product[] = [
         region: "Switzerland",
         family: "Tobacco",
         notes: "Rich, full tobacco",
-        description: "TEREA Bronze, Swiss edition, is a richer tobacco stick for smokers who like more body in every puff. Like all TEREA, it fits every IQOS ILUMA device — but not older IQOS models such as the IQOS 3 DUO.",
+        description: "Swiss-made TEREA Bronze leans rich and full: deep tobacco with a hint of cocoa and dried fruit, a step up in body from Amber. Pick it when lighter blends feel too mild. Designed for the IQOS ILUMA family only.",
         specs: [
             "200 sticks per carton (10 packs × 20)",
             "Origin: Switzerland",
@@ -1584,6 +1584,559 @@ export const products: Product[] = [
         ],
     },
     {
+        id: "terea-amber-italy",
+        name: "TEREA Amber",
+        category: "terea",
+        region: "Italy",
+        family: "Tobacco",
+        notes: "Rounded tobacco, warm toasted aroma",
+        intensity: "Medium",
+        description: "TEREA Amber from Italy delivers a rounded, classic tobacco taste with a warm, toasted aroma. Fuller than Silver or Yellow yet never harsh, it's the most popular everyday blend in the European line-up.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: No",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-amber-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-silver-italy",
+        name: "TEREA Silver",
+        category: "terea",
+        region: "Italy",
+        family: "Tobacco",
+        notes: "Light, crisp tobacco",
+        intensity: "Light",
+        description: "TEREA Silver from Italy is one of the gentlest sticks in the European range: a clean, crisp tobacco taste with a smooth, easy finish. A good everyday choice and a natural first pick if you're new to Italian TEREA.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: No",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-silver-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-turquoise-menthol-italy",
+        name: "TEREA Turquoise Menthol",
+        category: "terea",
+        region: "Italy",
+        family: "Menthol",
+        notes: "Clean menthol, light tobacco",
+        intensity: "Medium",
+        description: "Turquoise Menthol from Italy keeps things fresh: a clean, cooling menthol over a light tobacco base, without fruit or sweetness. A dependable menthol for every day.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: Yes",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-turquoise-menthol-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-purple-wave-menthol-italy",
+        name: "TEREA Purple Wave Menthol",
+        category: "terea",
+        region: "Italy",
+        family: "Menthol",
+        notes: "Cool menthol, berry notes",
+        intensity: "Medium",
+        description: "The Italian Purple Wave Menthol combines a refreshing menthol chill with sweet berry notes and smooth tobacco underneath — a cool, flavourful alternative to tobacco-only blends.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: Yes",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-purple-wave-menthol-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-yellow-italy",
+        name: "TEREA Yellow",
+        category: "terea",
+        region: "Italy",
+        family: "Tobacco",
+        notes: "Mellow tobacco, soft nutty notes",
+        intensity: "Light",
+        description: "The Italian edition of TEREA Yellow is mellow and smooth, with a soft, slightly nutty sweetness over a light tobacco base. Easy-going from the first puff to the last, it suits anyone who prefers a gentle stick.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: No",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-yellow-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-sienna-italy",
+        name: "TEREA Sienna",
+        category: "terea",
+        region: "Italy",
+        family: "Tobacco",
+        notes: "Smooth tobacco, light tea and wood notes",
+        intensity: "Medium",
+        description: "Italian TEREA Sienna pairs a smooth, balanced tobacco body with subtle tea and woody notes. It sits between Amber and Teak — rich enough to satisfy, smooth enough for all-day use.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: No",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-sienna-italy.jpg",
+        ],
+    },
+    {
+        id: "terea-teak-italy",
+        name: "TEREA Teak",
+        category: "terea",
+        region: "Italy",
+        family: "Tobacco",
+        notes: "Bold, roasted tobacco, woody finish",
+        intensity: "Strong",
+        description: "TEREA Teak, Italian edition, is the boldest stick in the range: deep roasted tobacco with a dry, woody finish. Made for smokers who want a full-bodied session.",
+        specs: [
+            "200 sticks per carton (10 packs × 20)",
+            "Origin: Italy",
+            "Up to 14 puffs per stick",
+            "Menthol: No",
+            "For IQOS ILUMA devices only",
+        ],
+        price: 135,
+        inStock: true,
+        images: [
+            "/products/terea-teak-italy.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-breeze-blue",
+        name: "IQOS ILUMA i One Breeze Blue",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Breeze Blue",
+        description: "IQOS ILUMA i One Breeze Blue puts the holder and battery into one slim, pocket-sized body, finished in Breeze Blue. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 140,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-breeze-blue.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-midnight-black",
+        name: "IQOS ILUMA i One Midnight Black",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Midnight Black",
+        description: "IQOS ILUMA i One Midnight Black puts the holder and battery into one slim, pocket-sized body, finished in Midnight Black. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 140,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-midnight-black.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-lime-green",
+        name: "IQOS ILUMA i One Lime Green",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Lime Green",
+        description: "IQOS ILUMA i One Lime Green puts the holder and battery into one slim, pocket-sized body, finished in Lime Green. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 140,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-lime-green.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-violet-purple",
+        name: "IQOS ILUMA i One Violet Purple",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Violet Purple",
+        description: "IQOS ILUMA i One Violet Purple puts the holder and battery into one slim, pocket-sized body, finished in Violet Purple. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 140,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-violet-purple.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-vivid-terracotta",
+        name: "IQOS ILUMA i One Vivid Terracotta",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Vivid Terracotta",
+        description: "IQOS ILUMA i One Vivid Terracotta puts the holder and battery into one slim, pocket-sized body, finished in Vivid Terracotta. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 140,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-vivid-terracotta.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-electric-purple",
+        name: "IQOS ILUMA i One Electric Purple",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Electric Purple",
+        description: "IQOS ILUMA i One Electric Purple puts the holder and battery into one slim, pocket-sized body, finished in Electric Purple. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 200,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-electric-purple.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-one-remix-limited-edition",
+        name: "IQOS ILUMA i One Remix Limited Edition",
+        category: "iluma",
+        line: "ILUMA i One",
+        family: "Device",
+        notes: "All-in-one, pocket-sized, Remix limited edition",
+        description: "IQOS ILUMA i One Remix Limited Edition puts the holder and battery into one slim, pocket-sized body, in a collectable Remix limited-edition finish. Insert a TEREA stick and it starts heating automatically — SMARTCORE INDUCTION heats from the inside, so there's no blade to clean and no residue. Great as a first ILUMA or a light backup device.",
+        specs: [
+            "All-in-one design — no separate charger",
+            "Up to 20 consecutive sessions per charge",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 315,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-one-remix-limited-edition.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-garnet-red",
+        name: "IQOS ILUMA i Prime Garnet Red",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Garnet Red",
+        description: "IQOS ILUMA i Prime Garnet Red is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, finished in Garnet Red. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 340,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-garnet-red.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-aspen-green",
+        name: "IQOS ILUMA i Prime Aspen Green",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Aspen Green",
+        description: "IQOS ILUMA i Prime Aspen Green is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, finished in Aspen Green. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 340,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-aspen-green.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-black-kit",
+        name: "IQOS ILUMA i Prime Black Kit",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Black",
+        description: "IQOS ILUMA i Prime Black Kit is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, finished in Black. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 350,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-black-kit.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-blue-kit",
+        name: "IQOS ILUMA i Prime Blue Kit",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Blue",
+        description: "IQOS ILUMA i Prime Blue Kit is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, finished in Blue. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 350,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-blue-kit.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-electric-purple",
+        name: "IQOS ILUMA i Prime Electric Purple",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Electric Purple",
+        description: "IQOS ILUMA i Prime Electric Purple is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, finished in Electric Purple. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 500,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-electric-purple.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-prime-remix-limited-edition",
+        name: "IQOS ILUMA i Prime Remix Limited Edition",
+        category: "iluma",
+        line: "ILUMA i Prime",
+        family: "Device",
+        notes: "Premium wraparound charger with touchscreen, Remix limited edition, Garnet Red",
+        description: "IQOS ILUMA i Prime Remix Limited Edition is the flagship of the ILUMA i range: a holder and a premium aluminium pocket charger with a wraparound design and touchscreen, in a collectable Remix limited-edition Garnet Red finish. It heats TEREA by bladeless SMARTCORE INDUCTION, starts automatically and supports back-to-back sessions.",
+        specs: [
+            "Premium aluminium wraparound charger",
+            "Touchscreen with session and battery info",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 950,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-prime-remix-limited-edition.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-black",
+        name: "IQOS ILUMA i Standard Black",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Black",
+        description: "IQOS ILUMA i Standard Black pairs a slim holder with a pocket charger that has a touchscreen, finished in Black. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 265,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-black.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-breeze-blue",
+        name: "IQOS ILUMA i Standard Breeze Blue",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Breeze Blue",
+        description: "IQOS ILUMA i Standard Breeze Blue pairs a slim holder with a pocket charger that has a touchscreen, finished in Breeze Blue. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 265,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-breeze-blue.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-oasis",
+        name: "IQOS ILUMA i Standard Oasis",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Oasis",
+        description: "IQOS ILUMA i Standard Oasis pairs a slim holder with a pocket charger that has a touchscreen, finished in Oasis. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 265,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-oasis.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-purple",
+        name: "IQOS ILUMA i Standard Purple",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Purple",
+        description: "IQOS ILUMA i Standard Purple pairs a slim holder with a pocket charger that has a touchscreen, finished in Purple. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 265,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-purple.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-electric-purple",
+        name: "IQOS ILUMA i Standard Electric Purple",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Electric Purple",
+        description: "IQOS ILUMA i Standard Electric Purple pairs a slim holder with a pocket charger that has a touchscreen, finished in Electric Purple. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 300,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-electric-purple.jpg",
+        ],
+    },
+    {
+        id: "iqos-iluma-i-standard-remix-limited-edition",
+        name: "IQOS ILUMA i Standard Remix Limited Edition",
+        category: "iluma",
+        line: "ILUMA i Standard",
+        family: "Device",
+        notes: "Holder + pocket charger with touchscreen, Remix limited edition",
+        description: "IQOS ILUMA i Standard Remix Limited Edition pairs a slim holder with a pocket charger that has a touchscreen, in a collectable Remix limited-edition finish. The charger tops the holder up between sessions, so you can enjoy back-to-back use through the day. Bladeless SMARTCORE INDUCTION heats TEREA from the inside — nothing to clean.",
+        specs: [
+            "Holder + pocket charger with touchscreen",
+            "Back-to-back sessions",
+            "Smartcore Induction heating with auto-start",
+            "FlexPuff, FlexBattery and Pause Mode",
+            "Works with TEREA sticks only",
+        ],
+        price: 500,
+        inStock: true,
+        images: [
+            "/products/iqos-iluma-i-standard-remix-limited-edition.jpg",
+        ],
+    },
+    {
         id: "iqos-iluma-i-prime-kit",
         name: "IQOS ILUMA i Prime Kit",
         category: "iluma",
@@ -1608,7 +2161,7 @@ export const products: Product[] = [
         id: "iqos-iluma-i-galaxy-blue",
         name: "IQOS ILUMA i Galaxy Blue",
         category: "iluma",
-        line: "ILUMA i",
+        line: "ILUMA i Prime",
         family: "Device",
         notes: "ILUMA i Prime, woven Galaxy Blue",
         description: "IQOS ILUMA i Galaxy Blue brings a limited-edition look to the ILUMA i Prime, the flagship of the range, finished in a woven wraparound design. It heats TEREA sticks by induction, supports up to three consecutive sessions per charge and fully recharges in about 135 minutes. The box includes the device, pocket charger and USB-C cable.",
@@ -2817,15 +3370,63 @@ export const products: Product[] = [
     },
 ]
 
+// ---- Listing order -------------------------------------------------------
+// Best sellers are pinned to the top of each listing; everything else keeps its
+// catalogue order underneath.
+const CATEGORY_ORDER: Category[] = ["terea", "iluma", "stig"]
+const REGION_ORDER: Region[] = ["Indonesia", "Kazakhstan", "Uzbekistan", "Switzerland", "Italy", "Japan"]
+
+// TEREA flavours shown first in every origin (Japan has its own line-up).
+const TEREA_TOP = ["Amber", "Silver", "Turquoise", "Purple", "Yellow"]
+const TEREA_TOP_BY_REGION: Partial<Record<Region, string[]>> = {
+    Indonesia: [...TEREA_TOP, "Blue", "Bronze", "Sienna"],
+    Japan: [],
+}
+// STIG flavours shown first; ILUMA i models lead the device list.
+const STIG_TOP = ["Lush Ice", "Cubano", "Dry Tobacco"]
+const ILUMA_LINE_ORDER = ["ILUMA i One", "ILUMA i Prime", "ILUMA i Standard"]
+
+function pinRank(p: Product): number {
+    if (p.category === "terea") {
+        const top = TEREA_TOP_BY_REGION[p.region!] ?? TEREA_TOP
+        // "Turquoise Menthol" → Turquoise, "Purple Wave" → Purple, but not "Black Purple".
+        const flavour = p.name.replace(/^TEREA\s+/, "")
+        const i = top.findIndex((t) => flavour === t || flavour.startsWith(`${t} `))
+        return i === -1 ? top.length : i
+    }
+    if (p.category === "stig") {
+        const i = STIG_TOP.indexOf(p.name.replace(/^STIG\s+(XL\s+)?/, ""))
+        return i === -1 ? STIG_TOP.length : i
+    }
+    const i = ILUMA_LINE_ORDER.indexOf(p.line ?? "")
+    return i === -1 ? ILUMA_LINE_ORDER.length : i
+}
+
+function groupRank(p: Product): number {
+    const category = CATEGORY_ORDER.indexOf(p.category) * 100
+    if (p.category === "terea") return category + REGION_ORDER.indexOf(p.region!)
+    if (p.category === "stig") return category + (p.line === "STIG XL" ? 1 : 0)
+    return category
+}
+
+export const products: Product[] = catalogue
+    .map((p, index) => ({ p, index }))
+    .sort((a, b) => groupRank(a.p) - groupRank(b.p) || pinRank(a.p) - pinRank(b.p) || a.index - b.index)
+    .map(({ p }) => p)
+
 const byId = new Map(products.map((p) => [p.id, p]))
 
 export function getProductById(id: string): Product | undefined {
     return byId.get(id)
 }
 
-export function getProducts(filter: { category?: Category; region?: Region } = {}): Product[] {
+// `line` matches a model line and everything under it, e.g. "ILUMA i" → i One, i Standard, i Prime.
+export function getProducts(filter: { category?: Category; region?: Region; line?: string } = {}): Product[] {
     return products.filter(
-        (p) => (!filter.category || p.category === filter.category) && (!filter.region || p.region === filter.region),
+        (p) =>
+            (!filter.category || p.category === filter.category) &&
+            (!filter.region || p.region === filter.region) &&
+            (!filter.line || p.line === filter.line || !!p.line?.startsWith(`${filter.line} `)),
     )
 }
 

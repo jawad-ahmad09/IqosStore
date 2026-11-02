@@ -7,7 +7,7 @@ import { formatAED } from "@/app/lib/pricing"
 
 export const metadata: Metadata = {
     title: { absolute: "TEREA Flavours Compared by Origin — Amber, Silver, Sun Pearl & More | IQOS Store UAE" },
-    description: "Compare popular TEREA flavours across Indonesia, Kazakhstan, Uzbekistan, Switzerland and Japan — taste notes and prices side by side, with same-day delivery in Dubai.",
+    description: "Compare popular TEREA flavours across Indonesia, Kazakhstan, Uzbekistan, Switzerland, Italy and Japan — taste notes and prices side by side, with same-day delivery in Dubai.",
     alternates: { canonical: "/flavours" },
 }
 

@@ -37,7 +37,7 @@ export default function Home() {
             logo: `${STORE.url}/icon`,
             image: `${STORE.url}/opengraph-image`,
             email: STORE.email,
-            telephone: "+971561928359",
+            telephone: STORE.phoneHref.replace("tel:", ""),
             priceRange: `AED ${min} - AED ${max}`,
             currenciesAccepted: "AED",
             paymentAccepted: ["Cash", "Bank Transfer", "Cash on Delivery"],

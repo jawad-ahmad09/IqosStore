@@ -9,12 +9,12 @@ import { useCart } from "@/app/context/CartContext"
 import { useUI } from "@/app/context/UIContext"
 import { getProducts, priceRange, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref, whatsappLink } from "@/app/data/store"
-import { formatAED } from "@/app/lib/pricing"
+import { FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 import type { Region } from "@/app/types"
 
 const ANNOUNCEMENTS = [
     "Same-day delivery in Dubai — order before 12PM",
-    "Free delivery on 2+ items across the UAE",
+    `Free delivery on ${FREE_DELIVERY_RULE} across the UAE`,
     "100% authentic TEREA, ILUMA & STIG",
     "Cash on delivery available",
     "WhatsApp support 24/7",
@@ -27,11 +27,11 @@ export function Logo({ light = false }: { light?: boolean }) {
                 <span className="absolute h-6 w-6 rounded-full bg-ember blur-md" />
                 <span className="relative font-display text-lg font-extrabold text-white">i</span>
             </span>
-            <span className="leading-none">
+            <span className="whitespace-nowrap leading-none">
                 <span className={`block font-display text-[17px] font-extrabold tracking-tight md:text-lg ${light ? "text-white" : "text-ink"}`}>
                     IQOS STORE
                 </span>
-                <span className={`block text-[10px] font-bold uppercase tracking-[0.22em] ${light ? "text-white/50" : "text-ink-faint"}`}>
+                <span className={`block text-[10px] font-bold uppercase tracking-[0.22em] ${light ? "text-white/60" : "text-ink-soft"}`}>
                     Dubai · UAE
                 </span>
             </span>
@@ -43,6 +43,13 @@ const regionStats = (Object.keys(REGIONS) as Region[]).map((region) => {
     const list = getProducts({ category: "terea", region })
     return { region, count: list.length, from: priceRange(list).min }
 })
+
+// ILUMA i models, in the order shoppers asked for: i One, i Prime, i Standard.
+const ILUMA_I_MODELS = [
+    { label: "IQOS ILUMA i One", href: "/iqos-iluma-i/one", line: "ILUMA i One", blurb: "All-in-one, pocket-sized" },
+    { label: "IQOS ILUMA i Prime", href: "/iqos-iluma-i/prime", line: "ILUMA i Prime", blurb: "Premium wraparound design" },
+    { label: "IQOS ILUMA i Standard", href: "/iqos-iluma-i/standard", line: "ILUMA i Standard", blurb: "Holder + touchscreen charger" },
+].map((m) => ({ ...m, from: priceRange(getProducts({ category: "iluma", line: m.line })).min }))
 
 function AnnouncementBar() {
     const items = [...ANNOUNCEMENTS, ...ANNOUNCEMENTS]
@@ -133,6 +140,31 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                 </div>
 
                 <div className="p-4">
+                    <Link
+                        href="/iqos-iluma-i"
+                        onClick={onClose}
+                        className="mb-3 flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.16em] text-iluma"
+                    >
+                        IQOS ILUMA i <span className="normal-case tracking-normal">View all →</span>
+                    </Link>
+                    <div className="mb-6 flex flex-col gap-2">
+                        {ILUMA_I_MODELS.map((m) => (
+                            <Link
+                                key={m.href}
+                                href={m.href}
+                                onClick={onClose}
+                                className="flex items-center justify-between rounded-2xl bg-paper p-3"
+                                style={{ boxShadow: "inset 3px 0 0 var(--color-iluma)" }}
+                            >
+                                <span>
+                                    <span className="block font-display font-bold">{m.label}</span>
+                                    <span className="text-xs text-ink-soft">{m.blurb}</span>
+                                </span>
+                                <span className="text-xs font-bold text-ink-soft">from {formatAED(m.from)}</span>
+                            </Link>
+                        ))}
+                    </div>
+
                     <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-ink-faint">TEREA by origin</p>
                     <div className="grid grid-cols-2 gap-2">
                         {regionStats.map(({ region, count, from }) => (
@@ -211,10 +243,10 @@ export default function Header() {
         }
     }, [menuOpen, searchOpen])
 
-    const navLink = (href: string, label: string, active: boolean) => (
+    const navLink = (href: string, label: string, active: boolean, extra = "") => (
         <Link
             href={href}
-            className={`relative rounded-full px-3.5 py-2 text-sm font-bold transition-colors hover:bg-sand-2 ${active ? "text-ember" : "text-ink"}`}
+            className={`relative whitespace-nowrap rounded-full px-3 py-2 text-sm font-bold transition-colors hover:bg-sand-2 xl:px-3.5 ${active ? "text-ember" : "text-ink"} ${extra}`}
         >
             {label}
         </Link>
@@ -229,7 +261,7 @@ export default function Header() {
                 }`}
             >
                 <div className="container-x flex h-16 items-center justify-between gap-4 md:h-[72px]">
-                    <Link href="/" aria-label={`${STORE.name} home`}>
+                    <Link href="/">
                         <Logo />
                     </Link>
 
@@ -237,8 +269,37 @@ export default function Header() {
                         {navLink(listingHref(), "Shop all", pathname === "/listings")}
                         <div className="group relative">
                             <Link
+                                href="/iqos-iluma-i"
+                                className={`flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-bold transition-colors hover:bg-sand-2 xl:px-3.5 ${pathname.startsWith("/iqos-iluma-i") ? "text-ember" : ""}`}
+                            >
+                                ILUMA i <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
+                            </Link>
+                            <div className="invisible absolute left-0 top-full w-[320px] pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                                <div className="flex flex-col gap-1 rounded-3xl border border-line bg-paper p-3 shadow-2xl">
+                                    {ILUMA_I_MODELS.map((m) => (
+                                        <Link key={m.href} href={m.href} className="rounded-2xl p-3 transition hover:bg-sand">
+                                            <span className="flex items-center gap-2 font-display font-bold">
+                                                <span className="h-2.5 w-2.5 rounded-full bg-iluma" />
+                                                {m.label}
+                                            </span>
+                                            <span className="mt-1 block text-xs text-ink-soft">
+                                                {m.blurb} · from {formatAED(m.from)}
+                                            </span>
+                                        </Link>
+                                    ))}
+                                    <Link
+                                        href="/iqos-iluma-i"
+                                        className="mt-1 flex items-center justify-between rounded-2xl bg-night px-4 py-3 text-sm font-bold text-white"
+                                    >
+                                        View all ILUMA i <ArrowRight size={16} />
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="group relative">
+                            <Link
                                 href={listingHref({ category: "terea" })}
-                                className="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-bold transition-colors hover:bg-sand-2"
+                                className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-bold transition-colors hover:bg-sand-2 xl:px-3.5"
                             >
                                 TEREA <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
                             </Link>
@@ -268,10 +329,10 @@ export default function Header() {
                                 </div>
                             </div>
                         </div>
-                        {navLink(listingHref({ category: "iluma" }), CATEGORIES.iluma.short, false)}
+                        {navLink(listingHref({ category: "iluma" }), CATEGORIES.iluma.short, pathname === "/iqos-iluma")}
                         {navLink(listingHref({ category: "stig" }), CATEGORIES.stig.short, false)}
-                        {navLink("/#finder", "Flavour Finder", false)}
-                        {navLink("/guides", "Guides", pathname.startsWith("/guides"))}
+                        {navLink("/#finder", "Flavour Finder", false, "hidden xl:block")}
+                        {navLink("/guides", "Guides", pathname.startsWith("/guides"), "hidden xl:block")}
                         {navLink("/contact", "Contact", pathname === "/contact")}
                     </nav>
 

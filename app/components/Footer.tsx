@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Mail, MapPin, Phone } from "lucide-react"
+import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { POLICIES } from "@/app/data/policies"
 import { CATEGORIES, REGIONS, STORE, listingHref, whatsappLink } from "@/app/data/store"
@@ -68,6 +69,10 @@ export default function Footer() {
                         <h3 className="mb-4 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">Shop</h3>
                         <ul className="space-y-2.5">
                             <li><Link href={listingHref()} className={linkClass}>All products</Link></li>
+                            <li><Link href="/iqos-iluma-i" className={linkClass}>IQOS ILUMA i</Link></li>
+                            <li><Link href="/iqos-iluma-i/one" className={linkClass}>ILUMA i One</Link></li>
+                            <li><Link href="/iqos-iluma-i/prime" className={linkClass}>ILUMA i Prime</Link></li>
+                            <li><Link href="/iqos-iluma-i/standard" className={linkClass}>ILUMA i Standard</Link></li>
                             <li><Link href={listingHref({ category: "iluma" })} className={linkClass}>{CATEGORIES.iluma.label}</Link></li>
                             <li><Link href={listingHref({ category: "stig" })} className={linkClass}>{CATEGORIES.stig.label}</Link></li>
                             <li><Link href="/terea-price-uae" className={linkClass}>TEREA price list</Link></li>
@@ -95,6 +100,19 @@ export default function Footer() {
                             <li key={e.slug}>
                                 <Link href={`/delivery/${e.slug}`} className={linkClass}>
                                     IQOS & TEREA {e.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="border-t border-line-dark py-6">
+                    <h3 className="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white/40">Popular Dubai areas</h3>
+                    <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                        {DUBAI_AREAS.slice(0, 12).map((a) => (
+                            <li key={a.slug}>
+                                <Link href={`/delivery/dubai/${a.slug}`} className={linkClass}>
+                                    TEREA delivery {a.name.replace(/\s*\(.*\)$/, "")}
                                 </Link>
                             </li>
                         ))}

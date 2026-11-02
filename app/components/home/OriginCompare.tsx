@@ -12,6 +12,7 @@ const PROFILE: Record<Region, { packaging: string; bestFor: string }> = {
     Kazakhstan: { packaging: "Kazakh-market packs", bestFor: "Classic favourites and capsule sticks" },
     Uzbekistan: { packaging: "Uzbek-market packs", bestFor: "Smooth everyday smokes at a fair price" },
     Switzerland: { packaging: "Swiss-made packs", bestFor: "Classic European tobacco, from light to bold" },
+    Italy: { packaging: "Italian-made packs", bestFor: "European favourites plus two cool menthols" },
     Japan: { packaging: "Japanese-market packs", bestFor: "Premium blends you won't find elsewhere" },
 }
 

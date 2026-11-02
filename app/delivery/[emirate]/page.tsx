@@ -7,10 +7,11 @@ import { DeliveryAreas, FaqList } from "@/app/components/collection/CollectionVi
 import ProductRail from "@/app/components/home/ProductRail"
 import { WhatsAppIcon } from "@/app/components/WhatsAppButton"
 import { COLLECTIONS } from "@/app/data/collections"
+import { DUBAI_AREAS } from "@/app/data/dubaiAreas"
 import { EMIRATE_PAGES, getEmirate, type EmirateInfo } from "@/app/data/emirates"
 import { getProducts, priceRange } from "@/app/data/products"
 import { ORIGIN_COUNT, REGIONS, STORE, whatsappLink } from "@/app/data/store"
-import { DELIVERY, formatAED } from "@/app/lib/pricing"
+import { FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 
 type Params = { params: Promise<{ emirate: string }> }
 
@@ -28,7 +29,7 @@ function faqsFor(e: EmirateInfo) {
         },
         {
             question: `How much does delivery to ${e.name} cost?`,
-            answer: `Delivery is free for 2 or more items. A single item costs ${formatAED(e.singleItemFee)} to deliver in ${e.name}.`,
+            answer: `Delivery is free for ${FREE_DELIVERY_RULE}. Otherwise it costs ${formatAED(e.singleItemFee)} to deliver in ${e.name}.`,
         },
         {
             question: `Do you deliver to ${e.areas[0]} and ${e.areas[1]}?`,
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const e = getEmirate((await params).emirate)
     if (!e) return {}
     const title = `IQOS & TEREA Delivery in ${e.name} — ILUMA, TEREA, STIG`
-    const description = `Order TEREA, IQOS ILUMA and VGOD STIG online with delivery in ${e.name}. ${e.speed} Free delivery on 2+ items, cash on delivery available.`
+    const description = `Order TEREA, IQOS ILUMA and VGOD STIG online with delivery in ${e.name}. ${e.speed} Free delivery on ${FREE_DELIVERY_RULE}, cash on delivery available.`
     return {
         title: { absolute: title },
         description,
@@ -76,7 +77,7 @@ export default async function EmiratePage({ params }: Params) {
                 "@type": "Offer",
                 priceCurrency: "AED",
                 price: e.singleItemFee,
-                description: `Single-item delivery fee; free on ${DELIVERY.freeFromItems}+ items`,
+                description: `Delivery fee; free on ${FREE_DELIVERY_RULE}`,
             },
         },
         {
@@ -117,7 +118,7 @@ export default async function EmiratePage({ params }: Params) {
                 <div className="grid gap-3 sm:grid-cols-3">
                     {[
                         { icon: Clock, title: "Delivery time", text: e.speed },
-                        { icon: Truck, title: "Delivery fee", text: `Free on ${DELIVERY.freeFromItems}+ items · ${formatAED(e.singleItemFee)} for a single item` },
+                        { icon: Truck, title: "Delivery fee", text: `Free on ${FREE_DELIVERY_RULE} · otherwise ${formatAED(e.singleItemFee)}` },
                         { icon: MapPin, title: "Coverage", text: `All of ${e.name}, door to door` },
                     ].map(({ icon: Icon, title, text }) => (
                         <div key={title} className="rounded-[1.5rem] border border-line bg-paper p-5">
@@ -141,8 +142,8 @@ export default async function EmiratePage({ params }: Params) {
                 <section className="mt-14">
                     <h2 className="text-2xl font-extrabold md:text-3xl">Shop by collection</h2>
                     <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
-                        {COLLECTIONS.filter((c) => c.slug !== "terea").map((c) => {
-                            const list = c.region ? terea.filter((p) => p.region === c.region) : getProducts({ category: c.category })
+                        {COLLECTIONS.filter((c) => c.slug !== "terea" && !c.slug.includes("iqos-iluma-i/")).map((c) => {
+                            const list = c.region ? terea.filter((p) => p.region === c.region) : getProducts({ category: c.category, line: c.line })
                             return (
                                 <Link
                                     key={c.slug}
@@ -164,11 +165,19 @@ export default async function EmiratePage({ params }: Params) {
                     <section>
                         <h2 className="text-2xl font-extrabold md:text-3xl">Areas we cover in {e.name}</h2>
                         <ul className="mt-4 flex flex-wrap gap-2">
-                            {e.areas.map((a) => (
-                                <li key={a} className="rounded-full border border-line bg-paper px-3 py-1.5 text-sm font-semibold">
-                                    {a}
-                                </li>
-                            ))}
+                            {e.slug === "dubai"
+                                ? DUBAI_AREAS.map((a) => (
+                                      <li key={a.slug}>
+                                          <Link href={`/delivery/dubai/${a.slug}`} className="chip">
+                                              <MapPin size={14} /> {a.name.replace(/\s*\(.*\)$/, "")}
+                                          </Link>
+                                      </li>
+                                  ))
+                                : e.areas.map((a) => (
+                                      <li key={a} className="rounded-full border border-line bg-paper px-3 py-1.5 text-sm font-semibold">
+                                          {a}
+                                      </li>
+                                  ))}
                         </ul>
                         <p className="mt-3 text-sm text-ink-soft">…and everywhere else in {e.name}. Not sure? Message us on WhatsApp.</p>
                         <div className="mt-10">

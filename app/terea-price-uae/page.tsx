@@ -61,7 +61,7 @@ export default function PriceListPage() {
         },
         {
             question: "Is delivery included in the price?",
-            answer: `Delivery is free on ${DELIVERY.freeFromItems}+ items. For a single item it's ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
+            answer: `Delivery is free on ${DELIVERY.freeFromItems}+ items or orders over ${formatAED(DELIVERY.freeFromAmount)}. Otherwise it's ${formatAED(DELIVERY.dubai)} in Dubai and ${formatAED(DELIVERY.otherEmirates)} elsewhere.`,
         },
     ]
 

@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { ArrowRight, Clock, Tag, Truck } from "lucide-react"
-import type { Collection } from "@/app/data/collections"
+import { COLLECTIONS, type Collection } from "@/app/data/collections"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { getProducts, priceRange } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref } from "@/app/data/store"
-import { DELIVERY, formatAED } from "@/app/lib/pricing"
+import { FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
 import type { Product, Region } from "@/app/types"
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs"
 import CollectionGrid from "./CollectionGrid"
@@ -12,6 +12,7 @@ import CollectionGrid from "./CollectionGrid"
 const NAV: { label: string; href: string; color?: string }[] = [
     { label: "TEREA", href: listingHref({ category: "terea" }) },
     ...(Object.keys(REGIONS) as Region[]).map((r) => ({ label: r, href: listingHref({ category: "terea", region: r }), color: REGIONS[r].color })),
+    { label: "ILUMA i", href: "/iqos-iluma-i", color: CATEGORIES.iluma.color },
     { label: "ILUMA", href: listingHref({ category: "iluma" }), color: CATEGORIES.iluma.color },
     { label: "STIG", href: listingHref({ category: "stig" }), color: CATEGORIES.stig.color },
 ]
@@ -79,7 +80,7 @@ export function collectionSchemas(path: string, name: string, description: strin
 }
 
 export default function CollectionView({ collection }: { collection: Collection }) {
-    const products = getProducts({ category: collection.category, region: collection.region })
+    const products = getProducts({ category: collection.category, region: collection.region, line: collection.line })
     const { min } = priceRange(products)
     const accent = collection.region ? REGIONS[collection.region].color : CATEGORIES[collection.category].color
     const href = `/${collection.slug}`
@@ -88,7 +89,15 @@ export default function CollectionView({ collection }: { collection: Collection 
               { name: "TEREA", href: listingHref({ category: "terea" }) },
               { name: collection.region, href },
           ]
-        : [{ name: CATEGORIES[collection.category].short, href }]
+        : collection.line
+          ? [
+                { name: CATEGORIES[collection.category].short, href: listingHref({ category: collection.category }) },
+                ...(collection.slug.includes("/") ? [{ name: "ILUMA i", href: "/iqos-iluma-i" }] : []),
+                { name: collection.label ?? collection.line, href },
+            ]
+          : [{ name: CATEGORIES[collection.category].short, href }]
+    // Model pages (i One / i Prime / i Standard) get quick links to their siblings.
+    const models = collection.line?.startsWith("ILUMA i") ? COLLECTIONS.filter((c) => c.slug.startsWith("iqos-iluma-i/")) : []
 
     return (
         <>
@@ -110,7 +119,7 @@ export default function CollectionView({ collection }: { collection: Collection 
                             <Clock size={15} className="text-gold" /> Same-day in Dubai before 12PM
                         </span>
                         <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2">
-                            <Truck size={15} className="text-gold" /> Free delivery on {DELIVERY.freeFromItems}+ items
+                            <Truck size={15} className="text-gold" /> Free delivery on {FREE_DELIVERY_RULE}
                         </span>
                     </div>
                 </div>
@@ -128,6 +137,26 @@ export default function CollectionView({ collection }: { collection: Collection 
                         All products
                     </Link>
                 </nav>
+
+                {models.length > 0 && (
+                    <div className="mb-6 grid grid-cols-3 gap-2 md:max-w-2xl md:gap-3">
+                        {models.map((m) => {
+                            const list = getProducts({ category: "iluma", line: m.line })
+                            const active = `/${m.slug}` === href
+                            return (
+                                <Link
+                                    key={m.slug}
+                                    href={`/${m.slug}`}
+                                    data-active={active}
+                                    className="rounded-2xl border border-line bg-paper p-3 transition hover:border-iluma data-[active=true]:border-iluma data-[active=true]:bg-iluma data-[active=true]:text-white"
+                                >
+                                    <span className="block font-display text-sm font-extrabold md:text-base">{m.label}</span>
+                                    <span className="text-xs opacity-70">from {formatAED(priceRange(list).min)}</span>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                )}
 
                 <CollectionGrid products={products} />
 

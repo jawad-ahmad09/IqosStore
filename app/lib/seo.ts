@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import type { Collection } from "@/app/data/collections"
 
 // English path → its Arabic counterpart, for pages that have one.
-export const AR_PATHS = new Set(["/", "/terea", "/terea/indonesia", "/terea/kazakhstan", "/terea/uzbekistan", "/terea/switzerland", "/terea/japan", "/iqos-iluma", "/vgod-stig", "/delivery"])
+export const AR_PATHS = new Set(["/", "/terea", "/terea/indonesia", "/terea/kazakhstan", "/terea/uzbekistan", "/terea/switzerland", "/terea/italy", "/terea/japan", "/iqos-iluma", "/vgod-stig", "/delivery"])
 
 export const arPath = (enPath: string) => (enPath === "/" ? "/ar" : `/ar${enPath}`)
 

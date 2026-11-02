@@ -72,7 +72,7 @@ export default function ArCollectionView({ collection }: { collection: ArCollect
                             <Clock size={15} className="text-gold" /> توصيل في نفس اليوم داخل دبي قبل 12 ظهراً
                         </span>
                         <span className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2">
-                            <Truck size={15} className="text-gold" /> توصيل مجاني لـ {DELIVERY.freeFromItems} منتجات أو أكثر
+                            <Truck size={15} className="text-gold" /> توصيل مجاني لـ {DELIVERY.freeFromItems} منتجات أو أكثر أو فوق {aed(DELIVERY.freeFromAmount)}
                         </span>
                     </div>
                 </div>

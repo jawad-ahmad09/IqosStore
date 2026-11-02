@@ -3,15 +3,23 @@ import type { CartLine, Product } from "@/app/types"
 
 export const DELIVERY = {
     freeFromItems: 2,
-    dubai: 10,
-    otherEmirates: 20,
+    freeFromAmount: 400,
+    dubai: 20,
+    otherEmirates: 30,
 }
+
+// Short wording used across the site, e.g. "Free delivery on 2+ items or orders over AED 400".
+export const FREE_DELIVERY_RULE = `${DELIVERY.freeFromItems}+ items or orders over AED ${DELIVERY.freeFromAmount}`
 
 export const MAX_QUANTITY = 99
 
-// Free for 2+ items anywhere in the UAE; single items cost AED 10 in Dubai, AED 20 elsewhere.
-export function deliveryCharge(totalItems: number, emirate?: string) {
-    if (totalItems === 0 || totalItems >= DELIVERY.freeFromItems) return 0
+export function qualifiesForFreeDelivery(totalItems: number, subtotal: number) {
+    return totalItems >= DELIVERY.freeFromItems || subtotal >= DELIVERY.freeFromAmount
+}
+
+// Free anywhere in the UAE for 2+ items or orders of AED 400+; otherwise AED 20 in Dubai, AED 30 elsewhere.
+export function deliveryCharge(totalItems: number, subtotal: number, emirate?: string) {
+    if (totalItems === 0 || qualifiesForFreeDelivery(totalItems, subtotal)) return 0
     return emirate === "Dubai" ? DELIVERY.dubai : DELIVERY.otherEmirates
 }
 
@@ -33,7 +41,7 @@ export function priceOrder(lines: CartLine[], emirate?: string) {
     }
     const items = priced.reduce((sum, l) => sum + l.quantity, 0)
     const subtotal = priced.reduce((sum, l) => sum + l.lineTotal, 0)
-    const delivery = deliveryCharge(items, emirate)
+    const delivery = deliveryCharge(items, subtotal, emirate)
     return { lines: priced, items, subtotal, delivery, total: subtotal + delivery }
 }
 

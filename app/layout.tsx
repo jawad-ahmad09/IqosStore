@@ -61,7 +61,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "IQOS Dubai & UAE — TEREA, IQOS ILUMA & STIG | Same-Day Delivery",
     description: "Authentic TEREA, IQOS ILUMA and VGOD STIG. Same-day delivery in Dubai, free on 2+ items.",
-    creator: "@IQOSStoreUAE",
+  },
+  // Search Console / Bing Webmaster ownership codes: set them on Vercel, no code change needed.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
   },
   robots: {
     index: true,

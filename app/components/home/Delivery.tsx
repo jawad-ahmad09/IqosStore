@@ -18,13 +18,17 @@ export default function Delivery() {
                     <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">
                         Free delivery on {DELIVERY.freeFromItems}+ items.
                     </h2>
-                    <p className="mt-3 text-white/80">Anywhere in the UAE. Ordering a single item? Here&apos;s what it costs:</p>
+                    <p className="mt-3 text-white/80">
+                        Or any order over {formatAED(DELIVERY.freeFromAmount)} — anywhere in the UAE. Ordering a single item under{" "}
+                        {formatAED(DELIVERY.freeFromAmount)}? Here&apos;s what it costs:
+                    </p>
 
                     <div className="relative mt-8 overflow-hidden rounded-2xl bg-white/10 backdrop-blur">
                         {[
                             ["Dubai — 1 item", formatAED(DELIVERY.dubai)],
                             ["Other emirates — 1 item", formatAED(DELIVERY.otherEmirates)],
                             [`Anywhere — ${DELIVERY.freeFromItems}+ items`, "FREE"],
+                            [`Anywhere — orders over ${formatAED(DELIVERY.freeFromAmount)}`, "FREE"],
                         ].map(([label, price]) => (
                             <div key={label} className="flex items-center justify-between border-b border-white/15 px-4 py-3.5 last:border-0">
                                 <span className="text-sm font-semibold md:text-base">{label}</span>
