@@ -9,6 +9,8 @@ import FlavourFinder from "./components/home/FlavourFinder"
 import OriginCompare from "./components/home/OriginCompare"
 import SeoContent from "./components/home/SeoContent"
 import FAQ from "./components/FAQ"
+import Reviews from "./components/Reviews"
+import { storeReviews } from "./data/reviews"
 import Reveal from "./components/Reveal"
 import { faqItems } from "./data/faq"
 import { priceRange, products } from "./data/products"
@@ -110,6 +112,13 @@ export default function Home() {
             <Reveal>
                 <Delivery />
             </Reveal>
+            {storeReviews.length > 0 && (
+                <Reveal>
+                    <div className="container-x py-14 md:py-20">
+                        <Reviews id="reviews" title="What our customers say" reviews={storeReviews} />
+                    </div>
+                </Reveal>
+            )}
             <Reveal>
                 <FAQ />
             </Reveal>

@@ -7,13 +7,15 @@ import BrandDisclaimer from "@/app/components/BrandDisclaimer"
 import ProductRail from "@/app/components/home/ProductRail"
 import { getProductById, getRelatedProducts, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, listingHref } from "@/app/data/store"
-import { DELIVERY, formatAED, qualifiesForFreeDelivery } from "@/app/lib/pricing"
+import { DELIVERY, FREE_DELIVERY_RULE, formatAED, qualifiesForFreeDelivery } from "@/app/lib/pricing"
 import { discountPercent, isLimited } from "@/app/lib/product"
-import { productFaqs } from "@/app/lib/productFaqs"
+import { productFaqs, productProperties } from "@/app/lib/productFaqs"
 import { FaqList } from "@/app/components/collection/CollectionView"
 import { EMIRATE_PAGES } from "@/app/data/emirates"
 import { flavourForProduct } from "@/app/data/flavours"
 import { heetsMatchFor } from "@/app/data/heets"
+import Reviews from "@/app/components/Reviews"
+import { productReviews, reviewSchema, storeReviews } from "@/app/data/reviews"
 import ProductGallery from "./ProductGallery"
 import ProductActions from "./ProductActions"
 
@@ -70,6 +72,8 @@ export default async function ProductPage({ params }: Params) {
         description: product.description || product.notes,
         image: product.images.map((src) => `${STORE.url}${src}`),
         sku: product.id,
+        additionalProperty: productProperties(product).map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
+        ...reviewSchema(product.id),
         brand: { "@type": "Brand", name: { terea: "TEREA", iluma: "IQOS", stig: "VGOD" }[product.category] },
         category: CATEGORIES[product.category].label,
         offers: {
@@ -127,7 +131,11 @@ export default async function ProductPage({ params }: Params) {
                             {product.region ? `${product.region} edition` : product.line}
                         </Link>
 
-                        <h1 className="mt-4 text-3xl font-extrabold leading-tight md:text-5xl">{product.name}</h1>
+                        {/* Origin goes in the H1: "TEREA Amber" exists in several origins and each page needs its own heading. */}
+                        <h1 className="mt-4 text-3xl font-extrabold leading-tight md:text-5xl">
+                            {product.name}
+                            {product.region && <span className="text-ink-soft"> {product.region}</span>}
+                        </h1>
                         {product.notes && <p className="mt-2 text-lg text-ink-soft">{product.notes}</p>}
 
                         <div className="mt-6 flex flex-wrap items-end gap-3">
@@ -173,16 +181,33 @@ export default async function ProductPage({ params }: Params) {
                         </div>
 
                         {flavour && (
-                            <Link
-                                href={`/flavours/${flavour.slug}`}
-                                className="mt-6 flex items-center justify-between rounded-2xl border border-line bg-paper px-4 py-3 text-sm font-bold transition hover:border-ink"
-                            >
-                                <span>
-                                    Compare TEREA {flavour.name} from {flavour.products.length} origins
-                                    <span className="block text-xs font-semibold text-ink-soft">{flavour.products.map((p) => p.region).join(" · ")}</span>
-                                </span>
-                                <span className="text-ember">→</span>
-                            </Link>
+                            <div className="mt-6 overflow-hidden rounded-2xl border border-line bg-paper">
+                                <h2 className="border-b border-line px-4 py-3 text-sm font-extrabold">
+                                    TEREA {flavour.name} from {flavour.products.length} origins
+                                </h2>
+                                <ul className="divide-y divide-line">
+                                    {flavour.products.map((p) => (
+                                        <li key={p.id}>
+                                            {p.id === product.id ? (
+                                                <span className="flex items-center justify-between px-4 py-2.5 text-sm font-bold">
+                                                    {p.name} {p.region} <span>{formatAED(p.price)} · this page</span>
+                                                </span>
+                                            ) : (
+                                                <Link href={`/products/${p.id}`} className="flex items-center justify-between px-4 py-2.5 text-sm transition hover:bg-sand">
+                                                    <span>
+                                                        {p.name} {p.region}
+                                                        {!p.inStock && <span className="text-ink-faint"> · sold out</span>}
+                                                    </span>
+                                                    <span className="font-bold">{formatAED(p.price)}</span>
+                                                </Link>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link href={`/flavours/${flavour.slug}`} className="block border-t border-line px-4 py-2.5 text-sm font-bold text-ember">
+                                    Compare TEREA {flavour.name} by origin →
+                                </Link>
+                            </div>
                         )}
 
                         {heets && (
@@ -211,6 +236,29 @@ export default async function ProductPage({ params }: Params) {
                                 </ul>
                             </div>
                         )}
+                        {product.category !== "stig" && (
+                            <div className="mt-6">
+                                <h2 className="text-lg font-extrabold">How to tell it&apos;s genuine</h2>
+                                <ul className="mt-2 list-disc space-y-1.5 ps-5 text-sm leading-relaxed text-ink-soft">
+                                    {product.category === "terea" ? (
+                                        <>
+                                            <li>The carton arrives sealed in its original cellophane: 10 packs of 20 sticks.</li>
+                                            <li>
+                                                Pack text and health warnings are in the language of the market it was made for
+                                                {product.region ? ` (${product.region})` : ""} — normal for imported TEREA.
+                                            </li>
+                                            <li>Genuine TEREA has a metal heating element inside every stick, so ILUMA heats it without a blade. If a stick won&apos;t heat, message us.</li>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <li>The device arrives factory-sealed in its original box.</li>
+                                            <li>It heats TEREA sticks only, by induction — there is no blade to clean.</li>
+                                            <li>Check the box contents and charge it fully before your first session; message us if anything is missing.</li>
+                                        </>
+                                    )}
+                                </ul>
+                            </div>
+                        )}
                         <BrandDisclaimer compact />
                     </div>
                 </div>
@@ -223,16 +271,28 @@ export default async function ProductPage({ params }: Params) {
                     <section>
                         <h2 className="text-2xl font-extrabold md:text-3xl">Delivery across the UAE</h2>
                         <p className="mt-3 text-ink-soft">
-                            {product.name} ships to every emirate — same day in Dubai before 12PM, next day elsewhere.
+                            {product.name} ships to every emirate. Free on {FREE_DELIVERY_RULE}, otherwise {formatAED(DELIVERY.fee)}; cash on delivery available.
                         </p>
-                        <div className="mt-4 flex flex-wrap gap-2">
+                        <ul className="mt-4 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-paper">
                             {EMIRATE_PAGES.map((e) => (
-                                <Link key={e.slug} href={`/delivery/${e.slug}`} className="chip !py-1.5 !text-xs">
-                                    {e.name}
-                                </Link>
+                                <li key={e.slug}>
+                                    <Link href={`/delivery/${e.slug}`} className="flex flex-col gap-0.5 px-4 py-2.5 text-sm transition hover:bg-sand sm:flex-row sm:justify-between sm:gap-4">
+                                        <span className="font-bold">{e.name}</span>
+                                        <span className="text-ink-soft">{e.speed}</span>
+                                    </Link>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     </section>
+                </div>
+
+                {/* Reviews of this product when there are any; otherwise what customers say about the store. */}
+                <div className="mt-16 md:mt-20">
+                    {productReviews(product.id).length > 0 ? (
+                        <Reviews title={`${product.name} reviews`} reviews={productReviews(product.id)} />
+                    ) : (
+                        <Reviews title="What our customers say" reviews={storeReviews} />
+                    )}
                 </div>
 
                 {related.length > 0 && (

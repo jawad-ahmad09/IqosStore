@@ -12,62 +12,76 @@ import { AR_PATHS, arPath } from "@/app/lib/seo"
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const url = (path: string) => `${STORE.url}${path}`
-    const now = new Date()
+    // lastmod only where we know the real edit date (guides, policies): a date that changes on every
+    // deploy teaches Google to ignore lastmod for the whole site.
     // English + Arabic versions point at each other (hreflang) wherever both exist.
     const alternates = (enPath: string) =>
         AR_PATHS.has(enPath) ? { languages: { "en-AE": url(enPath), "ar-AE": url(arPath(enPath)) } } : undefined
 
     return [
-        { url: url("/"), lastModified: now, changeFrequency: "daily", priority: 1, alternates: alternates("/") },
+        { url: url("/"), changeFrequency: "daily", priority: 1, alternates: alternates("/") },
         ...COLLECTIONS.map((c) => ({
             url: url(`/${c.slug}`),
-            lastModified: now,
+           
             changeFrequency: "daily" as const,
             priority: c.region ? 0.85 : 0.9,
             alternates: alternates(`/${c.slug}`),
         })),
         ...products.map((p) => ({
             url: url(`/products/${p.id}`),
-            lastModified: now,
+           
             changeFrequency: "weekly" as const,
             priority: p.inStock ? 0.8 : 0.5,
             images: p.images.map((src) => url(src)),
         })),
-        { url: url("/delivery"), lastModified: now, changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
+        { url: url("/delivery"), changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
         ...EMIRATE_PAGES.map((e) => ({
             url: url(`/delivery/${e.slug}`),
-            lastModified: now,
+            alternates: alternates(`/delivery/${e.slug}`),
+           
             changeFrequency: "monthly" as const,
             priority: 0.7,
         })),
         ...DUBAI_AREAS.map((a) => ({
             url: url(`/delivery/dubai/${a.slug}`),
-            lastModified: now,
+           
             changeFrequency: "monthly" as const,
             priority: 0.65,
         })),
-        { url: url("/guides"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+        { url: url("/guides"), changeFrequency: "weekly", priority: 0.6 },
         ...GUIDES.map((g) => ({
             url: url(`/guides/${g.slug}`),
             lastModified: new Date(g.updated),
             changeFrequency: "monthly" as const,
             priority: 0.7,
         })),
-        { url: url("/ar"), lastModified: now, changeFrequency: "daily", priority: 0.9, alternates: alternates("/") },
+        { url: url("/ar"), changeFrequency: "daily", priority: 0.9, alternates: alternates("/") },
         ...AR_COLLECTIONS.map((c) => ({
             url: url(arPath(`/${c.slug}`)),
-            lastModified: now,
+           
             changeFrequency: "daily" as const,
             priority: 0.8,
             alternates: alternates(`/${c.slug}`),
         })),
-        { url: url("/ar/delivery"), lastModified: now, changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
-        { url: url("/terea-price-uae"), lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-        { url: url("/heets-dubai"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-        { url: url("/flavours"), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-        ...FLAVOURS.map((f) => ({ url: url(`/flavours/${f.slug}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.75 })),
+        { url: url("/ar/delivery"), changeFrequency: "monthly", priority: 0.6, alternates: alternates("/delivery") },
+        { url: url("/terea-price-uae"), changeFrequency: "weekly", priority: 0.85 },
+        { url: url("/heets-dubai"), changeFrequency: "weekly", priority: 0.8 },
+        { url: url("/flavours"), changeFrequency: "weekly", priority: 0.7 },
+        ...FLAVOURS.map((f) => ({ url: url(`/flavours/${f.slug}`), changeFrequency: "weekly" as const, priority: 0.75, alternates: alternates(`/flavours/${f.slug}`) })),
+        ...EMIRATE_PAGES.map((e) => ({
+            url: url(arPath(`/delivery/${e.slug}`)),
+            changeFrequency: "monthly" as const,
+            priority: 0.65,
+            alternates: alternates(`/delivery/${e.slug}`),
+        })),
+        ...FLAVOURS.map((f) => ({
+            url: url(arPath(`/flavours/${f.slug}`)),
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+            alternates: alternates(`/flavours/${f.slug}`),
+        })),
         ...POLICIES.map((p) => ({ url: url(`/policies/${p.slug}`), lastModified: new Date(p.updated), changeFrequency: "yearly" as const, priority: 0.3 })),
-        { url: url("/listings"), lastModified: now, changeFrequency: "daily", priority: 0.6 },
-        { url: url("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.4 },
+        { url: url("/listings"), changeFrequency: "daily", priority: 0.6 },
+        { url: url("/contact"), changeFrequency: "yearly", priority: 0.4 },
     ]
 }

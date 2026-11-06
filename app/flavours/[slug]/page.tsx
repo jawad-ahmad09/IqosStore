@@ -8,6 +8,7 @@ import CollectionGrid from "@/app/components/collection/CollectionGrid"
 import { FLAVOURS, flavourSummary, getFlavour, type Flavour } from "@/app/data/flavours"
 import { REGIONS } from "@/app/data/store"
 import { formatAED } from "@/app/lib/pricing"
+import { languageAlternates } from "@/app/lib/seo"
 
 type Params = { params: Promise<{ slug: string }> }
 
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const f = getFlavour((await params).slug)
     if (!f) return {}
     const { title, description } = copyFor(f)
-    return { title: { absolute: `${title} | IQOS Store UAE` }, description, alternates: { canonical: `/flavours/${f.slug}` } }
+    return { title: { absolute: `${title} | IQOS Store UAE` }, description, alternates: { canonical: `/flavours/${f.slug}`, languages: languageAlternates(`/flavours/${f.slug}`) } }
 }
 
 export default async function FlavourPage({ params }: Params) {

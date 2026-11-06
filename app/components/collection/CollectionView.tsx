@@ -79,8 +79,83 @@ export function collectionSchemas(path: string, name: string, description: strin
     ]
 }
 
+const names = (list: Product[]) => list.map((p) => p.name.replace(/^TEREA\s+/, "")).join(", ")
+
+// Extra origin questions answered straight from the catalogue, so they stay true as stock changes.
+function originFaqs(region: Region, products: Product[]): Collection["faqs"] {
+    const label = `TEREA ${region}`
+    const inStock = products.filter((p) => p.inStock)
+    const menthol = products.filter((p) => p.family === "Menthol")
+    const capsule = products.filter((p) => p.family === "Capsule")
+    const cheapest = (inStock.length ? inStock : products).reduce((a, b) => (b.price < a.price ? b : a))
+    return [
+        {
+            question: `Which ${label} flavours are menthol?`,
+            answer: menthol.length ? `${menthol.length} ${label} flavours are menthol: ${names(menthol)}.` : `None of our ${label} flavours are plain menthol.`,
+        },
+        {
+            question: `Does ${label} have capsule (click) flavours?`,
+            answer: capsule.length
+                ? `Yes — ${names(capsule)} ${capsule.length === 1 ? "has" : "have"} a capsule in the filter you click to change the flavour mid-session.`
+                : `No, our ${label} range has no capsule flavours. Look at Indonesia or Japan for pearl and capsule sticks.`,
+        },
+        {
+            question: `What is the cheapest ${label} carton?`,
+            answer: `${cheapest.name} ${region} at ${formatAED(cheapest.price)} per carton of 200 sticks.`,
+        },
+        {
+            question: `Does ${label} work with IQOS ILUMA i?`,
+            answer: `Yes. ${label} works in every IQOS ILUMA device — ILUMA, ILUMA One, ILUMA Prime and the ILUMA i series. It does not work in older IQOS models that use HEETS.`,
+        },
+        {
+            question: `Why is the ${label} pack not in English?`,
+            answer: `${label} is made for the ${region} market, so pack text and health warnings are in that market's language. Every carton we sell arrives sealed in its original cellophane.`,
+        },
+    ]
+}
+
+function PriceList({ title, products }: { title: string; products: Product[] }) {
+    return (
+        <section className="mt-16">
+            <h2 className="text-2xl font-extrabold md:text-3xl">{title}</h2>
+            <div className="mt-4 overflow-x-auto rounded-[1.5rem] border border-line bg-paper">
+                <table className="w-full text-left text-sm">
+                    <thead className="border-b border-line text-xs uppercase tracking-wider text-ink-soft">
+                        <tr>
+                            <th className="px-4 py-3">Product</th>
+                            <th className="px-4 py-3">Type</th>
+                            <th className="px-4 py-3">Price</th>
+                            <th className="px-4 py-3">Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line">
+                        {products.map((p) => (
+                            <tr key={p.id}>
+                                <td className="px-4 py-2.5 font-bold">
+                                    <Link href={`/products/${p.id}`} className="hover:text-ember">
+                                        {p.name}
+                                        {p.region ? ` ${p.region}` : ""}
+                                    </Link>
+                                    {p.notes && <span className="block text-xs font-normal text-ink-soft">{p.notes}</span>}
+                                </td>
+                                <td className="px-4 py-2.5">{p.family}</td>
+                                <td className="whitespace-nowrap px-4 py-2.5 font-bold">{formatAED(p.price)}</td>
+                                <td className="whitespace-nowrap px-4 py-2.5">{p.inStock ? "In stock" : "Sold out"}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    )
+}
+
 export default function CollectionView({ collection }: { collection: Collection }) {
     const products = getProducts({ category: collection.category, region: collection.region, line: collection.line })
+    const faqs = collection.region ? [...collection.faqs, ...originFaqs(collection.region, products)] : collection.faqs
+    const priceListTitle = collection.region
+        ? `TEREA ${collection.region} price list in Dubai`
+        : `${collection.label ?? collection.line ?? CATEGORIES[collection.category].label} price list in the UAE`
     const { min } = priceRange(products)
     const accent = collection.region ? REGIONS[collection.region].color : CATEGORIES[collection.category].color
     const href = `/${collection.slug}`
@@ -101,7 +176,7 @@ export default function CollectionView({ collection }: { collection: Collection 
 
     return (
         <>
-            {collectionSchemas(collection.slug, collection.h1, collection.metaDescription, products, collection.faqs).map((s, i) => (
+            {collectionSchemas(collection.slug, collection.h1, collection.metaDescription, products, faqs).map((s, i) => (
                 <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
             ))}
 
@@ -160,6 +235,9 @@ export default function CollectionView({ collection }: { collection: Collection 
 
                 <CollectionGrid products={products} />
 
+                {/* The all-TEREA list lives on /terea-price-uae; repeating it here would compete with that page. */}
+                {collection.slug !== "terea" && <PriceList title={priceListTitle} products={products} />}
+
                 <div className="mt-16 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
                     <div className="space-y-8">
                         {collection.body.map((b) => (
@@ -173,10 +251,10 @@ export default function CollectionView({ collection }: { collection: Collection 
                         </Link>
                     </div>
                     <div className="space-y-10">
-                        {collection.faqs.length > 0 && (
+                        {faqs.length > 0 && (
                             <section>
                                 <h2 className="mb-4 text-2xl font-extrabold md:text-3xl">Frequently asked</h2>
-                                <FaqList faqs={collection.faqs} />
+                                <FaqList faqs={faqs} />
                             </section>
                         )}
                         <DeliveryAreas />

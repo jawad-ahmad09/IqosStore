@@ -40,9 +40,14 @@ export default function ArDeliveryPage() {
                         <p className="mt-3 text-xs font-bold">
                             أقل من {aed(DELIVERY.freeFromAmount)}: {aed(DELIVERY.fee)} · فوق {aed(DELIVERY.freeFromAmount)}: مجاناً
                         </p>
-                        <Link href={`/delivery/${e.slug}`} lang="en" className="mt-3 inline-block text-xs font-bold text-ember">
-                            English →
-                        </Link>
+                        <div className="mt-3 flex items-center gap-4 text-xs font-bold">
+                            <Link href={`/ar/delivery/${e.slug}`} className="text-ember">
+                                تفاصيل التوصيل إلى {e.name} ←
+                            </Link>
+                            <Link href={`/delivery/${e.slug}`} lang="en" className="text-ink-soft">
+                                English
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>

@@ -12,7 +12,7 @@ import { EMIRATE_PAGES, getEmirate, type EmirateInfo } from "@/app/data/emirates
 import { getProducts, priceRange } from "@/app/data/products"
 import { ORIGIN_COUNT, REGIONS, STORE, whatsappLink } from "@/app/data/store"
 import { DELIVERY, FREE_DELIVERY_RULE, formatAED } from "@/app/lib/pricing"
-import { OG_IMAGE } from "@/app/lib/seo"
+import { OG_IMAGE, languageAlternates } from "@/app/lib/seo"
 
 type Params = { params: Promise<{ emirate: string }> }
 
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return {
         title: { absolute: title },
         description,
-        alternates: { canonical: `/delivery/${e.slug}` },
+        alternates: { canonical: `/delivery/${e.slug}`, languages: languageAlternates(`/delivery/${e.slug}`) },
         openGraph: { title, description, url: `/delivery/${e.slug}`, images: OG_IMAGE },
     }
 }

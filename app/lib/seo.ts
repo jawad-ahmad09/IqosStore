@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 import type { Collection } from "@/app/data/collections"
+import { EMIRATE_PAGES } from "@/app/data/emirates"
+import { FLAVOURS } from "@/app/data/flavours"
 
 // English path → its Arabic counterpart, for pages that have one.
-export const AR_PATHS = new Set(["/", "/terea", "/terea/indonesia", "/terea/kazakhstan", "/terea/uzbekistan", "/terea/switzerland", "/terea/italy", "/terea/japan", "/iqos-iluma", "/iqos-iluma-i", "/vgod-stig", "/delivery"])
+export const AR_PATHS = new Set([
+    "/", "/terea", "/terea/indonesia", "/terea/kazakhstan", "/terea/uzbekistan", "/terea/switzerland", "/terea/italy", "/terea/japan",
+    "/iqos-iluma", "/iqos-iluma-i", "/vgod-stig", "/delivery",
+    ...EMIRATE_PAGES.map((e) => `/delivery/${e.slug}`),
+    ...FLAVOURS.map((f) => `/flavours/${f.slug}`),
+])
 
 // Pages that set their own openGraph lose the file-based root image, so they pass this explicitly.
 export const OG_IMAGE = [{ url: "/opengraph-image", width: 1200, height: 630, alt: "IQOS Store UAE — TEREA, IQOS ILUMA & STIG delivered across the UAE" }]

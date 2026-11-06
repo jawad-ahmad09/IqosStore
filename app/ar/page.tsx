@@ -5,7 +5,8 @@ import { EnglishLink } from "@/app/components/ar/ArCollectionView"
 import { FaqList } from "@/app/components/collection/CollectionView"
 import ProductRail from "@/app/components/home/ProductRail"
 import { WhatsAppIcon } from "@/app/components/WhatsAppButton"
-import { AR_COLLECTIONS, AR_DELIVERY, AR_REGION, aed } from "@/app/data/ar"
+import { AR_COLLECTIONS, AR_DELIVERY, AR_REGION, aed, arFlavour } from "@/app/data/ar"
+import { FLAVOURS } from "@/app/data/flavours"
 import { getProducts, priceRange, products } from "@/app/data/products"
 import { CATEGORIES, REGIONS, STORE, whatsappLink } from "@/app/data/store"
 import { DELIVERY } from "@/app/lib/pricing"
@@ -75,12 +76,13 @@ export default function ArabicHome() {
                         <EnglishLink href="/" />
                     </div>
                     <h1 className="mt-4 max-w-3xl text-[2.5rem] font-extrabold leading-[1.25] sm:text-6xl">
+                        <span className="mb-3 block text-base font-extrabold text-gold sm:text-lg">ايكوس وتيريا في دبي والإمارات</span>{" "}
                         كل نكهات تيريا.
                         <br />
                         تصلك <span className="text-ember">اليوم.</span>
                     </h1>
                     <p className="mt-6 max-w-2xl leading-loose text-white/75 md:text-lg">
-                        أكثر من {products.length} منتج — تيريا من إندونيسيا وكازاخستان وأوزبكستان وسويسرا واليابان، وأجهزة ايكوس إيلوما وبودات ستيج.
+                        أكثر من {products.length} منتج — تيريا من إندونيسيا وكازاخستان وأوزبكستان وسويسرا وإيطاليا واليابان، وأجهزة ايكوس إيلوما وبودات ستيج.
                         توصيل في نفس اليوم داخل دبي، ومجاني للطلبات فوق {aed(DELIVERY.freeFromAmount)}.
                     </p>
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -160,6 +162,19 @@ export default function ArabicHome() {
                 </div>
             </section>
 
+            <section className="pb-14">
+                <div className="container-x">
+                    <h2 className="text-3xl font-extrabold md:text-4xl">قارن نكهات تيريا حسب المنشأ</h2>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                        {FLAVOURS.map((f) => (
+                            <Link key={f.slug} href={`/ar/flavours/${f.slug}`} className="chip">
+                                تيريا {arFlavour(f.name)} · {f.products.length} مناشئ
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             <section className="pb-16">
                 <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
                     <div>
@@ -170,8 +185,10 @@ export default function ArabicHome() {
                         <h2 className="text-3xl font-extrabold md:text-4xl">نوصل إلى</h2>
                         <ul className="mt-4 grid grid-cols-2 gap-2">
                             {AR_DELIVERY.map((e) => (
-                                <li key={e.slug} className="rounded-xl bg-paper px-4 py-3 text-sm font-bold">
-                                    ايكوس {e.name}
+                                <li key={e.slug}>
+                                    <Link href={`/ar/delivery/${e.slug}`} className="block rounded-xl bg-paper px-4 py-3 text-sm font-bold transition hover:text-ember">
+                                        ايكوس {e.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

@@ -33,7 +33,11 @@ export default function Hero() {
                         Open now · delivering across the UAE
                     </span>
 
+                    {/* The H1 leads with the search phrase; the slogan stays the visual headline. */}
                     <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[1.02] sm:text-6xl lg:text-7xl">
+                        <span className="mb-3 block font-sans text-sm font-extrabold uppercase tracking-[0.14em] text-gold sm:text-base">
+                            Buy IQOS & TEREA in Dubai & UAE
+                        </span>{" "}
                         Every TEREA.
                         <br />
                         At your door{" "}
